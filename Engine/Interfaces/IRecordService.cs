@@ -7,7 +7,7 @@
     public interface IRecordService<TID>
     {
         /// <summary>
-        /// 
+        /// Uses a class that implements ISpecification to check the output of the record creation
         /// </summary>
         /// <typeparam name="TSpec"></typeparam>
         /// <param name="Specifications"></param>

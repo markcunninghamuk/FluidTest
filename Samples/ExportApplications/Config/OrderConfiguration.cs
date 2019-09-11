@@ -14,11 +14,7 @@ namespace MarkTek.Fluent.Testing.Sample.Specifications.Config
 
             File.AppendAllLines("C:\\Test\\test.txt",new[] { "Creating Order" });
 
-            return new Record<Order, Guid>()
-            {
-                Row = c,
-                Id = c.Id
-            };
+            return new Record<Order, Guid>(c, c.Id);
         }
 
         public Record<Order, Guid> CreateRecord(Guid id)
@@ -29,13 +25,8 @@ namespace MarkTek.Fluent.Testing.Sample.Specifications.Config
 
             File.AppendAllLines("C:\\Test\\test.txt", new[] { $"Creating related Order with parent id {id}" });
 
-            return new Record<Order, Guid>()
-            {
-                Row = c,
-                Id = c.Id
-            };
+            return new Record<Order, Guid>(c, c.Id);
         }
 
-        
     }
 }

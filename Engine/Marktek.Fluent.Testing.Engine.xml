@@ -13,7 +13,8 @@
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator`2.CreateRecord">
             <summary>
-            Creates a ....
+            Creates a parent / aggregate record that children may be linked to.
+            For No-SQL stores this will be used and CreateRelated would technically not be required
             </summary>
             <returns></returns>
         </member>
@@ -25,7 +26,7 @@
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.AssertAgainst``1(``0)">
             <summary>
-            
+            Uses a class that implements ISpecification to check the output of the record creation
             </summary>
             <typeparam name="TSpec"></typeparam>
             <param name="Specifications"></param>
@@ -68,6 +69,35 @@
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation.Validate">
             <summary>
             Validates against a set of created records, scenarios
+            </summary>
+        </member>
+        <member name="T:MarkTek.Fluent.Testing.RecordGeneration.Record`2">
+            <summary>
+            Generic record class allowing for multiple data types
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TId"></typeparam>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.Record`2.#ctor">
+            <summary>
+            Protected Constructor
+            </summary>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.Record`2.#ctor(`0,`1)">
+            <summary>
+            Constructor for Record where T class
+            </summary>
+            <param name="record"></param>
+            <param name="id"></param>
+        </member>
+        <member name="P:MarkTek.Fluent.Testing.RecordGeneration.Record`2.Id">
+            <summary>
+            Id of the Entity
+            </summary>
+        </member>
+        <member name="P:MarkTek.Fluent.Testing.RecordGeneration.Record`2.Row">
+            <summary>
+            Generic T where T is the actual data record / row
             </summary>
         </member>
     </members>
