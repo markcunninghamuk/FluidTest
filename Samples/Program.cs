@@ -19,9 +19,10 @@ namespace Marktek.Fluent.Testing.Engine.Sample
                 });
             });
 
-            var service = new RecordService<Guid>(); //My Database uses guids, if yours uses int, use int, etc
-
-            service
+            var service = new RecordService<Guid>(); //My Database uses guids, if yours uses int, use int, etc, 
+            //you can also override the methods and implement your own
+                        
+            service  
              .CreateRecord(container.GetInstance<OrderConfiguration>())
              .CreateRelatedRecord(container.GetInstance<OrderConfiguration>())
              .AssertAgainst(container.GetInstance<MustBeOpenSpecification>());

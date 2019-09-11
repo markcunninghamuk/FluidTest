@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\macunnin\AzureDevOps\markcunninghamuk\Testing\FluentTestEngine\Engine\Marktek.Fluent.Testing.Engine.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="structuremap" Version="4.7.1" />
   </ItemGroup>

@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Marktek.Fluent.Testing.Engine</name>
+    </assembly>
+    <members>
+        <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator`2">
+            <summary>
+            Test
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TID"></typeparam>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator`2.CreateRecord">
+            <summary>
+            Creates a ....
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TID"></typeparam>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.AssertAgainst``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TSpec"></typeparam>
+            <param name="Specifications"></param>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.CreateRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator{``0,`0})">
+            <summary>
+            Creates a record of type T where T is a class
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="implementation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.CreateRelatedRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator{``0,`0})">
+            <summary>
+            Creates a related record of type T where T is a class and passes in the previously created id from the CreateRecord method
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="implementation"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator`2">
+            <summary>
+            Creates a related record, this method should be called after the CreateRecordMethod on IRecordCreator
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TID"></typeparam>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator`2.CreateRecord(`1)">
+            <summary>
+            Creates a record of Type T by passing in the previous id of the IRecordCreator.CreateRecord method
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation">
+            <summary>
+            An interface that should be implemented to ensure the tests meet the expected criteria
+            </summary>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation.Validate">
+            <summary>
+            Validates against a set of created records, scenarios
+            </summary>
+        </member>
+    </members>
+</doc>
