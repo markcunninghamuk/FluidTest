@@ -4,6 +4,22 @@
         <name>Marktek.Fluent.Testing.Engine</name>
     </assembly>
     <members>
+        <member name="T:Marktek.Fluent.Testing.Engine.BuilderExtensions">
+            <summary>
+            /
+            </summary>
+        </member>
+        <member name="T:Marktek.Fluent.Testing.Engine.Guard">
+            <summary>
+            Guard Class
+            </summary>
+        </member>
+        <member name="M:Marktek.Fluent.Testing.Engine.Guard.AgainstNull``1(``0)">
+            <summary>
+            Guard Against T
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator`2">
             <summary>
             Test
@@ -45,6 +61,14 @@
             </summary>
             <typeparam name="T"></typeparam>
             <param name="implementation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.If(System.Boolean,System.Func{MarkTek.Fluent.Testing.RecordGeneration.IRecordService{`0},MarkTek.Fluent.Testing.RecordGeneration.IRecordService{`0}})">
+            <summary>
+            
+            </summary>
+            <param name="cond"></param>
+            <param name="builder"></param>
             <returns></returns>
         </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator`2">
@@ -99,6 +123,43 @@
             <summary>
             Generic T where T is the actual data record / row
             </summary>
+        </member>
+        <member name="T:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1">
+            <summary>
+            Base Record Service
+            </summary>
+            <typeparam name="TID"></typeparam>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.CreateRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator{``0,`0})">
+            <summary>
+            Creates a record implementing a class that implements IIRecordCreator<typeparamref name="TEntity"/>
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.CreateRelatedRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator{``0,`0})">
+            <summary>
+            Creates a releated record from the previous CreateRecordMethod
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AssertAgainst``1(``0)">
+            <summary>
+            Asserts a Configuration using a class that implements ISpecification
+            </summary>
+            <typeparam name="TSpec"></typeparam>
+            <param name="spec"></param>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.If(System.Boolean,System.Func{MarkTek.Fluent.Testing.RecordGeneration.IRecordService{`0},MarkTek.Fluent.Testing.RecordGeneration.IRecordService{`0}})">
+            <summary>
+            Execute method based on Condition. Useful for Scenarios where you want to configure the behaviour
+            </summary>
+            <param name="condition"></param>
+            <param name="builder"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

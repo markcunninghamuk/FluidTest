@@ -1,5 +1,4 @@
 ﻿using MarkTek.Fluent.Testing.RecordGeneration;
-using MarkTek.Fluent.Testing.Sample.Specifications;
 using MarkTek.Fluent.Testing.Sample.Specifications.Config;
 using StructureMap;
 using System;
@@ -19,14 +18,32 @@ namespace Marktek.Fluent.Testing.Engine.Sample
                 });
             });
 
-            var service = new RecordService<Guid>(); //My Database uses guids, if yours uses int, use int, etc, 
-            //you can also override the methods and implement your own
-                        
-            service  
+            var service = new RecordService<Guid>();
+
+            service
              .CreateRecord(container.GetInstance<OrderConfiguration>())
              .CreateRelatedRecord(container.GetInstance<OrderConfiguration>())
-             .AssertAgainst(container.GetInstance<MustBeOpenSpecification>());
+             .If(DateTime.Now.Hour > 15, x => x.CreateRecord(container.GetInstance<OrderConfiguration>()));
 
         }
+
+        internal class MyCustomConfig : IRelatedRecordCreator<OrderConfiguration, int>, IRecordCreator<OrderConfiguration, int>
+        {
+            public Record<OrderConfiguration, int> CreateRecord()
+            {
+                throw new NotImplementedException();
+            }
+
+            public Record<OrderConfiguration, Guid> CreateRecord(int id)
+            {
+                throw new NotImplementedException();
+            }
+
+            Record<OrderConfiguration, int> IRelatedRecordCreator<OrderConfiguration, int>.CreateRecord(int id)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
     }
 }

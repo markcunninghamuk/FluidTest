@@ -7,6 +7,7 @@ namespace MarkTek.Fluent.Testing.Sample.Specifications.Config
 {
     public class OrderConfiguration : IRecordCreator<Order, Guid>, IRelatedRecordCreator<Order, Guid>
     {
+     
         public Record<Order, Guid> CreateRecord()
         {
             var c = new Order();
