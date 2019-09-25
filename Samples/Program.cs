@@ -21,25 +21,26 @@ namespace Marktek.Fluent.Testing.Engine.Sample
             var service = new RecordService<Guid>();
 
             service
-             .CreateRecord(container.GetInstance<OrderConfiguration>())
-             .CreateRelatedRecord(container.GetInstance<OrderConfiguration>())
-             .If(DateTime.Now.Hour > 15, x => x.CreateRecord(container.GetInstance<OrderConfiguration>()));
-
+             .CreateRecord(container.GetInstance<ActiveOrderConfiguration>())
+             .CreateRelatedRecord(container.GetInstance<ActiveOrderConfiguration>())
+             .CreateRecord(new CustomOrder())
+             .If(DateTime.Now.Hour > 15, x => x.CreateRecord(container.GetInstance<ActiveOrderConfiguration>()));
+           
         }
 
-        internal class MyCustomConfig : IRelatedRecordCreator<OrderConfiguration, int>, IRecordCreator<OrderConfiguration, int>
+        internal class MyCustomConfig : IRelatedRecordCreator<ActiveOrderConfiguration, int>, IRecordCreator<ActiveOrderConfiguration, int>
         {
-            public Record<OrderConfiguration, int> CreateRecord()
+            public Record<ActiveOrderConfiguration, int> CreateRecord()
             {
                 throw new NotImplementedException();
             }
 
-            public Record<OrderConfiguration, Guid> CreateRecord(int id)
+            public Record<ActiveOrderConfiguration, Guid> CreateRecord(int id)
             {
                 throw new NotImplementedException();
             }
 
-            Record<OrderConfiguration, int> IRelatedRecordCreator<OrderConfiguration, int>.CreateRecord(int id)
+            Record<ActiveOrderConfiguration, int> IRelatedRecordCreator<ActiveOrderConfiguration, int>.CreateRecord(int id)
             {
                 throw new NotImplementedException();
             }
