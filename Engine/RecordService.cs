@@ -2,6 +2,7 @@
 using Marktek.Fluent.Testing.Engine.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MarkTek.Fluent.Testing.RecordGeneration
 {
@@ -11,8 +12,8 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
     /// <typeparam name="TID"></typeparam>
     public class RecordService<TID> : IRecordService<TID>
     {
-        
-        private TID CurrentId { get; set; }
+
+        private List<TID> CreatedIds { get; set; }
 
         /// <summary>
         /// 
@@ -25,9 +26,10 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="aggregateId"></param>
         public RecordService(TID aggregateId)
         {
+            CreatedIds = new List<TID>();
             this.AggregateId = aggregateId;
-        }        
-        
+        }
+
         /// <summary>
         /// Creates a record implementing a class that implements IIRecordCreator<typeparamref name="TEntity"/>
         /// </summary>
@@ -36,7 +38,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public virtual IRecordService<TID> CreateRecord<TEntity>(IRecordCreator<TEntity, TID> app)
         {
-            this.CurrentId = app.CreateRecord().Id;
+            this.CreatedIds.Add(app.CreateRecord().Id);
             return this;
         }
 
@@ -48,22 +50,23 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public virtual IRecordService<TID> CreateRelatedRecord<TEntity>(IRelatedRecordCreator<TEntity, TID> app)
         {
-            Guard.AgainstNull(this.CurrentId);
-            this.CurrentId = app.CreateRecord(CurrentId).Id;
+            Guard.AgainstNull(this.CreatedIds);
+            this.CreatedIds.Add(app.CreateRecord(CreatedIds.Last()).Id);
             return this;
         }
 
         /// <summary>
-        /// Asserts a Configuration using a class that implements ISpecification
+        /// 
         /// </summary>
-        /// <typeparam name="TSpec"></typeparam>
+        /// <typeparam name="TType"></typeparam>
         /// <param name="spec"></param>
-        public IRecordService<TID> AssertAgainst<TSpec>(List<TSpec> spec) where TSpec : ISpecifcation
+        /// <returns></returns>
+        public IRecordService<TID> AssertAgainst<TType>(ISpecifcation<TID, TType> spec)
         {
-            spec.ForEach(s=>s.Validate());
+            spec.Validate(AggregateId);
             return this;
         }
-      
+
         /// <summary>
         /// Execute method based on Condition. Useful for Scenarios where you want to configure the behaviour
         /// </summary>
@@ -79,10 +82,9 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// Cleanup Records
         /// </summary>
         /// <param name="Id"></param>
-        /// <param name="sessionid"></param>
         public void Cleanup(IRecordCleanup<TID> Id)
         {
-            Id.Cleanup();
+            Id.Cleanup(AggregateId);
         }
 
     }

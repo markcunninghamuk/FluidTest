@@ -23,13 +23,10 @@ namespace Marktek.Fluent.Testing.Engine.Sample
             var service = new RecordService<Guid>(Guid.NewGuid());
             
             service
-                 .CreateRecord(container.GetInstance<ActiveOrderConfiguration>())
-                 .If(DateTime.Now.Hour > 15, x => x.CreateRelatedRecord(container.GetInstance<ActiveOrderConfiguration>()))
-                 .AssertAgainst(new System.Collections.Generic.List<ISpecifcation>
-                 {
-                     new MustBeOpenSpecification(service.AggregateId)
-                 })
-                 .Cleanup(new Cleanup(service.AggregateId));
+                 .CreateRecord(new ActiveOrderConfiguration(service.AggregateId))
+                 .If(DateTime.Now.Hour > 15, x => x.CreateRelatedRecord(new ActiveOrderConfiguration(Guid.NewGuid())))
+                 .AssertAgainst(new MustBeOpenSpecification())
+                 .Cleanup(new Cleanup());
         }
 
 

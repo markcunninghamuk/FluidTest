@@ -10,13 +10,14 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
     /// <typeparam name="TID"></typeparam>
     public interface IRecordService<TID>
     {
+
         /// <summary>
-        /// Uses a class that implements ISpecification to check the output of the record creation
+        /// 
         /// </summary>
-        /// <typeparam name="TSpec"></typeparam>
-        /// <param name="Specifications"></param>
-        IRecordService<TID> AssertAgainst<TSpec>(List<TSpec> Specifications) where TSpec : ISpecifcation;
-        
+        /// <param name="spec"></param>
+        /// <returns></returns>
+        IRecordService<TID> AssertAgainst<TType>(ISpecifcation<TID, TType> spec);
+
         /// <summary>
         /// Creates a record of type T where T is a class
         /// </summary>

@@ -4,17 +4,10 @@ using System;
 namespace Marktek.Fluent.Testing.Engine.Sample.ExportApplications.Cleanup
 {
     public class Cleanup : IRecordCleanup<Guid>
-    {
-        private Guid guid;
-
-        public Cleanup(Guid guid)
+    {        
+        void IRecordCleanup<Guid>.Cleanup(Guid AggregateId)
         {
-            this.guid = guid;
-        }
-
-        void IRecordCleanup<Guid>.Cleanup()
-        {
-            Console.WriteLine($"clean record using {guid}");
+            Console.WriteLine($"clean record using {AggregateId}");
         }
     }
 }

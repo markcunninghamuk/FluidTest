@@ -13,7 +13,7 @@ namespace Marktek.Fluent.Testing.Engine.Interfaces
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
-        void Cleanup();
+        /// <param name="aggregateId"></param>
+        void Cleanup(TID aggregateId);
     }
 }

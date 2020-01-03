@@ -26,11 +26,11 @@
             </summary>
             <typeparam name="TID"></typeparam>
         </member>
-        <member name="M:Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup`1.Cleanup">
+        <member name="M:Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup`1.Cleanup(`0)">
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param name="aggregateId"></param>
         </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator`2">
             <summary>
@@ -52,12 +52,12 @@
             </summary>
             <typeparam name="TID"></typeparam>
         </member>
-        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.AssertAgainst``1(System.Collections.Generic.List{``0})">
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.AssertAgainst``1(MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation{`0,``0})">
             <summary>
-            Uses a class that implements ISpecification to check the output of the record creation
+            
             </summary>
-            <typeparam name="TSpec"></typeparam>
-            <param name="Specifications"></param>
+            <param name="spec"></param>
+            <returns></returns>
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.CreateRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator{``0,`0})">
             <summary>
@@ -104,15 +104,33 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="T:MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation">
+        <member name="T:MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation`2">
             <summary>
             An interface that should be implemented to ensure the tests meet the expected criteria
             </summary>
         </member>
-        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation.Validate">
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation`2.Validate(`0)">
             <summary>
             Validates against a set of created records, scenarios
             </summary>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation`2.GetValidators">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MarkTek.Fluent.Testing.RecordGeneration.ISpecificationValidator`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.ISpecificationValidator`1.Validate(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
         </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.Record`2">
             <summary>
@@ -149,6 +167,17 @@
             </summary>
             <typeparam name="TID"></typeparam>
         </member>
+        <member name="P:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AggregateId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.#ctor(`0)">
+            <summary>
+            Every Graph must have a hierarchy
+            </summary>
+            <param name="aggregateId"></param>
+        </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.CreateRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator{``0,`0})">
             <summary>
             Creates a record implementing a class that implements IIRecordCreator<typeparamref name="TEntity"/>
@@ -165,12 +194,13 @@
             <param name="app"></param>
             <returns></returns>
         </member>
-        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AssertAgainst``1(System.Collections.Generic.List{``0})">
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AssertAgainst``1(MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation{`0,``0})">
             <summary>
-            Asserts a Configuration using a class that implements ISpecification
+            
             </summary>
-            <typeparam name="TSpec"></typeparam>
+            <typeparam name="TType"></typeparam>
             <param name="spec"></param>
+            <returns></returns>
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.If(System.Boolean,System.Func{MarkTek.Fluent.Testing.RecordGeneration.IRecordService{`0},MarkTek.Fluent.Testing.RecordGeneration.IRecordService{`0}})">
             <summary>
@@ -185,7 +215,6 @@
             Cleanup Records
             </summary>
             <param name="Id"></param>
-            <param name="sessionid"></param>
         </member>
     </members>
 </doc>

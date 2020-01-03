@@ -7,20 +7,22 @@ namespace MarkTek.Fluent.Testing.Sample.Specifications.Config
 {
     public class ActiveOrderConfiguration : IRecordCreator<Order, Guid>, IRelatedRecordCreator<Order, Guid>
     {
+        private Guid id;
 
-        public ActiveOrderConfiguration()
-        {                
+        public ActiveOrderConfiguration(Guid aggregateId)
+        {
+            this.id = aggregateId;
         }
 
         public Record<Order, Guid> CreateRecord()
         {
             var c = new Order();
-
+          
             Console.WriteLine($"Creating Order");
 
             File.AppendAllLines("C:\\Test\\test.txt",new[] { "Creating Order" });
 
-            return new Record<Order, Guid>(c, c.Id);
+            return new Record<Order, Guid>(c, id);
         }
 
         public Record<Order, Guid> CreateRecord(Guid id)

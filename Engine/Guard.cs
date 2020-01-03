@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Marktek.Fluent.Testing.Engine
 {
@@ -15,7 +13,6 @@ namespace Marktek.Fluent.Testing.Engine
         /// <typeparam name="T"></typeparam>
         internal static void AgainstNull<T>(T objectToValidate)
         {
-         //   objectToValidate = Guid.NewGuid();
             if (objectToValidate.Equals(default(T)))
                 throw new ArgumentNullException($"{nameof(objectToValidate)} is null");
         }
