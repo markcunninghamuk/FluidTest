@@ -1,6 +1,7 @@
 ﻿using Marktek.Fluent.Testing.Engine;
+using Marktek.Fluent.Testing.Engine.Interfaces;
 using System;
-using System.Linq.Expressions;
+using System.Collections.Generic;
 
 namespace MarkTek.Fluent.Testing.RecordGeneration
 {
@@ -10,8 +11,23 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
     /// <typeparam name="TID"></typeparam>
     public class RecordService<TID> : IRecordService<TID>
     {
+        
         private TID CurrentId { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public TID AggregateId { get; private set; }
+
+        /// <summary>
+        /// Every Graph must have a hierarchy
+        /// </summary>
+        /// <param name="aggregateId"></param>
+        public RecordService(TID aggregateId)
+        {
+            this.AggregateId = aggregateId;
+        }        
+        
         /// <summary>
         /// Creates a record implementing a class that implements IIRecordCreator<typeparamref name="TEntity"/>
         /// </summary>
@@ -33,7 +49,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         public virtual IRecordService<TID> CreateRelatedRecord<TEntity>(IRelatedRecordCreator<TEntity, TID> app)
         {
             Guard.AgainstNull(this.CurrentId);
-            app.CreateRecord(CurrentId);
+            this.CurrentId = app.CreateRecord(CurrentId).Id;
             return this;
         }
 
@@ -42,11 +58,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
         /// <typeparam name="TSpec"></typeparam>
         /// <param name="spec"></param>
-        public void AssertAgainst<TSpec>(TSpec spec) where TSpec : ISpecifcation
+        public IRecordService<TID> AssertAgainst<TSpec>(List<TSpec> spec) where TSpec : ISpecifcation
         {
-            spec.Validate();
+            spec.ForEach(s=>s.Validate());
+            return this;
         }
-
+      
         /// <summary>
         /// Execute method based on Condition. Useful for Scenarios where you want to configure the behaviour
         /// </summary>
@@ -56,6 +73,16 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         public IRecordService<TID> If(bool condition, Func<IRecordService<TID>, IRecordService<TID>> builder)
         {
             return condition ? builder(this) : this;
+        }
+
+        /// <summary>
+        /// Cleanup Records
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="sessionid"></param>
+        public void Cleanup(IRecordCleanup<TID> Id)
+        {
+            Id.Cleanup();
         }
 
     }

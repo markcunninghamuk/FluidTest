@@ -20,6 +20,18 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="T:Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TID"></typeparam>
+        </member>
+        <member name="M:Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup`1.Cleanup">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator`2">
             <summary>
             Test
@@ -40,7 +52,7 @@
             </summary>
             <typeparam name="TID"></typeparam>
         </member>
-        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.AssertAgainst``1(``0)">
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.AssertAgainst``1(System.Collections.Generic.List{``0})">
             <summary>
             Uses a class that implements ISpecification to check the output of the record creation
             </summary>
@@ -70,6 +82,13 @@
             <param name="cond"></param>
             <param name="builder"></param>
             <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.Cleanup(Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup{`0})">
+            <summary>
+            An identifier used to cleanup, Up to the developer to decide how best to do this. Consider using a sessionId fr the test run
+            </summary>
+            <param name="cleanup"></param>
+            <param name="aggregateId"></param>
         </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator`2">
             <summary>
@@ -146,7 +165,7 @@
             <param name="app"></param>
             <returns></returns>
         </member>
-        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AssertAgainst``1(``0)">
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AssertAgainst``1(System.Collections.Generic.List{``0})">
             <summary>
             Asserts a Configuration using a class that implements ISpecification
             </summary>
@@ -160,6 +179,13 @@
             <param name="condition"></param>
             <param name="builder"></param>
             <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.Cleanup(Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup{`0})">
+            <summary>
+            Cleanup Records
+            </summary>
+            <param name="Id"></param>
+            <param name="sessionid"></param>
         </member>
     </members>
 </doc>

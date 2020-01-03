@@ -7,10 +7,15 @@ namespace MarkTek.Fluent.Testing.Sample.Specifications.Config
 {
     public class ActiveOrderConfiguration : IRecordCreator<Order, Guid>, IRelatedRecordCreator<Order, Guid>
     {
-     
+
+        public ActiveOrderConfiguration()
+        {                
+        }
+
         public Record<Order, Guid> CreateRecord()
         {
             var c = new Order();
+
             Console.WriteLine($"Creating Order");
 
             File.AppendAllLines("C:\\Test\\test.txt",new[] { "Creating Order" });
@@ -20,6 +25,10 @@ namespace MarkTek.Fluent.Testing.Sample.Specifications.Config
 
         public Record<Order, Guid> CreateRecord(Guid id)
         {
+
+            //order.AccountId = new EntityReference("account", id);
+
+
             var c = new Order();
             Console.WriteLine($"Creating related Order with parent id {id}");
 

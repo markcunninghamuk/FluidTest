@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Marktek.Fluent.Testing.Engine.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace MarkTek.Fluent.Testing.RecordGeneration
 {
@@ -13,9 +15,8 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
         /// <typeparam name="TSpec"></typeparam>
         /// <param name="Specifications"></param>
-        void AssertAgainst<TSpec>(TSpec Specifications) where TSpec : ISpecifcation;
-
-
+        IRecordService<TID> AssertAgainst<TSpec>(List<TSpec> Specifications) where TSpec : ISpecifcation;
+        
         /// <summary>
         /// Creates a record of type T where T is a class
         /// </summary>
@@ -40,6 +41,13 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="builder"></param>
         /// <returns></returns>
         IRecordService<TID> If(bool cond, Func<IRecordService<TID>, IRecordService<TID>> builder);
+
+         /// <summary>
+         /// An identifier used to cleanup, Up to the developer to decide how best to do this. Consider using a sessionId fr the test run
+         /// </summary>
+         /// <param name="cleanup"></param>
+         /// <param name="aggregateId"></param>
+        void Cleanup(IRecordCleanup<TID> cleanup);
                
     }
 }
