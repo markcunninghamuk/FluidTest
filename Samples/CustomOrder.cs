@@ -8,7 +8,6 @@ namespace Marktek.Fluent.Testing.Engine.Sample
         public Record<object, Guid> CreateRecord()
         {
             return new Record<object, Guid>(new { }, Guid.NewGuid());
-            //throw new NotImplementedException();
         }
     }
 }

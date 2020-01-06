@@ -1,4 +1,5 @@
-﻿using Marktek.Fluent.Testing.Engine.Interfaces;
+﻿using Marktek.Fluent.Testing.Engine;
+using Marktek.Fluent.Testing.Engine.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -16,7 +17,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
         /// <param name="spec"></param>
         /// <returns></returns>
-        IRecordService<TID> AssertAgainst<TType>(ISpecifcation<TID, TType> spec);
+        IRecordService<TID> AssertAgainst<TType>(BaseValidator<TID, TType> spec);
 
         /// <summary>
         /// Creates a record of type T where T is a class

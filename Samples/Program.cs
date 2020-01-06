@@ -25,7 +25,7 @@ namespace Marktek.Fluent.Testing.Engine.Sample
             service
                  .CreateRecord(new ActiveOrderConfiguration(service.AggregateId))
                  .If(DateTime.Now.Hour > 15, x => x.CreateRelatedRecord(new ActiveOrderConfiguration(Guid.NewGuid())))
-                 .AssertAgainst(new MustBeOpenSpecification())
+                 .AssertAgainst(new MustBe())
                  .Cleanup(new Cleanup());
         }
 

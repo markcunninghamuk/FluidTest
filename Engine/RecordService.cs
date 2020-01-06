@@ -26,7 +26,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="aggregateId"></param>
         public RecordService(TID aggregateId)
         {
-            CreatedIds = new List<TID>();
+            CreatedIds = new List<TID> { aggregateId};
             this.AggregateId = aggregateId;
         }
 
@@ -55,18 +55,20 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             return this;
         }
 
+
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="TType"></typeparam>
         /// <param name="spec"></param>
         /// <returns></returns>
-        public IRecordService<TID> AssertAgainst<TType>(ISpecifcation<TID, TType> spec)
+        public IRecordService<TID> AssertAgainst<TType>(BaseValidator<TID, TType> spec) 
         {
             spec.Validate(AggregateId);
             return this;
         }
 
+        
         /// <summary>
         /// Execute method based on Condition. Useful for Scenarios where you want to configure the behaviour
         /// </summary>
