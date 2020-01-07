@@ -54,8 +54,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             this.CreatedIds.Add(app.CreateRecord(CreatedIds.Last()).Id);
             return this;
         }
-
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -67,7 +66,6 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             spec.Validate(AggregateId);
             return this;
         }
-
         
         /// <summary>
         /// Execute method based on Condition. Useful for Scenarios where you want to configure the behaviour
@@ -89,5 +87,28 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             Id.Cleanup(AggregateId);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="implementation"></param>
+        /// <returns></returns>
+        public IRecordService<TID> ExecuteActionOnAggregate<T>(IExecutableAggregateAction<TID,T> implementation)
+        {
+            implementation.Execute(AggregateId);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="implementation"></param>
+        /// <returns></returns>
+        public IRecordService<TID> ExecuteAction<T>(IExecutableAction<T, TID> implementation)
+        {
+            implementation.Execute();
+            return this;
+        }
     }
 }
