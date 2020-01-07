@@ -4,6 +4,32 @@
         <name>Marktek.Fluent.Testing.Engine</name>
     </assembly>
     <members>
+        <member name="T:Marktek.Fluent.Testing.Engine.BaseValidator`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TID"></typeparam>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Marktek.Fluent.Testing.Engine.BaseValidator`2.GetValidators">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Marktek.Fluent.Testing.Engine.BaseValidator`2.GetRecord(`0)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Marktek.Fluent.Testing.Engine.BaseValidator`2.Validate(`0)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
         <member name="T:Marktek.Fluent.Testing.Engine.BuilderExtensions">
             <summary>
             /
@@ -19,6 +45,19 @@
             Guard Against T
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Marktek.Fluent.Testing.Engine.Interfaces.IExecutableAction`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TID"></typeparam>
+            <typeparam name="TType"></typeparam>
+        </member>
+        <member name="M:Marktek.Fluent.Testing.Engine.Interfaces.IExecutableAggregateAction`2.Execute(`1)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
         </member>
         <member name="T:Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup`1">
             <summary>
@@ -52,7 +91,7 @@
             </summary>
             <typeparam name="TID"></typeparam>
         </member>
-        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.AssertAgainst``1(MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation{`0,``0})">
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.AssertAgainst``1(Marktek.Fluent.Testing.Engine.BaseValidator{`0,``0})">
             <summary>
             
             </summary>
@@ -68,6 +107,22 @@
             <returns></returns>
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.CreateRelatedRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator{``0,`0})">
+            <summary>
+            Creates a related record of type T where T is a class and passes in the previously created id from the CreateRecord method
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="implementation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.ExecuteAction``1(Marktek.Fluent.Testing.Engine.Interfaces.IExecutableAction{``0,`0})">
+            <summary>
+            Creates a related record of type T where T is a class and passes in the previously created id from the CreateRecord method
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="implementation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.ExecuteActionOnAggregate``1(Marktek.Fluent.Testing.Engine.Interfaces.IExecutableAggregateAction{``0,`0})">
             <summary>
             Creates a related record of type T where T is a class and passes in the previously created id from the CreateRecord method
             </summary>
@@ -194,7 +249,7 @@
             <param name="app"></param>
             <returns></returns>
         </member>
-        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AssertAgainst``1(MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation{`0,``0})">
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AssertAgainst``1(Marktek.Fluent.Testing.Engine.BaseValidator{`0,``0})">
             <summary>
             
             </summary>

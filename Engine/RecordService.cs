@@ -87,27 +87,15 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             Id.Cleanup(AggregateId);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="implementation"></param>
-        /// <returns></returns>
-        public IRecordService<TID> ExecuteActionOnAggregate<T>(IExecutableAggregateAction<TID,T> implementation)
-        {
-            implementation.Execute(AggregateId);
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="implementation"></param>
-        /// <returns></returns>
         public IRecordService<TID> ExecuteAction<T>(IExecutableAction<T, TID> implementation)
         {
             implementation.Execute();
+            return this;
+        }
+
+        public IRecordService<TID> ExecuteActionOnAggregate<T>(IExecutableAggregateAction<T, TID> implementation)
+        {
+            implementation.Execute(AggregateId);
             return this;
         }
     }
