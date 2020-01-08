@@ -3,6 +3,7 @@ using Marktek.Fluent.Testing.Engine.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace MarkTek.Fluent.Testing.RecordGeneration
 {
@@ -96,6 +97,18 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         public IRecordService<TID> ExecuteActionOnAggregate<T>(IExecutableAggregateAction<T, TID> implementation)
         {
             implementation.Execute(AggregateId);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TType"></typeparam>
+        /// <param name="milliseconds"></param>
+        /// <returns></returns>
+        public IRecordService<TID>Delay(int milliseconds)
+        {
+            Thread.Sleep(milliseconds);
             return this;
         }
     }

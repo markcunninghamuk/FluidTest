@@ -20,6 +20,13 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         IRecordService<TID> AssertAgainst<TType>(BaseValidator<TID, TType> spec);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="milliseconds"></param>
+        /// <returns></returns>
+        IRecordService<TID> Delay(int milliseconds);
+
+        /// <summary>
         /// Creates a record of type T where T is a class
         /// </summary>
         /// <typeparam name="T"></typeparam>
