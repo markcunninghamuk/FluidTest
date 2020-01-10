@@ -3,21 +3,15 @@
  
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.1;netstandard2.0;net45;net451</TargetFrameworks>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>Marktek.Fluent.Testing.Engine - A fleixble Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests</Description>
+    <Copyright>MarkTek</Copyright>
+    <PackageTags>Fluent Testing, Integration testing, Data Driven Testing, Scenario Testing</PackageTags>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Users\macunnin\AzureDevOps\markcunninghamuk\Testing\FluentTestEngine\Engine\Marktek.Fluent.Testing.Engine.xml</DocumentationFile>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <None Remove="Marktek.Fluent.Testing.Engine.nuspec" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Include="Marktek.Fluent.Testing.Engine.nuspec">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="structuremap" Version="4.7.1" />
