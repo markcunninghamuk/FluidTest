@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Marktek.Fluent.Testing.Engine</id>
+    <title>Fluent Record Driven Integration Testing Framework</title>
+    <authors>Marktek</authors>
+    <owners>Marktek</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Marktek.Fluent.Testing.Engine - A fleixble Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests.</description>
+    <copyright>Capgemini Copyright ©  2019</copyright>
+    <tags>Fluent Testing, Integration testing, Data Driven Testing, Scenario Testing</tags>
+    <releaseNotes></releaseNotes>
+    <dependencies />
+  </metadata>
+</package>

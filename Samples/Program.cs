@@ -24,6 +24,7 @@ namespace Marktek.Fluent.Testing.Engine.Sample
             
             service
                  .CreateRecord(new ActiveOrderConfiguration(service.AggregateId))
+                 .AssignAggregateId()
                  .ExecuteAction(new CustomExecutor())
                  .Delay(5000)
                  .ExecuteActionOnAggregate(new CustomExecutor())

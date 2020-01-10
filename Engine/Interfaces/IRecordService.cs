@@ -27,6 +27,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         IRecordService<TID> Delay(int milliseconds);
 
         /// <summary>
+        /// Sets the aggregate Id to be the record that was last created
+        /// </summary>
+        /// <returns></returns>
+        IRecordService<TID> AssignAggregateId();
+        
+        /// <summary>
         /// Creates a record of type T where T is a class
         /// </summary>
         /// <typeparam name="T"></typeparam>

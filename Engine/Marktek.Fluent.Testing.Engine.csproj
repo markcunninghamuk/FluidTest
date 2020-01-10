@@ -8,6 +8,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Users\macunnin\AzureDevOps\markcunninghamuk\Testing\FluentTestEngine\Engine\Marktek.Fluent.Testing.Engine.xml</DocumentationFile>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Marktek.Fluent.Testing.Engine.nuspec" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="Marktek.Fluent.Testing.Engine.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="structuremap" Version="4.7.1" />

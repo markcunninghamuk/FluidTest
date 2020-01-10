@@ -111,5 +111,11 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             Thread.Sleep(milliseconds);
             return this;
         }
+
+        public IRecordService<TID> AssignAggregateId()
+        {
+            this.AggregateId = this.CreatedIds.Last();
+            return this;
+        }
     }
 }
