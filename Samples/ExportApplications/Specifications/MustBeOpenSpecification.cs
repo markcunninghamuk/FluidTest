@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MarkTek.Fluent.Testing.Sample.Specifications
 {
-    public class MustBe : BaseValidator<Guid, Order>
+    public class MustBeCancelled : BaseValidator<Guid, Order>
     {
         public override Order GetRecord(Guid id)
         {

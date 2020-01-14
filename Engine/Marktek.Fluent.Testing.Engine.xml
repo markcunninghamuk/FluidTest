@@ -98,6 +98,19 @@
             <param name="spec"></param>
             <returns></returns>
         </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.Delay(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="milliseconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.AssignAggregateId">
+            <summary>
+            Sets the aggregate Id to be the record that was last created
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.CreateRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator{``0,`0})">
             <summary>
             Creates a record of type T where T is a class
@@ -270,6 +283,14 @@
             Cleanup Records
             </summary>
             <param name="Id"></param>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.Delay(System.Int32)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TType"></typeparam>
+            <param name="milliseconds"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

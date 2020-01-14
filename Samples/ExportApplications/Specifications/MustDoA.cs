@@ -8,7 +8,11 @@ namespace MarkTek.Fluent.Testing.Sample.Specifications
     {
         public void Validate(Order item)
         {
-            Console.Write("A isvalud");
+          //  Assert.AreEqual(item.Status, OrderStatus.Cancelled);
         }
     }
+
+   
+
+
 }

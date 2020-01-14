@@ -30,7 +30,7 @@ namespace Marktek.Fluent.Testing.Engine.Sample
                  .ExecuteActionOnAggregate(new CustomExecutor())
                  .Delay(1000)
                  .If(DateTime.Now.Hour > 15, x => x.CreateRelatedRecord(new ActiveOrderConfiguration(Guid.NewGuid())))
-                 .AssertAgainst(new MustBe())
+                 .AssertAgainst(new MustBeCancelled())
                  .Cleanup(new Cleanup());
         }
 
