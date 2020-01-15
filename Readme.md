@@ -1,13 +1,13 @@
 ﻿
 # Introduction (v1.0.0.15 onwards)
-A flexible Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests. Scenarios where you will want to consider using it.
+A flexible Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests. Scenarios where you will consider using it.
 
 - Data based testing
 - Enforcing maximum reuse of test scenarios (Single Responsibility Principle)
 - Readable tests
 - Complex domains where entity behavior is highly coupled
-- You want test code to match production grade.
-- You want a standard approach to testing.
+- You require test code to match production grade.
+- You require a standard approach to testing.
 - Fluent API, making it more focused.
 - Parallel test executions, most approaches load data at the start and wipe at the end, but for parallel runs this is not always a good approach
 
@@ -26,7 +26,7 @@ One you start you need to know 1 thing. What is the data type of the primary key
 To get Started you need to instantiate a RecordService, the RecordService is a generic class that allows you to pass int the datatype you are working with. 
 
 **Example**
-My system uses Guids on the record and I want to create a record. When you create a new RecordService, you must pass in an AggregateId, The AggregateId is used to cleandown and the end, and is also the Identifier of the parent record that you will create, Everything hangs off an aggregate in a relation database model. For NoSQL databases, you dont need to worry as much as you can create a complex object in one hit.
+My system uses Guids on the record and I require to create a record. When you create a new RecordService, you must pass in an AggregateId, The AggregateId is used to cleandown and the end, and is also the Identifier of the parent record that you will create, Everything hangs off an aggregate in a relation database model. For NoSQL databases, you dont need to worry as much as you can create a complex object in one hit.
 
     var service = new RecordService<Guid>(Guid.NewGuid());
 Once you have instantiated the service you can call the following Methods, below is an example of what a test should typically look like
@@ -44,7 +44,7 @@ Once you have instantiated the service you can call the following Methods, below
                  .AssertAgainst(new MustBeCancelled())
                  .Cleanup(new Cleanup());
 
-We will cover these methods in the coming chapters. Do you see how readable this test is. Its fair to reason about what this test is doing. We are creating and Order, passing the AggregateId, Then we tell the RecordService that we want to Set the AggregateId to be the value of the created Record, We then add a OrderLine if the time is past 3PM, We then set the Shipping Date of the order. Cancel the Order and Then at the End we assert the record is in the state using what we call a Specification class. Finally we perform a cleanup to remove the record if we choose to.
+We will cover these methods in the coming chapters. Do you see how readable this test is. Its fair to reason about what this test is doing. We are creating and Order, passing the AggregateId, Then we tell the RecordService that we require to Set the AggregateId to be the value of the created Record, We then add a OrderLine if the time is past 3PM, We then set the Shipping Date of the order. Cancel the Order and Then at the End we assert the record is in the state using what we call a Specification class. Finally we perform a cleanup to remove the record if we choose to.
 
 ## Components
 
@@ -72,7 +72,7 @@ Create Record is designed to create a parent Record. Example
             }
         }
 
-Now If we want to create a record relation to the above, We create a new class, Lets Say OrderLine, and the engine will pass the Id of the above into our class. The Guid passed in is the Id of the Order we created above. Hopefully this makes it clear how the engine passes information between the methods.
+Now If we create a record related to the above, We create a new class, Lets Say OrderLine, and the engine will pass the Id of the above into our class. The Guid passed in is the Id of the Order we created above. Hopefully this makes it clear how the engine passes information between the methods.
 
     public class OrderLine : IRelatedRecordCreator<OrderLine, Guid>
     {
@@ -169,7 +169,7 @@ Teardown is designed to clear down any records created during a test, For unit t
 
 - Must implement Interface **IExecutableAction** or **IExecutableAggregateAction**
   
-  For scenarios where you want to perform an action on a record, you can for example Cancel an Order or set the status of a record.
+  For scenarios where you require to perform an action on a record, you can for example Cancel an Order or set the status of a record.
   
   *ExecuteAggregateAction* will pass in the AggregateId from the engine
   
@@ -185,7 +185,7 @@ Teardown is designed to clear down any records created during a test, For unit t
                 }
             }
 **Delay**
-On the record service specify the milliseconds you want to wait for. This is useful for scenarios where you hit an api and want to wait until it finishes. You as the developer are responsible for the waiting time.
+On the record service specify the milliseconds you require to wait for. This is useful for scenarios where you hit an api and require to wait until it finishes. You as the developer are responsible for the waiting time.
 
 **If and Conditionals**
 If is a really useful way to executing an action based on a scenario,
