@@ -6,14 +6,13 @@ using System.Collections.Generic;
 namespace MarkTek.Fluent.Testing.RecordGeneration
 {
     /// <summary>
-    /// 
+    /// The generic interface 
     /// </summary>
     /// <typeparam name="TID"></typeparam>
     public interface IRecordService<TID>
     {
-
         /// <summary>
-        /// 
+        /// A generic interface for fluent record creation 
         /// </summary>
         /// <param name="spec"></param>
         /// <returns></returns>
@@ -71,12 +70,11 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="builder"></param>
         /// <returns></returns>
         IRecordService<TID> If(bool cond, Func<IRecordService<TID>, IRecordService<TID>> builder);
-
-         /// <summary>
-         /// An identifier used to cleanup, Up to the developer to decide how best to do this. Consider using a sessionId fr the test run
-         /// </summary>
-         /// <param name="cleanup"></param>
-         /// <param name="aggregateId"></param>
+        
+        /// <summary>
+        /// Cleans up records Created during the record service, Uses the Aggregate Id to retrieve the record and related children and cleandown.
+        /// </summary>
+        /// <param name="cleanup"></param>
         void Cleanup(IRecordCleanup<TID> cleanup);
                
     }
