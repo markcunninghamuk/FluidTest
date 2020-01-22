@@ -4,17 +4,15 @@ using System.Text;
 
 namespace Marktek.Fluent.Testing.Engine.Interfaces
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="TID"></typeparam>
-    /// <typeparam name="TType"></typeparam>
-    public interface IExecutableAction<TID,TType>
+ /// <summary>
+ /// 
+ /// </summary>
+ /// <typeparam name="TType"></typeparam>
+ /// <typeparam name="TID"></typeparam>
+    public interface IExecutableAction<TType,TID>
     {
 
-
-        void Execute();
-
+        void Execute(TID id);
     }
 
     public interface IExecutableAggregateAction<TType,TID>

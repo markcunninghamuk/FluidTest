@@ -50,14 +50,19 @@
             <summary>
             
             </summary>
-            <typeparam name="TID"></typeparam>
             <typeparam name="TType"></typeparam>
+            <typeparam name="TID"></typeparam>
         </member>
         <member name="M:Marktek.Fluent.Testing.Engine.Interfaces.IExecutableAggregateAction`2.Execute(`1)">
             <summary>
             
             </summary>
             <param name="id"></param>
+        </member>
+        <member name="T:Marktek.Fluent.Testing.Engine.Interfaces.IRecord">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup`1">
             <summary>
@@ -87,13 +92,13 @@
         </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1">
             <summary>
-            
+            The generic interface 
             </summary>
             <typeparam name="TID"></typeparam>
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.AssertAgainst``1(Marktek.Fluent.Testing.Engine.BaseValidator{`0,``0})">
             <summary>
-            
+            A generic interface for fluent record creation 
             </summary>
             <param name="spec"></param>
             <returns></returns>
@@ -153,10 +158,9 @@
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRecordService`1.Cleanup(Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup{`0})">
             <summary>
-            An identifier used to cleanup, Up to the developer to decide how best to do this. Consider using a sessionId fr the test run
+            Cleans up records Created during the record service, Uses the Aggregate Id to retrieve the record and related children and cleandown.
             </summary>
             <param name="cleanup"></param>
-            <param name="aggregateId"></param>
         </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator`2">
             <summary>
@@ -231,13 +235,18 @@
         </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1">
             <summary>
-            Base Record Service
+            Fluent Record Service to track all changes during a testing session
             </summary>
             <typeparam name="TID"></typeparam>
         </member>
+        <member name="P:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.CreatedIds">
+            <summary>
+            Get the list of Id's created during the recordservice lifetime.
+            </summary>
+        </member>
         <member name="P:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AggregateId">
             <summary>
-            
+            The primary entity id, Used for cleanup and assertion classes
             </summary>
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.#ctor(`0)">
@@ -248,7 +257,7 @@
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.CreateRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator{``0,`0})">
             <summary>
-            Creates a record implementing a class that implements IIRecordCreator<typeparamref name="TEntity"/>
+            Create a prarent record as hold the Id so it can be passed to the next command
             </summary>
             <typeparam name="TEntity"></typeparam>
             <param name="app"></param>
@@ -256,7 +265,7 @@
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.CreateRelatedRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator{``0,`0})">
             <summary>
-            Creates a releated record from the previous CreateRecordMethod
+            Create a record based on the record that was previously created
             </summary>
             <typeparam name="TEntity"></typeparam>
             <param name="app"></param>
@@ -264,7 +273,7 @@
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AssertAgainst``1(Marktek.Fluent.Testing.Engine.BaseValidator{`0,``0})">
             <summary>
-            
+            Assert against one or more assertions
             </summary>
             <typeparam name="TType"></typeparam>
             <param name="spec"></param>
@@ -284,12 +293,33 @@
             </summary>
             <param name="Id"></param>
         </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.ExecuteAction``1(Marktek.Fluent.Testing.Engine.Interfaces.IExecutableAction{``0,`0})">
+            <summary>
+            Execute Action against the id of the last created record
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="implementation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.ExecuteActionOnAggregate``1(Marktek.Fluent.Testing.Engine.Interfaces.IExecutableAggregateAction{``0,`0})">
+            <summary>
+            Execute Action against the aggregate record
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="implementation"></param>
+            <returns></returns>
+        </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.Delay(System.Int32)">
             <summary>
-            
+            Delay execution. Time in ms (milliseconds)
             </summary>
-            <typeparam name="TType"></typeparam>
             <param name="milliseconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.AssignAggregateId">
+            <summary>
+            Set the Aggregate id on the fly
+            </summary>
             <returns></returns>
         </member>
     </members>
