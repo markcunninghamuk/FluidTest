@@ -1,4 +1,5 @@
 ﻿using Marktek.Fluent.Testing.Engine.Sample.ExportApplications.Cleanup;
+using MarkTek.Fluent.Testing.ExportApplications.Model;
 using MarkTek.Fluent.Testing.RecordGeneration;
 using MarkTek.Fluent.Testing.Sample.Specifications;
 using MarkTek.Fluent.Testing.Sample.Specifications.Config;
@@ -24,6 +25,7 @@ namespace Marktek.Fluent.Testing.Engine.Sample
             
             service
                  .CreateRecord(new ActiveOrderConfiguration(service.AggregateId))
+                 .CreatedRelatedRecord(new ChildRecordPassedIn())
                  .AssignAggregateId()
                  .ExecuteAction(new CustomExecutor())
                  .Delay(5000)
@@ -32,8 +34,10 @@ namespace Marktek.Fluent.Testing.Engine.Sample
                  .If(DateTime.Now.Hour > 15, x => x.CreateRelatedRecord(new ActiveOrderConfiguration(Guid.NewGuid())))
                  .AssertAgainst(new MustBeCancelled())
                  .Cleanup(new Cleanup());
+
+
+          
+
         }
-
-
     }
 }

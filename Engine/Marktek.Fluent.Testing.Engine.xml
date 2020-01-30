@@ -70,11 +70,11 @@
             </summary>
             <typeparam name="TID"></typeparam>
         </member>
-        <member name="M:Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup`1.Cleanup(`0)">
+        <member name="M:Marktek.Fluent.Testing.Engine.Interfaces.IRecordCleanup`1.Cleanup(System.Collections.Generic.Dictionary{`0,System.Object})">
             <summary>
-            
+            Cleans up all resources, provides all the records and id's created during the session
             </summary>
-            <param name="aggregateId"></param>
+            <param name="records"></param>
         </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRecordCreator`2">
             <summary>
@@ -176,6 +176,21 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator`3">
+            <summary>
+            Creates a related record, this method should be called after the CreateRecordMethod on IRecordCreator, it passes in the parent object of the previous call
+            </summary>
+            <typeparam name="TParent"></typeparam>
+            <typeparam name="TID"></typeparam>
+            <typeparam name="TID"></typeparam>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator`3.CreateRecord(`0)">
+            <summary>
+            Creates a record of Type T by passing in the previous id of the IRecordCreator.CreateRecord method
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
         <member name="T:MarkTek.Fluent.Testing.RecordGeneration.ISpecifcation`2">
             <summary>
             An interface that should be implemented to ensure the tests meet the expected criteria
@@ -239,7 +254,7 @@
             </summary>
             <typeparam name="TID"></typeparam>
         </member>
-        <member name="P:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.CreatedIds">
+        <member name="P:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.CreatedRecords">
             <summary>
             Get the list of Id's created during the recordservice lifetime.
             </summary>
@@ -265,8 +280,17 @@
         </member>
         <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.CreateRelatedRecord``1(MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator{``0,`0})">
             <summary>
-            Create a record based on the record that was previously created
+            Create a record based on the record that was previously created, passes in the ID of the Previous record that was created
             </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MarkTek.Fluent.Testing.RecordGeneration.RecordService`1.CreatedRelatedRecord``2(MarkTek.Fluent.Testing.RecordGeneration.IRelatedRecordCreator{``0,``1,`0})">
+            <summary>
+            Creates a record based on the previous record created, passes in the entire object of the record that was created
+            </summary>
+            <typeparam name="TParent"></typeparam>
             <typeparam name="TEntity"></typeparam>
             <param name="app"></param>
             <returns></returns>

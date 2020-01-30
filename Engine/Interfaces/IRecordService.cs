@@ -47,6 +47,10 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         IRecordService<TID> CreateRelatedRecord<T>(IRelatedRecordCreator<T, TID> implementation);
 
+
+        IRecordService<TID> CreatedRelatedRecord<TParent,T>(IRelatedRecordCreator<TParent, T, TID> record);
+
+
         /// <summary>
         /// Creates a related record of type T where T is a class and passes in the previously created id from the CreateRecord method
         /// </summary>

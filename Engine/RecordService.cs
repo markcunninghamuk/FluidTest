@@ -17,7 +17,10 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <summary>
         /// Get the list of Id's created during the recordservice lifetime.
         /// </summary>
-        private List<TID> CreatedIds { get; set; }
+      //  private List<TID> CreatedIds { get; set; }
+
+        public Dictionary<TID, object> CreatedRecords { get; private set; }
+
 
       /// <summary>
       /// The primary entity id, Used for cleanup and assertion classes
@@ -30,7 +33,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="aggregateId"></param>
         public RecordService(TID aggregateId)
         {
-            CreatedIds = new List<TID> { aggregateId};
+            CreatedRecords = new Dictionary<TID, object>();
             this.AggregateId = aggregateId;
         }
 
@@ -42,24 +45,40 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
        /// <returns></returns>
         public virtual IRecordService<TID> CreateRecord<TEntity>(IRecordCreator<TEntity, TID> app)
         {
-            this.CreatedIds.Add(app.CreateRecord().Id);
+            var res = app.CreateRecord();
+            this.CreatedRecords.Add(res.Id, res.Row);
             return this;
         }
 
         /// <summary>
-        /// Create a record based on the record that was previously created
+        /// Create a record based on the record that was previously created, passes in the ID of the Previous record that was created
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="app"></param>
         /// <returns></returns>
         public virtual IRecordService<TID> CreateRelatedRecord<TEntity>(IRelatedRecordCreator<TEntity, TID> app)
         {
-            Guard.AgainstNull(this.CreatedIds);
-            this.CreatedIds.Add(app.CreateRecord(CreatedIds.Last()).Id);
+            Guard.AgainstNull(this.CreatedRecords);
+            var res = app.CreateRecord(CreatedRecords.Last().Key);
+            this.CreatedRecords.Add(res.Id, res.Row);
             return this;
         }
-        
-       
+
+        /// <summary>
+        /// Creates a record based on the previous record created, passes in the entire object of the record that was created
+        /// </summary>
+        /// <typeparam name="TParent"></typeparam>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        public virtual IRecordService<TID> CreatedRelatedRecord<TParent, TEntity>(IRelatedRecordCreator<TParent, TEntity, TID> app)
+        {
+            Guard.AgainstNull(this.CreatedRecords);
+            var res = app.CreateRecord((TParent)CreatedRecords.Last().Value);
+            this.CreatedRecords.Add(res.Id, res.Row);
+            return this;
+        }
+
         /// <summary>
         /// Assert against one or more assertions
         /// </summary>
@@ -89,7 +108,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="Id"></param>
         public void Cleanup(IRecordCleanup<TID> Id)
         {
-            Id.Cleanup(AggregateId);
+            Id.Cleanup(CreatedRecords);
         }
 
         /// <summary>
@@ -100,7 +119,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public IRecordService<TID> ExecuteAction<T>(IExecutableAction<T, TID> implementation)
         {
-            implementation.Execute(CreatedIds.Last());
+            implementation.Execute(CreatedRecords.Last().Key);
             return this;
         }
 
@@ -133,8 +152,10 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public IRecordService<TID> AssignAggregateId()
         {
-            this.AggregateId = this.CreatedIds.Last();
+            this.AggregateId = this.CreatedRecords.Last().Key;
             return this;
         }
+
+       
     }
 }

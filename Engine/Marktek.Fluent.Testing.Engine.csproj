@@ -7,6 +7,9 @@
     <Description>Marktek.Fluent.Testing.Engine - A fleixble Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests</Description>
     <Copyright>MarkTek</Copyright>
     <PackageTags>Fluent Testing, Integration testing, Data Driven Testing, Scenario Testing</PackageTags>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <Version>2.0.0</Version>
+    <FileVersion>22.0.0.0</FileVersion>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

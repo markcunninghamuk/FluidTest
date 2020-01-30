@@ -7,12 +7,12 @@ namespace Marktek.Fluent.Testing.Engine.Sample
     {
         public void Execute()
         {
-            throw new NotImplementedException();
+         //   throw new NotImplementedException();
         }
 
         public void Execute(Guid id)
         {
-            throw new NotImplementedException();
+          //  throw new NotImplementedException();
         }
     }
 }
