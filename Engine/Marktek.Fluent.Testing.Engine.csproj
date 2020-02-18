@@ -10,6 +10,8 @@
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <Version>2.0.0</Version>
     <FileVersion>22.0.0.0</FileVersion>
+    <RepositoryUrl>https://github.com/markcunninghamuk/MarkTek.FluentApi.Testing.git</RepositoryUrl> 
+    <RepositoryType>git</RepositoryType> 
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
