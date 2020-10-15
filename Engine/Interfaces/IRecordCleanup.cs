@@ -14,6 +14,7 @@ namespace Marktek.Fluent.Testing.Engine.Interfaces
         /// Cleans up all resources, provides all the records and id's created during the session
         /// </summary>
         /// <param name="records"></param>
-        void Cleanup(Dictionary<TID, object> records);
+        /// <param name="aggregateId"></param>
+        void Cleanup(Dictionary<TID, object> records, TID aggregateId);
     }
 }

@@ -108,7 +108,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="Id"></param>
         public void Cleanup(IRecordCleanup<TID> Id)
         {
-            Id.Cleanup(CreatedRecords);
+            Id.Cleanup(CreatedRecords, this.AggregateId);
         }
 
         /// <summary>
