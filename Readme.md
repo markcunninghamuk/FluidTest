@@ -172,7 +172,7 @@ internal class MustDoB : ISpecificationValidator<Order>
 
 **Teardown**
 
-- Must implement Interface `ISpecificationValidator`
+- Must implement Interface `IRecordCleanup`
 
 Teardown is designed to clear down any records created during a test. For unit tests it is unlikely you will need this. For integration tests however, it is advised.
 
