@@ -147,6 +147,17 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         }
 
         /// <summary>
+        /// Waits for the waitable action to complete before proceeding.
+        /// </summary>
+        /// <param name="implementation"></param>
+        /// <returns></returns>
+        public IRecordService<TID> WaitFor(IWaitableAction implementation)
+        {
+            implementation.Execute();
+            return this;
+        }
+
+        /// <summary>
         /// Set the Aggregate id on the fly
         /// </summary>
         /// <returns></returns>
@@ -155,7 +166,5 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             this.AggregateId = this.CreatedRecords.Last().Key;
             return this;
         }
-
-       
     }
 }

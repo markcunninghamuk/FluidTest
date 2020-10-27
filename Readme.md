@@ -214,6 +214,47 @@ internal class CustomExecutor : IExecutableAction<CustomOrder, Guid>, IExecutabl
 
 On the record service specify the milliseconds you require to wait for. This is useful for scenarios where you hit an API and require to wait until it finishes. You as the developer are responsible for the waiting time.
 
+**WaitFor**
+
+Used for situations where execution of the pipeline needs to wait for a specific action complete.
+It accepts an implementation of `IWaitableAction` which contains the logic for the action to wait for.
+
+The example below shows an implementation of the `IWaitableAction` that polls a fictitious background service manager to check if it has finished. 
+
+```cs
+public class WaitForBackgroundProcess : IWaitableAction
+{
+    private int millisecondInterval;
+    private int millisecondTimeout;
+    private Stopwatch stopwatch;
+    private FictionalBackgroundServiceManager serviceManager; // Not a real service for example purpose
+
+    public WaitForBackgroundProcess(int millisecondInterval, int millisecondTimeout) {
+        this.millisecondInterval =  millisecondInterval;
+        this.millisecondTimeout = millisecondTimeout;
+        this.stopwatch = new Stopwatch();
+        this.serviceManager = new FictionalBackgroundServiceManager();
+    }
+
+    public void Execute()
+    {
+        stopwatch.Start();
+
+        bool conditionFulfilled = false;
+        bool timeoutReached = false;
+        while(!conditionFulfilled && !timeoutReached)
+        {
+            // Perform action to check if background process is finished
+            conditionFulfilled = serviceManager.HasFinished();
+            timeoutReached = (stopwatch.ElapsedMilliseconds >= millisecondTimeout);
+            Thread.Sleep(millisecondInterval);
+        }
+
+        stopwatch.Stop();
+    }
+}
+```
+
 **If and Conditionals**
 
 `If` is a really useful way to executing an action based on a scenario,

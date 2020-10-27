@@ -26,6 +26,13 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         IRecordService<TID> Delay(int milliseconds);
 
         /// <summary>
+        /// Performs an action and waits for it to complete before proceeding.
+        /// </summary>
+        /// <param name="implemetation"></param>
+        /// <returns></returns>
+        IRecordService<TID> WaitFor(IWaitableAction implemetation);
+
+        /// <summary>
         /// Sets the aggregate Id to be the record that was last created
         /// </summary>
         /// <returns></returns>
