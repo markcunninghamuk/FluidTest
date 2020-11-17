@@ -7,7 +7,8 @@ namespace Marktek.Fluent.Testing.Engine.Sample.ExportApplications.Cleanup
 {
     public class Cleanup : IRecordCleanup<Guid>
     {        
-        void IRecordCleanup<Guid>.Cleanup(Dictionary<Guid, object> records)
+       
+        void IRecordCleanup<Guid>.Cleanup(Dictionary<Guid, object> records, Guid aggregateId)
         {
             foreach (var item in records)
             {
