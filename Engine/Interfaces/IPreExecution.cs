@@ -4,10 +4,12 @@ using System.Text;
 
 namespace Marktek.Fluent.Testing.Engine.Interfaces
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface IWaitableAction : IExecute
-    {       
+    public interface IPreExecution : IExecute
+    {
+    }
+
+    public interface IExecute
+    {
+        void Execute();
     }
 }

@@ -24,6 +24,7 @@ namespace Marktek.Fluent.Testing.Engine.Sample
             var service = new RecordService<Guid>(Guid.NewGuid());
             
             service
+                .PreExecutionAction(new PreOperation())
                  .CreateRecord(new ActiveOrderConfiguration(service.AggregateId))
                  .CreatedRelatedRecord(new ChildRecordPassedIn())
                  .AssignAggregateId()

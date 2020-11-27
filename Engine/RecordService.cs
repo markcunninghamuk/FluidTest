@@ -166,5 +166,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             this.AggregateId = this.CreatedRecords.Last().Key;
             return this;
         }
+
+        public IRecordService<TID> PreExecutionAction(IPreExecution execute)
+        {
+            execute.Execute();
+            return this;
+        }
+
     }
 }
