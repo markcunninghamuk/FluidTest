@@ -18,4 +18,10 @@
       </DataCollector>
     </DataCollectors>
   </DataCollectionRunSettings>
+  <ModulePaths>
+    <Exclude>
+      <ModulePath>.*FluentAssertions.dll</ModulePath>
+      <!-- Add more ModulePath nodes here. -->
+    </Exclude>
+  </ModulePaths>
 </RunSettings>
