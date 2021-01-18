@@ -8,10 +8,10 @@ using System.Threading;
 namespace MarkTek.Fluent.Testing.RecordGeneration
 {
 
-/// <summary>
-/// Fluent Record Service to track all changes during a testing session
-/// </summary>
-/// <typeparam name="TID"></typeparam>
+    /// <summary>
+    /// Fluent Record Service to track all changes during a testing session
+    /// </summary>
+    /// <typeparam name="TID"></typeparam>
     public class RecordService<TID> : IRecordService<TID>
     {
         /// <summary>
@@ -22,9 +22,9 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         public Dictionary<TID, object> CreatedRecords { get; private set; }
 
 
-      /// <summary>
-      /// The primary entity id, Used for cleanup and assertion classes
-      /// </summary>
+        /// <summary>
+        /// The primary entity id, Used for cleanup and assertion classes
+        /// </summary>
         public TID AggregateId { get; private set; }
 
         /// <summary>
@@ -37,12 +37,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             this.AggregateId = aggregateId;
         }
 
-       /// <summary>
-       /// Create a prarent record as hold the Id so it can be passed to the next command
-       /// </summary>
-       /// <typeparam name="TEntity"></typeparam>
-       /// <param name="app"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Create a prarent record as hold the Id so it can be passed to the next command
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="app"></param>
+        /// <returns></returns>
         public virtual IRecordService<TID> CreateRecord<TEntity>(IRecordCreator<TEntity, TID> app)
         {
             var res = app.CreateRecord();
@@ -58,9 +58,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public virtual IRecordService<TID> CreateRelatedRecord<TEntity>(IRelatedRecordCreator<TEntity, TID> app)
         {
-            Guard.AgainstNull(this.CreatedRecords);
-            var res = app.CreateRecord(CreatedRecords.Last().Key);
-            this.CreatedRecords.Add(res.Id, res.Row);
+            if (this.CreatedRecords.Any())
+            {
+                var res = app.CreateRecord(CreatedRecords.Last().Key);
+                this.CreatedRecords.Add(res.Id, res.Row);
+            }
+
             return this;
         }
 
@@ -73,9 +76,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public virtual IRecordService<TID> CreatedRelatedRecord<TParent, TEntity>(IRelatedRecordCreator<TParent, TEntity, TID> app)
         {
-            Guard.AgainstNull(this.CreatedRecords);
-            var res = app.CreateRecord((TParent)CreatedRecords.Last().Value);
-            this.CreatedRecords.Add(res.Id, res.Row);
+            if (this.CreatedRecords.Any())
+            {
+                var res = app.CreateRecord((TParent)CreatedRecords.Last().Value);
+                this.CreatedRecords.Add(res.Id, res.Row);
+            }
+         
             return this;
         }
 
@@ -85,12 +91,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <typeparam name="TType"></typeparam>
         /// <param name="spec"></param>
         /// <returns></returns>
-        public IRecordService<TID> AssertAgainst<TType>(BaseValidator<TID, TType> spec) 
+        public IRecordService<TID> AssertAgainst<TType>(BaseValidator<TID, TType> spec)
         {
             spec.Validate(AggregateId);
             return this;
         }
-        
+
         /// <summary>
         /// Execute method based on Condition. Useful for Scenarios where you want to configure the behaviour
         /// </summary>
@@ -111,38 +117,18 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             Id.Cleanup(CreatedRecords, this.AggregateId);
         }
 
-        /// <summary>
-        /// Execute Action against the id of the last created record
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="implementation"></param>
-        /// <returns></returns>
-        public IRecordService<TID> ExecuteAction<T>(IExecutableAction<T, TID> implementation)
+        public IRecordService<TID> ExecuteAction(IExecutableAction<TID> implementation, bool executeAgainstAggregate)
         {
-            implementation.Execute(CreatedRecords.Last().Key);
-            return this;
-        }
+            if (executeAgainstAggregate)
+            {
+                implementation.Execute(AggregateId);
+                return this;
+            }
 
-        /// <summary>
-        /// Execute Action against the aggregate record
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="implementation"></param>
-        /// <returns></returns>
-        public IRecordService<TID> ExecuteActionOnAggregate<T>(IExecutableAggregateAction<T, TID> implementation)
-        {
-            implementation.Execute(AggregateId);
-            return this;
-        }
-
-      /// <summary>
-      /// Delay execution. Time in ms (milliseconds)
-      /// </summary>
-      /// <param name="milliseconds"></param>
-      /// <returns></returns>
-        public IRecordService<TID>Delay(int milliseconds)
-        {
-            Thread.Sleep(milliseconds);
+            if (CreatedRecords.Any())
+            {
+                implementation.Execute(CreatedRecords.Last().Key);
+            }
             return this;
         }
 
@@ -162,7 +148,11 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
         /// <returns></returns>
         public IRecordService<TID> AssignAggregateId()
-        {
+        {           
+            if (!this.CreatedRecords.Any())
+            {
+                throw new ArgumentException($"You must first Create records before assigning an aggregate");
+            }
             this.AggregateId = this.CreatedRecords.Last().Key;
             return this;
         }
@@ -173,5 +163,14 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             return this;
         }
 
+        TID IRecordService<TID>.GetAggregateId()
+        {
+            return this.AggregateId;
+        }
+
+        public int GetRecordCount()
+        {
+            return CreatedRecords.Count();
+        }
     }
 }

@@ -3,16 +3,11 @@ using System;
 
 namespace Marktek.Fluent.Testing.Engine.Sample
 {
-    internal class CustomExecutor : IExecutableAction<CustomOrder, Guid>, IExecutableAggregateAction<CustomOrder, Guid>
+    internal class CustomExecutor : IExecutableAction<Guid>
     {
-        public void Execute()
-        {
-         //   throw new NotImplementedException();
-        }
-
         public void Execute(Guid id)
         {
-          //  throw new NotImplementedException();
+            Console.WriteLine($"Executing Action with parentid {id}");
         }
     }
 }

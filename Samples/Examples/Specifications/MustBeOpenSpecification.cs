@@ -10,7 +10,7 @@ namespace MarkTek.Fluent.Testing.Sample.Specifications
     {
         public override Order GetRecord(Guid id)
         {
-            return new Order { };
+            return new Order { OrderId = id };
         }
 
         public override List<ISpecificationValidator<Order>> GetValidators()
@@ -18,7 +18,7 @@ namespace MarkTek.Fluent.Testing.Sample.Specifications
             return new List<ISpecificationValidator<Order>>
            {
                new MustDoA(),
-                new MustDoB()
+               new MustDoB()
            };
         }
     }   

@@ -19,13 +19,6 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         IRecordService<TID> AssertAgainst<TType>(BaseValidator<TID, TType> spec);
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="milliseconds"></param>
-        /// <returns></returns>
-        IRecordService<TID> Delay(int milliseconds);
-
-        /// <summary>
         /// Performs an action and waits for it to complete before proceeding.
         /// </summary>
         /// <param name="implemetation"></param>
@@ -36,8 +29,11 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// Sets the aggregate Id to be the record that was last created
         /// </summary>
         /// <returns></returns>
+        TID GetAggregateId();
+
+        //Gets the AggregateId
         IRecordService<TID> AssignAggregateId();
-        
+
         /// <summary>
         /// Creates a record of type T where T is a class
         /// </summary>
@@ -53,7 +49,8 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="implementation"></param>
         /// <returns></returns>
         IRecordService<TID> CreateRelatedRecord<T>(IRelatedRecordCreator<T, TID> implementation);
-
+        
+        int GetRecordCount();
 
         IRecordService<TID> CreatedRelatedRecord<TParent,T>(IRelatedRecordCreator<TParent, T, TID> record);
 
@@ -64,16 +61,8 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <typeparam name="T"></typeparam>
         /// <param name="implementation"></param>
         /// <returns></returns>
-        IRecordService<TID> ExecuteAction<T>(IExecutableAction<T,TID> implementation);
-
-        /// <summary>
-        /// Creates a related record of type T where T is a class and passes in the previously created id from the CreateRecord method
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="implementation"></param>
-        /// <returns></returns>
-        IRecordService<TID> ExecuteActionOnAggregate<T>(IExecutableAggregateAction<T,TID> implementation);
-
+        IRecordService<TID> ExecuteAction(IExecutableAction<TID> implementation, bool executeOnAggregate);
+              
         /// <summary>
         /// 
         /// </summary>

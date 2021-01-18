@@ -10,5 +10,6 @@ namespace MarkTek.Fluent.Testing.ExportApplications.Model
         }
 
         public Guid Id { get; }
+        public Guid OrderId { get; internal set; }
     }
 }
