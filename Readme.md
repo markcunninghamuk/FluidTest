@@ -1,5 +1,5 @@
 ﻿
- 
+ [![Build status](https://dev.azure.com/markcunningham/FluentTestEngine/_apis/build/status/FluentTestEngine-.NET%20Desktop-CI)](https://dev.azure.com/markcunningham/FluentTestEngine/_build/latest?definitionId=16)
  
 # Introduction
 A flexible engine allowing you to focus on reusable components and removing the need to have messy, unreadable tests. Scenarios where you will consider using it:
