@@ -81,7 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="coverage.runsettings" />
+    <None Include=".runsettings" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
