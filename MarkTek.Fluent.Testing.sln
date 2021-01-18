@@ -5,12 +5,12 @@ VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marktek.Fluent.Testing.Engine", "Engine\Marktek.Fluent.Testing.Engine.csproj", "{14603A28-27BB-43B6-A0D1-DA53FE2ABC38}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marktek.Fluent.Testing.Engine.Sample", "Samples\Marktek.Fluent.Testing.Engine.Sample.csproj", "{EF788CA2-06FE-4263-B0D0-E42FC60EC122}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F91BE692-5A00-40EC-96C4-74EBD6FA8EC0}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.md = Readme.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marktek.Fluent.Testing.Engine.Tests", "Marktek.Fluent.Testing.Engine.Tests\Marktek.Fluent.Testing.Engine.Tests.csproj", "{A08313F6-57E8-42EE-BA69-03C759D56416}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +22,10 @@ Global
 		{14603A28-27BB-43B6-A0D1-DA53FE2ABC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14603A28-27BB-43B6-A0D1-DA53FE2ABC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14603A28-27BB-43B6-A0D1-DA53FE2ABC38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF788CA2-06FE-4263-B0D0-E42FC60EC122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF788CA2-06FE-4263-B0D0-E42FC60EC122}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF788CA2-06FE-4263-B0D0-E42FC60EC122}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF788CA2-06FE-4263-B0D0-E42FC60EC122}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A08313F6-57E8-42EE-BA69-03C759D56416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A08313F6-57E8-42EE-BA69-03C759D56416}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A08313F6-57E8-42EE-BA69-03C759D56416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A08313F6-57E8-42EE-BA69-03C759D56416}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

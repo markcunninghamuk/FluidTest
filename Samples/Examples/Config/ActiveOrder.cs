@@ -20,7 +20,7 @@ namespace MarkTek.Fluent.Testing.Sample.Specifications.Config
           
             Console.WriteLine($"Creating Order");
 
-            File.AppendAllLines("C:\\Test\\test.txt",new[] { "Creating Order" });
+         //   File.AppendAllLines("C:\\Test\\test.txt",new[] { "Creating Order" });
 
             return new Record<Order, Guid>(c, id);
         }

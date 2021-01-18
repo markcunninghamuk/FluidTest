@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace Marktek.Fluent.Testing.Engine.Sample.ExportApplications.Cleanup
 {
-    public class Cleanup : IRecordCleanup<Guid>
-    {        
+    public class Cleanup : IRecordCleanup<Guid>    {        
        
         void IRecordCleanup<Guid>.Cleanup(Dictionary<Guid, object> records, Guid aggregateId)
         {

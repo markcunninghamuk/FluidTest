@@ -8,13 +8,6 @@
     public class Record<T, TId>
     {
         /// <summary>
-        /// Protected Constructor
-        /// </summary>
-        protected Record()
-        {
-        }
-
-        /// <summary>
         /// Constructor for Record where T class
         /// </summary>
         /// <param name="record"></param>
