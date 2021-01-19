@@ -19,7 +19,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Polly" Version="7.2.1" />
     <PackageReference Include="structuremap" Version="4.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\Fluent\" />
   </ItemGroup>
 
 </Project>

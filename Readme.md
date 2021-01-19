@@ -2,9 +2,10 @@
  [![Build status](https://dev.azure.com/markcunningham/FluentTestEngine/_apis/build/status/FluentTestEngine-.NET%20Desktop-CI)](https://dev.azure.com/markcunningham/FluentTestEngine/_build/latest?definitionId=16)
  
 # Introduction
-A flexible engine allowing you to focus on reusable components and removing the need to have messy, unreadable tests. Scenarios where you will consider using it:
+A flexible and resilient test engine allowing you to focus on reusable components and removing the need to have messy, unreadable tests. Scenarios where you will consider using it:
 
 - Data-based testing
+- Resilient retry policy handled internally to reduce flaky tests
 - Enforcing maximum reuse of test scenarios ([Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle))
 - Readable tests
 - Complex domains where entity behavior is highly coupled
@@ -20,7 +21,7 @@ One thing to mention here, is you will need to know C# to use the framework.
 
 To get started you will need to install the nuget package using the command
 
-    Install-Package Marktek.Fluent.Testing.Engine -Version 1.0.0.15
+    Install-Package Marktek.Fluent.Testing.Engine
 
 Once you start you need to know 1 thing: what is the data type of the primary key of your entities. In most cases for example databases, it is a big int. In systems like Dynamics 365 and Salesforce, it could be a Guid.
 
@@ -29,9 +30,22 @@ To get started you need to instantiate a `RecordService`. The `RecordService` is
 
 **Example**
 
-My system uses Guids on the record and I require to create a record. When you create a new `RecordService`, you must pass in an `AggregateId`, The `AggregateId` is used to cleandown and the end, and is also the identifier of the parent record that you will create. Everything hangs off an aggregate in a relational database model. For NoSQL databases, you don't need to worry as much as you can create a complex object in one hit.
+My system uses Guids on the record and I require to create a record. When you create a new `RecordService`, you must pass in an `AggregateId` and optionally a retry policy, The `AggregateId` is used to cleandown and the end, and is also the identifier of the parent record that you will create. Everything hangs off an aggregate in a relational database model. For NoSQL databases, you don't need to worry as much as you can create a complex object in one hit.
 
     var service = new RecordService<Guid>(Guid.NewGuid());
+
+Alternatively you can pass in a retry policy so you can handle the types of errors you require.
+
+
+    var retryPolicy = Policy
+                .Handle<ArgumentNullException>()
+                .Or<InvalidOperationException>()
+                .Or<Exception>()
+                .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(3, retryAttempt)));
+
+    service = new RecordService<Guid>(Guid.NewGuid(), retryPolicy);
+
+
 Once you have instantiated the service you can call the following Methods, below is an example of what a test should typically look like
 
 ```cs
@@ -280,6 +294,9 @@ Before writing a test:
 - Ensure you understand the role of the `AggregateId`. Every record should always have a parent that links all the others together, for example an order has lines and has related entities, but the order is the aggregate. I can cleanup all of the created resources if I happen to know the order id for example.
 - Midway through you can change the `AggregateId`, but you must set it yourself using the `AssignAggregateId`.
 - As you use the framework more, you should see that the speed of writing tests increases due to the reusability of the classes and the enforcement of single responsible units / classes.
+
+## Referenced Components
+Thanks to the guys who have worked on Polly. It used to handle the retry mechanism internally. https://github.com/App-vNext/Polly
 
 ## Good luck
 

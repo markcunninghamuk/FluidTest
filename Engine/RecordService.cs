@@ -1,26 +1,26 @@
 ﻿using Marktek.Fluent.Testing.Engine;
 using Marktek.Fluent.Testing.Engine.Interfaces;
+using Polly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace MarkTek.Fluent.Testing.RecordGeneration
 {
-
     /// <summary>
     /// Fluent Record Service to track all changes during a testing session
     /// </summary>
     /// <typeparam name="TID"></typeparam>
     public class RecordService<TID> : IRecordService<TID>
     {
+        private Policy policy;
+
         /// <summary>
         /// Get the list of Id's created during the recordservice lifetime.
         /// </summary>
-      //  private List<TID> CreatedIds { get; set; }
+        //  private List<TID> CreatedIds { get; set; }
 
         public Dictionary<TID, object> CreatedRecords { get; private set; }
-
 
         /// <summary>
         /// The primary entity id, Used for cleanup and assertion classes
@@ -31,8 +31,23 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// Every Graph must have a hierarchy
         /// </summary>
         /// <param name="aggregateId"></param>
+        public RecordService(TID aggregateId, Policy policy)
+        {
+            this.policy = policy;
+            CreatedRecords = new Dictionary<TID, object>();
+            this.AggregateId = aggregateId;
+        }
+
+        /// <summary>
+        /// Every Graph must have a hierarchy
+        /// </summary>
+        /// <param name="aggregateId"></param>
         public RecordService(TID aggregateId)
         {
+            this.policy = Policy
+               .Handle<Exception>()
+               .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(3, retryAttempt)));
+
             CreatedRecords = new Dictionary<TID, object>();
             this.AggregateId = aggregateId;
         }
@@ -45,8 +60,11 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public virtual IRecordService<TID> CreateRecord<TEntity>(IRecordCreator<TEntity, TID> app)
         {
-            var res = app.CreateRecord();
-            this.CreatedRecords.Add(res.Id, res.Row);
+            this.policy.Execute(() =>
+            {
+                var res = app.CreateRecord();
+                this.CreatedRecords.Add(res.Id, res.Row);
+            });
             return this;
         }
 
@@ -60,8 +78,11 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         {
             if (this.CreatedRecords.Any())
             {
-                var res = app.CreateRecord(CreatedRecords.Last().Key);
-                this.CreatedRecords.Add(res.Id, res.Row);
+                this.policy.Execute(() =>
+                {
+                    var res = app.CreateRecord(CreatedRecords.Last().Key);
+                    this.CreatedRecords.Add(res.Id, res.Row);
+                });
             }
 
             return this;
@@ -78,10 +99,13 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         {
             if (this.CreatedRecords.Any())
             {
-                var res = app.CreateRecord((TParent)CreatedRecords.Last().Value);
-                this.CreatedRecords.Add(res.Id, res.Row);
+                this.policy.Execute(() =>
+                {
+                    var res = app.CreateRecord((TParent)CreatedRecords.Last().Value);
+                    this.CreatedRecords.Add(res.Id, res.Row);
+                });
             }
-         
+
             return this;
         }
 
@@ -93,7 +117,11 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public IRecordService<TID> AssertAgainst<TType>(BaseValidator<TID, TType> spec)
         {
-            spec.Validate(AggregateId);
+            this.policy.Execute(() =>
+            {
+                spec.Validate(AggregateId);
+            });
+
             return this;
         }
 
@@ -105,7 +133,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public IRecordService<TID> If(bool condition, Func<IRecordService<TID>, IRecordService<TID>> builder)
         {
-            return condition ? builder(this) : this;
+            this.policy.Execute(() =>
+            {
+                return condition ? builder(this) : this;
+            });
+
+            return this;
         }
 
         /// <summary>
@@ -114,21 +147,30 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="Id"></param>
         public void Cleanup(IRecordCleanup<TID> Id)
         {
-            Id.Cleanup(CreatedRecords, this.AggregateId);
+            this.policy.Execute(() =>
+            {
+                Id.Cleanup(CreatedRecords, this.AggregateId);
+            });
         }
 
         public IRecordService<TID> ExecuteAction(IExecutableAction<TID> implementation, bool executeAgainstAggregate)
         {
-            if (executeAgainstAggregate)
+            this.policy.Execute(() =>
             {
-                implementation.Execute(AggregateId);
-                return this;
-            }
+                if (executeAgainstAggregate)
+                {
+                    implementation.Execute(AggregateId);
+                }
+                else
+                {
+                    if (!CreatedRecords.Any())
+                    {
+                        throw new ArgumentException("You must create records before executing an action against them");
+                    }
+                    implementation.Execute(CreatedRecords.Last().Key);
+                }
+            });
 
-            if (CreatedRecords.Any())
-            {
-                implementation.Execute(CreatedRecords.Last().Key);
-            }
             return this;
         }
 
@@ -139,7 +181,10 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public IRecordService<TID> WaitFor(IWaitableAction implementation)
         {
-            implementation.Execute();
+            this.policy.Execute(() =>
+            {
+                implementation.Execute();
+            });
             return this;
         }
 
@@ -148,7 +193,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
         /// <returns></returns>
         public IRecordService<TID> AssignAggregateId()
-        {           
+        {
             if (!this.CreatedRecords.Any())
             {
                 throw new ArgumentException($"You must first Create records before assigning an aggregate");
@@ -157,9 +202,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             return this;
         }
 
-        public IRecordService<TID> PreExecutionAction(IPreExecution execute)
+        public IRecordService<TID> PreExecutionAction(IPreExecution implementation)
         {
-            execute.Execute();
+            this.policy.Execute(() =>
+            {
+                implementation.Execute();
+            });
             return this;
         }
 

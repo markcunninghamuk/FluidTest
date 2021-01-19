@@ -2,6 +2,7 @@
 using Marktek.Fluent.Testing.Engine.Tests.Models;
 using MarkTek.Fluent.Testing.RecordGeneration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Polly;
 using System;
 
 namespace Marktek.Fluent.Testing.Engine.Tests
@@ -17,8 +18,14 @@ namespace Marktek.Fluent.Testing.Engine.Tests
         [TestInitialize]
         public void Setup()
         {
+            var retryIfException = Policy
+                .Handle<ArgumentNullException>()
+                .Or<InvalidOperationException>()
+                .Or<Exception>()
+                .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(3, retryAttempt)));
+
             aggregateId = Guid.NewGuid();
-            service = new RecordService<Guid>(aggregateId);
+            service = new RecordService<Guid>(aggregateId, retryIfException);
         }
 
         [TestMethod]
@@ -72,16 +79,16 @@ namespace Marktek.Fluent.Testing.Engine.Tests
         {
             service
                .CreateRecord(new CreateDummyExample())
-               .ExecuteAction(new ExecuteDummyAction(),useAggregate);
+               .ExecuteAction(new ExecuteDummyAction(), useAggregate);
 
             service.GetRecordCount().Should().Be(1);
         }
 
+        [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
-        public void Can_Execute_Action_Even_When_First_Call()
+        public void Cannot_Execute_Action_Even_When_First_Call()
         {
             service.ExecuteAction(new ExecuteDummyAction(), false);
-
             service.GetRecordCount().Should().Be(0);
         }
 
@@ -108,7 +115,6 @@ namespace Marktek.Fluent.Testing.Engine.Tests
                .Cleanup(new DummyCleanup());
         }
 
-
         [TestMethod]
         public void Can_Run_PreCondition_Code()
         {
@@ -127,14 +133,13 @@ namespace Marktek.Fluent.Testing.Engine.Tests
             service.GetRecordCount().Should().Be(0);
         }
 
-
-       [DataTestMethod]
-       [DataRow(1)]
-       [DataRow(0)]
+        [DataTestMethod]
+        [DataRow(1)]
+        [DataRow(0)]
         public void Can_Run_If_Conditions(int expected)
         {
             service
-              .If(expected == 1, x=>x.CreateRecord(new CreateDummyExample()));
+              .If(expected == 1, x => x.CreateRecord(new CreateDummyExample()));
 
             service.GetRecordCount().Should().Be(expected);
         }
