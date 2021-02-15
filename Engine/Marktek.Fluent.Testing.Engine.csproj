@@ -5,7 +5,7 @@
     <PackageId>Testify</PackageId>
     <TargetFrameworks>netcoreapp2.1;netstandard2.0;net45;net451</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>Marktek.Fluent.Testing.Engine - A flexible Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests</Description>
+    <Description>Testify - A flexible Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests</Description>
     <Copyright>MarkTek</Copyright>
     <PackageTags>Fluent Testing, Integration testing, Data Driven Testing, Scenario Testing</PackageTags>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
