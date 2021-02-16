@@ -2,7 +2,7 @@
 
  
   <PropertyGroup>
-    <PackageId>Testify</PackageId>
+    <PackageId>FluidTest</PackageId>
     <TargetFrameworks>netcoreapp2.1;netstandard2.0;net45;net451</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Testify - A flexible Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests</Description>
