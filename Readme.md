@@ -21,7 +21,7 @@ One thing to mention here, is you will need to know C# to use the framework.
 
 To get started you will need to install the nuget package using the command
 
-    Install-Package Testify
+    Install-Package FluidTest
 
 Once you start you need to know 1 thing: what is the data type of the primary key of your entities. In most cases for example databases, it is a big int. In systems like Dynamics 365 and Salesforce, it could be a Guid.
 
