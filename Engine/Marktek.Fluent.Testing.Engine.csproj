@@ -8,11 +8,13 @@
     <Description>Testify - A flexible Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests</Description>
     <Copyright>MarkTek</Copyright>
     <PackageTags>Fluent Testing, Integration testing, Data Driven Testing, Scenario Testing</PackageTags>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <Version>2.0.0</Version>
-    <FileVersion>22.0.0.0</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0.0</FileVersion>
     <RepositoryUrl>https://github.com/markcunninghamuk/MarkTek.FluentApi.Testing.git</RepositoryUrl> 
     <RepositoryType>git</RepositoryType> 
+    
+    <PackageIcon>icon.png</PackageIcon> 
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,6 +28,13 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\Fluent\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Marktek.Fluent.Testing.Engine.Tests\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
