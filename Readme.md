@@ -225,11 +225,6 @@ internal class CustomExecutor : IExecutableAction<CustomOrder, Guid>, IExecutabl
     }
 }
 ```
- 
-**Delay**
-
-On the record service specify the milliseconds you require to wait for. This is useful for scenarios where you hit an API and require to wait until it finishes. You as the developer are responsible for the waiting time.
-
 **WaitFor**
 
 Used for situations where execution of the pipeline needs to wait for a specific action complete.
