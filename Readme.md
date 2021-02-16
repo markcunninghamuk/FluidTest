@@ -21,7 +21,7 @@ One thing to mention here, is you will need to know C# to use the framework.
 
 To get started you will need to install the nuget package using the command
 
-    Install-Package Testify
+    Install-Package FluidTest
 
 Once you start you need to know 1 thing: what is the data type of the primary key of your entities. In most cases for example databases, it is a big int. In systems like Dynamics 365 and Salesforce, it could be a Guid.
 
@@ -225,11 +225,6 @@ internal class CustomExecutor : IExecutableAction<CustomOrder, Guid>, IExecutabl
     }
 }
 ```
- 
-**Delay**
-
-On the record service specify the milliseconds you require to wait for. This is useful for scenarios where you hit an API and require to wait until it finishes. You as the developer are responsible for the waiting time.
-
 **WaitFor**
 
 Used for situations where execution of the pipeline needs to wait for a specific action complete.
