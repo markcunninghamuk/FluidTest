@@ -5,16 +5,20 @@
     <PackageId>FluidTest</PackageId>
     <TargetFrameworks>netcoreapp2.1;netstandard2.0;net45;net451</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>Testify - A flexible Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests</Description>
+    <Description>FluidTest - A flexible Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests</Description>
     <Copyright>MarkTek</Copyright>
     <PackageTags>Fluent Testing, Integration testing, Data Driven Testing, Scenario Testing</PackageTags>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Version>1.0.0</Version>
     <FileVersion>1.0.0.0</FileVersion>
-    <RepositoryUrl>https://github.com/markcunninghamuk/MarkTek.FluentApi.Testing.git</RepositoryUrl> 
+    <RepositoryUrl>https://github.com/markcunninghamuk/FluidTest.git</RepositoryUrl> 
     <RepositoryType>git</RepositoryType> 
     
     <PackageIcon>icon.png</PackageIcon> 
+    
+    <Company>Marktek</Company> 
+    
+    <Product>FluidTest</Product> 
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
