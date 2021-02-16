@@ -19,6 +19,8 @@
     <Company>Marktek</Company> 
     
     <Product>FluidTest</Product> 
+    
+    <Authors>Marktek</Authors> 
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
