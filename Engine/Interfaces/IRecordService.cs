@@ -61,7 +61,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <typeparam name="T"></typeparam>
         /// <param name="implementation"></param>
         /// <returns></returns>
-        IRecordService<TID> ExecuteAction(IExecutableAction<TID> implementation, bool executeOnAggregate);
+        IRecordService<TID> ExecuteAction(IExecutableAction<TID> implementation, bool executeOnAggregate = false);
               
         /// <summary>
         /// 
