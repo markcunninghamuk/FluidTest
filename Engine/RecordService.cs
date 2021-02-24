@@ -153,7 +153,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             });
         }
 
-        public IRecordService<TID> ExecuteAction(IExecutableAction<TID> implementation, bool executeAgainstAggregate)
+        public IRecordService<TID> ExecuteAction(IExecutableAction<TID> implementation, bool executeAgainstAggregate = false)
         {
             this.policy.Execute(() =>
             {
