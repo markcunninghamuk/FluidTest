@@ -57,7 +57,7 @@ service
     .If(DateTime.Now.Hour > 15, x => x.CreateRelatedRecord(new OrderLine(Guid.NewGuid())))
     .ExecuteAction(new SetShippingDate())
     .Delay(5000)
-    .ExecuteActionOnAggregate(new CancelOrder())
+    .ExecuteAction(new CancelOrder())
     .Delay(1000)
     .AssertAgainst(new MustBeCancelled())
     .Cleanup(new Cleanup());
@@ -292,6 +292,9 @@ Before writing a test:
 
 ## Referenced Components
 Thanks to the guys who have worked on Polly. It used to handle the retry mechanism internally. https://github.com/App-vNext/Polly
+
+## Future Enhancements
+Please raise issues using the gitHub Issues tab.
 
 ## Good luck
 
