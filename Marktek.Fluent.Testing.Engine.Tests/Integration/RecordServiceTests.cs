@@ -133,6 +133,19 @@ namespace Marktek.Fluent.Testing.Engine.Tests
             service.GetRecordCount().Should().Be(0);
         }
 
+        [TestMethod]
+        public void Can_Run_WaitFor_Code_With_Policy()
+        {
+            Policy testPolicy = Policy
+               .Handle<Exception>()
+               .WaitAndRetry(4, retryAttempt => TimeSpan.FromSeconds(1));
+
+            service
+              .WaitFor(new DummyWaitForWithCustomPolicy(), testPolicy);
+
+            service.GetRecordCount().Should().Be(0);
+        }
+
         [DataTestMethod]
         [DataRow(1)]
         [DataRow(0)]

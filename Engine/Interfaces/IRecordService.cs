@@ -1,5 +1,6 @@
 ﻿using Marktek.Fluent.Testing.Engine;
 using Marktek.Fluent.Testing.Engine.Interfaces;
+using Polly;
 using System;
 using System.Collections.Generic;
 
@@ -24,6 +25,14 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="implemetation"></param>
         /// <returns></returns>
         IRecordService<TID> WaitFor(IWaitableAction implemetation);
+
+        /// <summary>
+        /// Performs an action and waits for it to complete before proceeding.
+        /// </summary>
+        /// <param name="implemetation"></param>
+        /// <param name="policy"></param>
+        /// <returns></returns>
+        IRecordService<TID> WaitFor(IWaitableAction implemetation, Policy policy);
 
         /// <summary>
         /// Sets the aggregate Id to be the record that was last created

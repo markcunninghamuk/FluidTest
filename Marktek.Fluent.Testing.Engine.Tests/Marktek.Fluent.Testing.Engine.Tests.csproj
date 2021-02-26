@@ -75,6 +75,7 @@
     <Compile Include="Integration\Implementations\DummyAssertionExample.cs" />
     <Compile Include="Integration\Implementations\DummyCleanup.cs" />
     <Compile Include="Integration\Implementations\DummyPreExecute.cs" />
+    <Compile Include="Integration\Implementations\DummyWaitForWithCustomPolicy.cs" />
     <Compile Include="Integration\Implementations\DummyWaitFor.cs" />
     <Compile Include="Integration\Implementations\EnsureAggregateIdMatches.cs" />
     <Compile Include="Integration\Implementations\ExecuteDummyAction.cs" />

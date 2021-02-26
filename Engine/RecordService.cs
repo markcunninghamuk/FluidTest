@@ -189,6 +189,21 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         }
 
         /// <summary>
+        /// Waits for the waitable action to complete before proceeding.
+        /// </summary>
+        /// <param name="implementation"></param>
+        /// <param name="policy"></param>
+        /// <returns></returns>
+        public IRecordService<TID> WaitFor(IWaitableAction implementation, Policy policy)
+        {
+            policy.Execute(() =>
+            {
+                implementation.Execute();
+            });
+            return this;
+        }
+
+        /// <summary>
         /// Set the Aggregate id on the fly
         /// </summary>
         /// <returns></returns>
