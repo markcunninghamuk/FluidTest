@@ -117,6 +117,28 @@ public class OrderLine : IRelatedRecordCreator<OrderLine, Guid>
 
 Notice an Id is passed in to the `CreateRecord` method meaning no more managing Id's in your tests!
 
+You can also pass in all of the previously created Id's. This is sometimes known as the composite scenario. Here is what that looks like
+
+
+```cs
+public class CreateDummyExampleComposite : IRelatedRecordCreatorComposite<DummyModel, Guid>
+{      
+
+    public Record<DummyModel, Guid> CreateRecord(List<Guid> id)
+    {
+       var ob = new
+       {
+            key1 = id[0], // The Order Id
+            key2 = id[1]  // The Order Line id
+       };
+
+       return new Record<DummyModel, Guid>(new DummyModel(), Guid.NewGuid());
+     }
+}
+```
+
+*There are plans to enhance the engine so you can use friendly names / aliases to access records instead of using the index*
+
 **Specifications / Assertions**
 
 - Must implement Interface `BaseValidator`

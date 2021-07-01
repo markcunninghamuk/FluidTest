@@ -156,5 +156,17 @@ namespace Marktek.Fluent.Testing.Engine.Tests
 
             service.GetRecordCount().Should().Be(expected);
         }
+
+
+        [DataTestMethod]
+        public void Can_Handle_Multiple_Keys()
+        {
+            service.CreateRecord(new CreateDummyExample())
+                .CreateRelatedRecord(new CreateDummyExampleRelated())
+                .CreateRelatedRecord(new CreateDummyExampleComposite());
+
+            service.GetRecordCount().Should().Be(3);
+        }
+
     }
 }
