@@ -87,6 +87,9 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
 
             return this;
         }
+             
+
+
 
         /// <summary>
         /// Creates a record based on the previous record created, passes in the entire object of the record that was created
@@ -234,6 +237,21 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         public int GetRecordCount()
         {
             return CreatedRecords.Count();
+        }
+
+        public IRecordService<TID> CreateRelatedRecord<T>(IRelatedRecordCreatorComposite<T, TID> implementation)
+        {
+
+            if (this.CreatedRecords.Any())
+            {
+                this.policy.Execute(() =>
+                {
+                    var res = implementation.CreateRecord(this.CreatedRecords.Keys.ToList());
+                    this.CreatedRecords.Add(res.Id, res.Row);
+                });
+            }
+
+            return this;
         }
     }
 }

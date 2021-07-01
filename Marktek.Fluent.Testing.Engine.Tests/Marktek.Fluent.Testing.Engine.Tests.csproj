@@ -70,6 +70,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration\Implementations\CreateDummyExampleComposite.cs" />
     <Compile Include="Integration\Implementations\CreateDummyExample.cs" />
     <Compile Include="Integration\Implementations\CreateDummyExampleRelated.cs" />
     <Compile Include="Integration\Implementations\DummyAssertionExample.cs" />
