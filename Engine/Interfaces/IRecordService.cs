@@ -101,5 +101,10 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="cleanup"></param>
         IRecordService<TID> PreExecutionAction(IPreExecution execute);
 
+        /// <summary>
+        /// Returns the created Records and Object for the test session
+        /// </summary>
+        Dictionary<TID, object> GetRecords { get; }
+
     }
 }

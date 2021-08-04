@@ -27,6 +27,8 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
         public TID AggregateId { get; private set; }
 
+        public Dictionary<TID, object> GetRecords => this.CreatedRecords;
+
         /// <summary>
         /// Every Graph must have a hierarchy
         /// </summary>
