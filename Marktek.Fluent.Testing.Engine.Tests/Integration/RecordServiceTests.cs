@@ -22,7 +22,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
                 .Handle<ArgumentNullException>()
                 .Or<InvalidOperationException>()
                 .Or<Exception>()
-                .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(3, retryAttempt)));
+                .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(20));
 
             aggregateId = Guid.NewGuid();
             service = new RecordService<Guid>(aggregateId, retryIfException);
@@ -166,6 +166,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
                 .CreateRelatedRecord(new CreateDummyExampleComposite());
 
             service.GetRecordCount().Should().Be(3);
+            service.GetRecords.Count.Should().Be(3);
         }
 
     }
