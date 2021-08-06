@@ -48,7 +48,7 @@ stages:
         displayName: 'NuGet push'
         inputs:
           command: push
-          packagesToPush: '$(System.DefaultWorkingDirectory)/Package/drop/**.nupkg'
+          packagesToPush: '$(Pipeline.Workspace)/Package/drop/**.nupkg'
           nuGetFeedType: external
           publishFeedCredentials: Nuget
 
