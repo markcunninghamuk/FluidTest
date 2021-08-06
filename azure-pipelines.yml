@@ -34,7 +34,7 @@ stages:
             platform: '$(buildPlatform)'
             configuration: '$(buildConfiguration)'
 
-  - stage: 'Publish Nuget'
+  - stage: 'PublishNuget'
     displayName: 'Publish Prerelease NuGet Package'
     dependsOn: 'Build'
     condition: succeeded()
