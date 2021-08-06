@@ -14,20 +14,43 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-- task: NuGetToolInstaller@1
+stages:
+  - stage : Build
+    displayName: Build and Test
+    jobs:
+    - job: Build
+      displayName: Build and Test
+      steps:
+        - task: NuGetCommand@2
+          inputs:
+            restoreSolution: '$(solution)'
+        - task: VSBuild@1
+          inputs:
+            solution: '$(solution)'
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
+        - task: VSTest@2
+          inputs:
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+  - stage: 'Publish Nuget'
+    displayName: 'Publish Prerelease NuGet Package'
+    dependsOn: 'Build'
+    condition: succeeded()
+    jobs:
+    - job:
+      steps:
+      - checkout: none
+      - download: current
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+      - task: NuGetCommand@2
+        displayName: 'NuGet push'
+        inputs:
+          command: push
+          packagesToPush: '$(System.DefaultWorkingDirectory)/Package/drop/**.nupkg'
+          nuGetFeedType: external
+          publishFeedCredentials: Nuget
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+
+        
