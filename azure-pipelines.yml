@@ -13,6 +13,12 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  major: 1
+  minor: 0
+  patch: 0
+  revision: 7
+
+name: $(major).$(minor).$(patch).$(revision)
 
 stages:
   - stage : Build
@@ -29,6 +35,14 @@ stages:
             solution: '$(solution)'
             platform: '$(buildPlatform)'
             configuration: '$(buildConfiguration)'
+
+        - task: DotNetCoreCLI@2
+          displayName: 'dotnet pack'
+          inputs:
+            command: pack
+            packagesToPack: Engine/Marktek.Fluent.Testing.Engine.csproj
+            versioningScheme: byBuildNumber
+            
         - task: VSTest@2
           inputs:
             platform: '$(buildPlatform)'
