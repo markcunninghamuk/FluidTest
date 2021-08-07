@@ -302,6 +302,19 @@ The following example creates a record if the time is past 3pm. Some tests are t
 
 Used for situations where a record created becomes the new key entity. Remember all assertions and cleanup require the `AggregateId` and retrieve the record and perform cleanup based on it, so be careful not to leave a mess in your system.
 
+```cs
+.AssignAggregateId()
+```
+
+**GetRecords**
+
+Returns a list of all the objects and their identifiers created with a test session.
+
+```cs
+.GetRecords()
+```
+
+
 ## Rules and Guidance
 
 Before writing a test:
