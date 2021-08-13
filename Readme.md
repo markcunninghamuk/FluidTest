@@ -303,8 +303,18 @@ The following example creates a record if the time is past 3pm. Some tests are t
 Used for situations where a record created becomes the new key entity. Remember all assertions and cleanup require the `AggregateId` and retrieve the record and perform cleanup based on it, so be careful not to leave a mess in your system.
 
 ```cs
-.AssignAggregateId()
+.AssignAggregateId();
 ```
+
+Alternatively you can supply the aggregate Id on the fly depending on your ID type
+
+```cs
+.AssignAggregateId(Guid.NewGuid());
+.AssignAggregateId(100);
+.AssignAggregateId("Customer1001");
+
+```
+
 
 **GetRecords**
 

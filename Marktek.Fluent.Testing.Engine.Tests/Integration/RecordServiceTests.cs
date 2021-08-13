@@ -45,6 +45,17 @@ namespace Marktek.Fluent.Testing.Engine.Tests
         }
 
         [TestMethod]
+        public void Can_Get_Assigned_AggregateId_From_Passed_In_Value()
+        {
+            var uniqueId = Guid.NewGuid();
+            service
+                .CreateRecord(new CreateDummyExample())
+                .AssignAggregateId(uniqueId);
+
+            service.GetAggregateId().Should().Be(uniqueId);
+        }
+
+        [TestMethod]
         public void Can_Get_Assigned_AggregateId_Even_When_Creating_RelatedRecords()
         {
             service

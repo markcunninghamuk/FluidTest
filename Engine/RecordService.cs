@@ -222,6 +222,16 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             return this;
         }
 
+        /// <summary>
+        /// Set the Aggregate id on the fly
+        /// </summary>
+        /// <returns></returns>
+        public IRecordService<TID> AssignAggregateId(TID id)
+        {          
+            this.AggregateId = id;
+            return this;
+        }
+
         public IRecordService<TID> PreExecutionAction(IPreExecution implementation)
         {
             this.policy.Execute(() =>

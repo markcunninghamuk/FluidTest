@@ -40,8 +40,11 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         TID GetAggregateId();
 
-        //Gets the AggregateId
+        //Assigns the AggregateId from the last created entity
         IRecordService<TID> AssignAggregateId();
+
+        //Assigns the AggregateId from the value passed in.
+        IRecordService<TID> AssignAggregateId(TID value);
 
         /// <summary>
         /// Creates a record of type T where T is a class

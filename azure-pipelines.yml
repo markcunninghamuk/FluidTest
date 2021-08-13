@@ -16,7 +16,7 @@ variables:
   major: 1
   minor: 0
   patch: 0
-  revision: 7
+  revision: 8
 
 name: $(major).$(minor).$(patch).$(revision)
 
