@@ -122,10 +122,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <returns></returns>
         public IRecordService<TID> AssertAgainst<TType>(BaseValidator<TID, TType> spec)
         {
-            this.policy.Execute(() =>
-            {
-                spec.Validate(AggregateId);
-            });
+            spec.Validate(AggregateId);
 
             return this;
         }
