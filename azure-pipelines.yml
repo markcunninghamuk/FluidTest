@@ -2,6 +2,9 @@
 trigger:
 - master
 
+pool:
+  vmImage: 'windows-latest'
+
 extends:
   template: pipeline-templates/master.yml
   parameters:
