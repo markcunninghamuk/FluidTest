@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Marktek</Authors>
+    <Company>MarktekMarktek</Company>
+    <Product>Marktek</Product>
+    <Description>Azure Search Extensions</Description>
+    <Copyright>Marktek</Copyright>
+    <PackageIcon></PackageIcon>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <RepositoryType></RepositoryType>
+    <PackageTags>Fluent Testing, Integration testing, Data Driven Testing, Scenario Testing</PackageTags>
   </PropertyGroup>
 
 </Project>
