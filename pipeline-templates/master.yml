@@ -1,12 +1,14 @@
+name: ${{ parameters.major }}.${{ parameters.minor }}.${{ parameters.patch }}.${{ parameters.revision }}
+
 parameters:
   - name: major
-    type: int
+    type: string
   - name: minor
-    type: int
+    type: string
   - name: patch
-    type: int
+    type: string
   - name: revision
-    type: int
+    type: string
   - name: projectPath
     type: string
 
@@ -14,8 +16,6 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-
-name: ${{ parameters.major }}.${{ parameters.minor }}.${{ parameters.patch }}.${{ parameters.revision }}
 
 stages:
   - stage : Build
