@@ -31,18 +31,15 @@
     <Compile Remove="Interfaces\Fluent\**" />
     <EmbeddedResource Remove="Interfaces\Fluent\**" />
     <None Remove="Interfaces\Fluent\**" />
+    <None Include="..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Polly" Version="7.2.1" />
     <PackageReference Include="structuremap" Version="4.7.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\Marktek.Fluent.Testing.Engine.Tests\icon.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>
