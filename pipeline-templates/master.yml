@@ -10,15 +10,15 @@ variables:
 
 parameters:
   - name: major
-  type: int
+    type: int
   - name: minor
-  type: int
+    type: int
   - name: patch
-  type: int
+    type: int
   - name: revision
-  type: int
+    type: int
   - name: projectPath
-  type: string
+    type: string
 
 name: ${{ parameters.major }}.${{ parameters.minor }}.${{ parameters.patch }}.${{ parameters.revision }}
 
