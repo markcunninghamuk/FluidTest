@@ -1,6 +1,10 @@
-# File: azure-pipelines.yml
 trigger:
 - master
+
+pool:
+  vmImage: 'windows-latest'
+
+name: ${{ parameters.major }}.${{ parameters.minor }}.${{ parameters.patch }}.${{ parameters.revision }}
 
 extends:
   template: /pipeline-templates/master.yml
