@@ -15,8 +15,6 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-name: ${{ parameters.major }}.${{ parameters.minor }}.${{ parameters.patch }}.${{ parameters.revision }}
-
 stages:
   - stage : Build
     displayName: Build and Test
