@@ -2,6 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Marktek</Authors>
+    <Company>Marktek</Company>
+    <Product>Marktek</Product>
+    <Description>FluidTest - Azure Search Extensions for FluidTest</Description>
+    <Copyright>MarkTek</Copyright>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/markcunninghamuk/FluidTest.git</RepositoryUrl>
+    <PackageTags>Fluent Testing, Integration testing, Data Driven Testing, Scenario Testing</PackageTags>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\Marktek.Fluent.Testing.Engine.Tests\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
