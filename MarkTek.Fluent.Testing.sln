@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.AzureSearch", "Ex
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{992828CF-6D41-4421-865D-9ABCB10BBDAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.AzureSynapse", "Extensions\FluidTest.AzureSynapse\FluidTest.AzureSynapse.csproj", "{EEC9DF97-9086-4E4A-845E-1A4D3B6B7177}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{672F9D1D-0359-45B8-AEF7-FA952B0BFD4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{672F9D1D-0359-45B8-AEF7-FA952B0BFD4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{672F9D1D-0359-45B8-AEF7-FA952B0BFD4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC9DF97-9086-4E4A-845E-1A4D3B6B7177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC9DF97-9086-4E4A-845E-1A4D3B6B7177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC9DF97-9086-4E4A-845E-1A4D3B6B7177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC9DF97-9086-4E4A-845E-1A4D3B6B7177}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{14603A28-27BB-43B6-A0D1-DA53FE2ABC38} = {289789C0-C369-4531-9366-4EA27A33B63F}
 		{672F9D1D-0359-45B8-AEF7-FA952B0BFD4A} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
+		{EEC9DF97-9086-4E4A-845E-1A4D3B6B7177} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A13D4E99-90C5-4203-8AA0-F78B0C0EEE6E}
