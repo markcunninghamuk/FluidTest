@@ -5,8 +5,8 @@ trigger:
 extends:
   template: pipeline-templates/master.yml
   parameters:
-      major : 2
+      major : 1
       minor: 0
       patch: 0
       revision: 0
-      projectPath: 'Engine/Marktek.Fluent.Testing.Engine.csproj'
+      projectPath: 'Extensions\AzureSearch\FluidTest.AzureSearch\FluidTest.AzureSearch.csproj

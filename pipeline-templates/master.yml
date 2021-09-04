@@ -13,12 +13,20 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  major: 2
-  minor: 0
-  patch: 0
-  revision: 0
 
-name: $(major).$(minor).$(patch).$(revision)
+parameters:
+  - name: major
+  type: int
+  - name: minor
+  type: int
+  - name: patch
+  type: int
+  - name: revision
+  type: int
+  - name: projectPath
+  type: string
+
+name: ${{ parameters.major }}.${{ parameters.minor }}.${{ parameters.patch }}.${{ parameters.revision }}
 
 stages:
   - stage : Build
@@ -40,7 +48,7 @@ stages:
           displayName: 'dotnet pack'
           inputs:
             command: pack
-            packagesToPack: Engine/Marktek.Fluent.Testing.Engine.csproj
+            packagesToPack: ${{ parameters.projectPath }}
             versioningScheme: byBuildNumber
             
         - task: VSTest@2
