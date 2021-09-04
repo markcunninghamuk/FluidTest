@@ -10,5 +10,5 @@ extends:
       major : 0
       minor: 0
       patch: 0
-      revision: 1
+      revision: 2
       projectPath: 'Extensions/FluidTest.AzureSynapse/FluidTest.AzureSynapse.csproj'
