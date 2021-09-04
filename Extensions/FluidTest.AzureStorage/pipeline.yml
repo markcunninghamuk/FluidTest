@@ -1,0 +1,14 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+extends:
+  template: /pipeline-templates/master.yml
+  parameters:
+      major : 0
+      minor: 0
+      patch: 0
+      revision: 1
+      projectPath: 'Extensions/FluidTest.AzureStorage/FluidTest.AzureStorage.csproj'
