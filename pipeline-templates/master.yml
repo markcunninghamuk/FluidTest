@@ -14,6 +14,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  VersionNo: ${{ parameters.major }}.${{ parameters.minor }}.${{ parameters.patch }}.${{ parameters.revision }}
 
 stages:
   - stage : Build
@@ -21,12 +22,7 @@ stages:
     jobs:
     - job: Build
       displayName: Build and Test
-      steps:
-        - task: PowerShell@2
-          inputs:
-            targetType: 'inline'
-            script: '[System.Environment]::SetEnvironmentVariable(''VersionNo'',${{ parameters.major }}.${{ parameters.minor }}.${{ parameters.patch }}.${{ parameters.revision }})'
-
+      steps:   
         - task: NuGetCommand@2
           inputs:
             restoreSolution: '$(solution)'
