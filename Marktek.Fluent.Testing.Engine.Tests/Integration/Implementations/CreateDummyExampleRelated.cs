@@ -6,7 +6,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
 {
     internal class CreateDummyExampleRelated : IRelatedRecordCreator<DummyRelatedModel, Guid>, IRelatedRecordCreator<DummyModel,DummyRelatedModel,Guid>
     {
-
+        public bool SupportsRetry() => true;
 
         public Record<DummyRelatedModel, Guid> CreateRecord(Guid id)
         {
@@ -18,7 +18,12 @@ namespace Marktek.Fluent.Testing.Engine.Tests
 
             Console.WriteLine("Creating related records");
 
-            return new Record<DummyRelatedModel, Guid>(dummy, dummy.Id);
+            return new Record<DummyRelatedModel, Guid>(dummy, dummy.Id, new Action<Guid>(doIt));
+        }
+
+        private void doIt(Guid obj)
+        {
+           
         }
 
         public Record<DummyRelatedModel, Guid> CreateRecord(DummyModel entity)
@@ -31,7 +36,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
 
             Console.WriteLine("Creating related records");
 
-            return new Record<DummyRelatedModel, Guid>(dummy, dummy.Id);
+            return new Record<DummyRelatedModel, Guid>(dummy, dummy.Id, new Action<Guid>(doIt));
         }
     }
 }

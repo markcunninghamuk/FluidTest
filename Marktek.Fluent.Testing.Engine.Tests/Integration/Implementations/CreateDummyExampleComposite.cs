@@ -6,8 +6,8 @@ using System.Collections.Generic;
 namespace Marktek.Fluent.Testing.Engine.Tests
 {
     internal class CreateDummyExampleComposite : IRelatedRecordCreatorComposite<DummyModel, Guid>
-    {      
-
+    {
+     
         public Record<DummyModel, Guid> CreateRecord(List<Guid> id)
         {
             var ob = new
@@ -16,8 +16,13 @@ namespace Marktek.Fluent.Testing.Engine.Tests
                 key2 = id[1]
             };
 
-            return new Record<DummyModel, Guid>(new DummyModel(), Guid.NewGuid());
+            return new Record<DummyModel, Guid>(new DummyModel(), Guid.NewGuid(), new Action<Guid>(doIt));
 
+        }
+
+        private void doIt(Guid obj)
+        {
+           
         }
     }
 }
