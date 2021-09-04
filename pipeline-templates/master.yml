@@ -41,7 +41,8 @@ stages:
           inputs:
             command: pack
             packagesToPack: ${{ parameters.projectPath }}
-            versioningScheme: byBuildNumber
+            versioningScheme: 'byEnvVar'
+            versionEnvVar: 'VersionNo'
             
         - task: VSTest@2
           inputs:
