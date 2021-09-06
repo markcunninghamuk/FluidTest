@@ -4,6 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Fluid Test Extensions for Azure Storage (Including Data Lake HDFS)</Description>
     <PackageIcon>icon.png</PackageIcon>
+    <Authors>MarkTek</Authors>
+    <Company>MarkTek</Company>
+    <Product>MarkTek</Product>
   </PropertyGroup>
 
   <ItemGroup>

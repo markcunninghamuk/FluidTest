@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Azure Logic App Extensions</Description>
+    <PackageIcon>icon.png</PackageIcon>
+    <Authors>MarkTek</Authors>
+    <Company>MarkTek</Company>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
