@@ -1,84 +1,14 @@
-# .NET Desktop
-# Build and run tests for .NET Desktop or Windows classic desktop solutions.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
-
 trigger:
 - master
 
 pool:
   vmImage: 'windows-latest'
 
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  major: 1
-  minor: 0
-  patch: 0
-  revision: 9
-
-name: $(major).$(minor).$(patch).$(revision)
-
-stages:
-  - stage : Build
-    displayName: Build and Test
-    jobs:
-    - job: Build
-      displayName: Build and Test
-      steps:
-        - task: NuGetCommand@2
-          inputs:
-            restoreSolution: '$(solution)'
-        - task: VSBuild@1
-          inputs:
-            solution: '$(solution)'
-            platform: '$(buildPlatform)'
-            configuration: '$(buildConfiguration)'
-
-        - task: DotNetCoreCLI@2
-          displayName: 'dotnet pack'
-          inputs:
-            command: pack
-            packagesToPack: Engine/Marktek.Fluent.Testing.Engine.csproj
-            versioningScheme: byBuildNumber
-            
-        - task: VSTest@2
-          inputs:
-            platform: '$(buildPlatform)'
-            configuration: '$(buildConfiguration)'
-        
-        - task: CopyFiles@2
-          displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-          inputs:
-            SourceFolder: '$(system.defaultworkingdirectory)'
-            Contents: '**\bin\$(BuildConfiguration)\**'
-            TargetFolder: '$(build.artifactstagingdirectory)'
-          condition: succeededOrFailed()
-
-        - task: PublishBuildArtifacts@1
-          displayName: 'Publish Artifact: drop'
-          inputs:
-            PathtoPublish: '$(build.artifactstagingdirectory)'
-
-
-  - stage: 'PublishNuget'
-    displayName: 'Publish Prerelease NuGet Package'
-    dependsOn: 'Build'
-    condition: succeeded()
-    jobs:
-    - job:
-      steps:
-      - checkout: none
-      - download: current
-
-      - task: NuGetCommand@2
-        displayName: 'NuGet push'
-        inputs:
-          command: push
-          packagesToPush: '$(Pipeline.Workspace)/**/drop/*.nupkg'
-          nuGetFeedType: external
-          publishFeedCredentials: Nuget
-
-
-        
+extends:
+  template: pipeline-templates/master.yml
+  parameters:
+      major : 2
+      minor: 0
+      patch: 0
+      revision: 0
+      projectPath: 'Engine/Marktek.Fluent.Testing.Engine.csproj'

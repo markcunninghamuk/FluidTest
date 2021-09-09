@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MarkTek.Fluent.Testing.RecordGeneration;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,6 +16,6 @@ namespace Marktek.Fluent.Testing.Engine.Interfaces
         /// </summary>
         /// <param name="records"></param>
         /// <param name="aggregateId"></param>
-        void Cleanup(Dictionary<TID, object> records, TID aggregateId);
+        void Cleanup(List<Record<object, TID>> records, TID aggregateId);
     }
 }

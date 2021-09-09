@@ -1,4 +1,6 @@
-﻿namespace MarkTek.Fluent.Testing.RecordGeneration
+﻿using System;
+
+namespace MarkTek.Fluent.Testing.RecordGeneration
 {
     /// <summary>
     /// Generic record class allowing for multiple data types
@@ -8,7 +10,7 @@
     public class Record<T, TId>
     {
         /// <summary>
-        /// Constructor for Record where T class
+        /// Default Constructor
         /// </summary>
         /// <param name="record"></param>
         /// <param name="id"></param>
@@ -16,6 +18,16 @@
         {
             this.Id = id;
             this.Row = record;
+        }
+
+        /// <summary>
+        /// Constructor for Record where T class
+        /// </summary>
+        /// <param name="record"></param>
+        /// <param name="id"></param>
+        public Record(T record, TId id, Action<TId> cleanupHandler) : this(record,id)
+        {
+            this.CleanupDelegateFunction = cleanupHandler;
         }
 
         /// <summary>
@@ -27,5 +39,7 @@
         /// Generic T where T is the actual data record / row
         /// </summary>
         public T Row { get; private set; }
+
+        public Action<TId> CleanupDelegateFunction { get; private set; }
     }
 }

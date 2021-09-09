@@ -1,0 +1,81 @@
+parameters:
+  - name: major
+    type: string
+  - name: minor
+    type: string
+  - name: patch
+    type: string
+  - name: revision
+    type: string
+  - name: projectPath
+    type: string
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  VersionNo: ${{ parameters.major }}.${{ parameters.minor }}.${{ parameters.patch }}.${{ parameters.revision }}
+
+stages:
+  - stage : Build
+    displayName: Build and Test
+    jobs:
+    - job: Build
+      displayName: Build and Test
+      steps:   
+        - task: NuGetCommand@2
+          inputs:
+            restoreSolution: '$(solution)'
+        - task: VSBuild@1
+          inputs:
+            solution: '$(solution)'
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
+
+        - task: DotNetCoreCLI@2
+          displayName: 'dotnet pack'
+          inputs:
+            command: pack
+            packagesToPack: ${{ parameters.projectPath }}
+            versioningScheme: 'byEnvVar'
+            versionEnvVar: 'VersionNo'
+            
+        - task: VSTest@2
+          inputs:
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
+        
+        - task: CopyFiles@2
+          displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+          inputs:
+            SourceFolder: '$(system.defaultworkingdirectory)'
+            Contents: '**\bin\$(BuildConfiguration)\**'
+            TargetFolder: '$(build.artifactstagingdirectory)'
+          condition: succeededOrFailed()
+
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish Artifact: drop'
+          inputs:
+            PathtoPublish: '$(build.artifactstagingdirectory)'
+
+
+  - stage: 'PublishNuget'
+    displayName: 'Publish Prerelease NuGet Package'
+    dependsOn: 'Build'
+    condition: succeeded()
+    jobs:
+    - job:
+      steps:
+      - checkout: none
+      - download: current
+
+      - task: NuGetCommand@2
+        displayName: 'NuGet push'
+        inputs:
+          command: push
+          packagesToPush: '$(Pipeline.Workspace)/**/drop/*.nupkg'
+          nuGetFeedType: external
+          publishFeedCredentials: Nuget
+
+
+        

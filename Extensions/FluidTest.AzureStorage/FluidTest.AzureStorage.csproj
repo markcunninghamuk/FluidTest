@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Fluid Test Extensions for Azure Storage (Including Data Lake HDFS)</Description>
+    <PackageIcon>icon.png</PackageIcon>
+    <Authors>MarkTek</Authors>
+    <Company>MarkTek</Company>
+    <Product>MarkTek</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assertions\" />
+    <Folder Include="WaitActions\" />
+    <Folder Include="Validators\" />
+    <Folder Include="PreExecution\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Files.DataLake" Version="12.8.0" />
+    <PackageReference Include="FluentAssertions" Version="6.1.0" />
+    <PackageReference Include="Microsoft.Azure.DataLake.Store" Version="1.2.5-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Engine\Marktek.Fluent.Testing.Engine.csproj" />
+  </ItemGroup>
+
+</Project>

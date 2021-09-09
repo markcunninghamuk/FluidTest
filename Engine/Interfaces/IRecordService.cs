@@ -18,14 +18,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="spec"></param>
         /// <returns></returns>
         IRecordService<TID> AssertAgainst<TType>(BaseValidator<TID, TType> spec);
-
-        /// <summary>
-        /// Performs an action and waits for it to complete before proceeding.
-        /// </summary>
-        /// <param name="implemetation"></param>
-        /// <returns></returns>
-        IRecordService<TID> WaitFor(IWaitableAction implemetation);
-
+               
         /// <summary>
         /// Performs an action and waits for it to complete before proceeding.
         /// </summary>
@@ -99,6 +92,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         void Cleanup(IRecordCleanup<TID> cleanup);
 
         /// <summary>
+        /// Cleans up records using their internal cleanup method if the class passed in a cleanup Handler callback delegate.
+        /// </summary>
+        /// <param name="cleanup"></param>
+        void Cleanup();
+
+        /// <summary>
         /// Cleans up records Created during the record service, Uses the Aggregate Id to retrieve the record and related children and cleandown.
         /// </summary>
         /// <param name="cleanup"></param>
@@ -107,7 +106,10 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <summary>
         /// Returns the created Records and Object for the test session
         /// </summary>
-        Dictionary<TID, object> GetRecords { get; }
+    //    Dictionary<TID, object> GetRecords { get; }
+
+        List<Record<object,TID>> GetRecords { get; }
+
 
     }
 }

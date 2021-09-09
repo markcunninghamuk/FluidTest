@@ -127,22 +127,30 @@ namespace Marktek.Fluent.Testing.Engine.Tests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Can_Throw_Error_When_Cleanup_Incorrectly_Used()
+        {
+            service
+               .CreateRecord(new CreateDummyExample())
+               .Cleanup();
+        }
+
+        [TestMethod]
+        public void Can_Run_Cleanup_When_Delegate_Supplied()
+        {
+            service
+               .CreateRecord(new CreateDummyExampleWithCleanupHandler())
+               .Cleanup();
+        }
+
+        [TestMethod]
         public void Can_Run_PreCondition_Code()
         {
             service
               .PreExecutionAction(new DummyPreExecute());
 
             service.GetRecordCount().Should().Be(0);
-        }
-
-        [TestMethod]
-        public void Can_Run_WaitFor_Code()
-        {
-            service
-              .WaitFor(new DummyWaitFor());
-
-            service.GetRecordCount().Should().Be(0);
-        }
+        }        
 
         [TestMethod]
         public void Can_Run_WaitFor_Code_With_Policy()
