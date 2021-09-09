@@ -7,8 +7,8 @@ pool:
 extends:
   template: /pipeline-templates/master.yml
   parameters:
-      major : 0
+      major : 1
       minor: 0
       patch: 0
-      revision: 1
+      revision: 0
       projectPath: 'Extensions/FluidTest.AzureStorage/FluidTest.AzureStorage.csproj'

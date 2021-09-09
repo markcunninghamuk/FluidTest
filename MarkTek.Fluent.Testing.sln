@@ -14,19 +14,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marktek.Fluent.Testing.Engi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{289789C0-C369-4531-9366-4EA27A33B63F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.AzureSearch", "Extensions\FluidTest.AzureSearch\FluidTest.AzureSearch.csproj", "{672F9D1D-0359-45B8-AEF7-FA952B0BFD4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.AzureSearch", "Extensions\FluidTest.AzureSearch\FluidTest.AzureSearch.csproj", "{672F9D1D-0359-45B8-AEF7-FA952B0BFD4A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{992828CF-6D41-4421-865D-9ABCB10BBDAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.AzureSynapse", "Extensions\FluidTest.AzureSynapse\FluidTest.AzureSynapse.csproj", "{EEC9DF97-9086-4E4A-845E-1A4D3B6B7177}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.AzureSynapse", "Extensions\FluidTest.AzureSynapse\FluidTest.AzureSynapse.csproj", "{EEC9DF97-9086-4E4A-845E-1A4D3B6B7177}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.AzureStorage", "Extensions\FluidTest.AzureStorage\FluidTest.AzureStorage.csproj", "{92C60C5F-BFE9-4111-83A6-A57B921AF812}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.AzureLogicApps", "Extensions\FluidTest.AzureLogicApps\FluidTest.AzureLogicApps.csproj", "{61CF6C81-1854-4321-B61D-7DFA3F0F7DFD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.AzureFunctions", "Extensions\FluidTest.AzureFunctions\FluidTest.AzureFunctions.csproj", "{5030D45A-BC92-4C1F-A094-10EBF1D7FC6B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.PowerPlatform", "Extensions\FluidTest.PowerPlatform\FluidTest.PowerPlatform.csproj", "{7D206B27-7737-412E-8FC9-B71260190AFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.AzureStorage", "Extensions\FluidTest.AzureStorage\FluidTest.AzureStorage.csproj", "{92C60C5F-BFE9-4111-83A6-A57B921AF812}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,18 +47,6 @@ Global
 		{92C60C5F-BFE9-4111-83A6-A57B921AF812}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92C60C5F-BFE9-4111-83A6-A57B921AF812}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92C60C5F-BFE9-4111-83A6-A57B921AF812}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61CF6C81-1854-4321-B61D-7DFA3F0F7DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61CF6C81-1854-4321-B61D-7DFA3F0F7DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61CF6C81-1854-4321-B61D-7DFA3F0F7DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61CF6C81-1854-4321-B61D-7DFA3F0F7DFD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5030D45A-BC92-4C1F-A094-10EBF1D7FC6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5030D45A-BC92-4C1F-A094-10EBF1D7FC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5030D45A-BC92-4C1F-A094-10EBF1D7FC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5030D45A-BC92-4C1F-A094-10EBF1D7FC6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D206B27-7737-412E-8FC9-B71260190AFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D206B27-7737-412E-8FC9-B71260190AFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D206B27-7737-412E-8FC9-B71260190AFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D206B27-7737-412E-8FC9-B71260190AFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,9 +56,6 @@ Global
 		{672F9D1D-0359-45B8-AEF7-FA952B0BFD4A} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
 		{EEC9DF97-9086-4E4A-845E-1A4D3B6B7177} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
 		{92C60C5F-BFE9-4111-83A6-A57B921AF812} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
-		{61CF6C81-1854-4321-B61D-7DFA3F0F7DFD} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
-		{5030D45A-BC92-4C1F-A094-10EBF1D7FC6B} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
-		{7D206B27-7737-412E-8FC9-B71260190AFA} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A13D4E99-90C5-4203-8AA0-F78B0C0EEE6E}

@@ -16,4 +16,21 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Assertions\" />
+    <Folder Include="WaitActions\" />
+    <Folder Include="Validators\" />
+    <Folder Include="PreExecution\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Files.DataLake" Version="12.8.0" />
+    <PackageReference Include="FluentAssertions" Version="6.1.0" />
+    <PackageReference Include="Microsoft.Azure.DataLake.Store" Version="1.2.5-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Engine\Marktek.Fluent.Testing.Engine.csproj" />
+  </ItemGroup>
+
 </Project>

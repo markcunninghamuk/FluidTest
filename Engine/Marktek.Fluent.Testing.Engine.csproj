@@ -21,6 +21,8 @@
     <Product>FluidTest</Product> 
     
     <Authors>Marktek</Authors> 
+    
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects> 
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
