@@ -1,4 +1,5 @@
-﻿using MarkTek.Fluent.Testing.RecordGeneration;
+﻿using FluentAssertions;
+using MarkTek.Fluent.Testing.RecordGeneration;
 using Microsoft.Azure.Cosmos;
 
 namespace FluidTest.CosmosDB.Validators
@@ -7,7 +8,7 @@ namespace FluidTest.CosmosDB.Validators
     {
         public void Validate(Container item)
         {
-            throw new System.NotImplementedException();
+            item.Should().NotBeNull();
         }
     }
 }
