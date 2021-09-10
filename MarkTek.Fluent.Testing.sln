@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.AzureSynapse", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.AzureStorage", "Extensions\FluidTest.AzureStorage\FluidTest.AzureStorage.csproj", "{92C60C5F-BFE9-4111-83A6-A57B921AF812}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.CosmosDB", "Extensions\FluidTest.CosmosDB\FluidTest.CosmosDB.csproj", "{DE030512-C563-4AB7-BB26-542D6BDBDB11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{92C60C5F-BFE9-4111-83A6-A57B921AF812}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92C60C5F-BFE9-4111-83A6-A57B921AF812}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92C60C5F-BFE9-4111-83A6-A57B921AF812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE030512-C563-4AB7-BB26-542D6BDBDB11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE030512-C563-4AB7-BB26-542D6BDBDB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE030512-C563-4AB7-BB26-542D6BDBDB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE030512-C563-4AB7-BB26-542D6BDBDB11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +62,7 @@ Global
 		{672F9D1D-0359-45B8-AEF7-FA952B0BFD4A} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
 		{EEC9DF97-9086-4E4A-845E-1A4D3B6B7177} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
 		{92C60C5F-BFE9-4111-83A6-A57B921AF812} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
+		{DE030512-C563-4AB7-BB26-542D6BDBDB11} = {992828CF-6D41-4421-865D-9ABCB10BBDAC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A13D4E99-90C5-4203-8AA0-F78B0C0EEE6E}

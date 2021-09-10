@@ -1,5 +1,11 @@
 trigger:
-- master
+  batch: true
+  branches:
+    include:
+    - '*'
+  paths:
+    include:
+    - Extensions/FluidTest.AzureStorage
 
 pool:
   vmImage: 'windows-latest'

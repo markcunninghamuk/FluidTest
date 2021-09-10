@@ -5,16 +5,16 @@ trigger:
     - '*'
   paths:
     include:
-    - Extensions/FluidTest.AzureSynapse
+    - Engine
 
 pool:
   vmImage: 'windows-latest'
 
 extends:
-  template: /pipeline-templates/master.yml
+  template: pipeline-templates/master.yml
   parameters:
-      major : 1
+      major : 2
       minor: 0
       patch: 0
       revision: 0
-      projectPath: 'Extensions/FluidTest.AzureSynapse/FluidTest.AzureSynapse.csproj'
+      projectPath: 'Engine/Marktek.Fluent.Testing.Engine.csproj'
