@@ -5,7 +5,7 @@ trigger:
     - '*'
   paths:
     include:
-    - Extensions/FluidTest.AzureSynapse
+    - Extensions/FluidTest.AzureSynapse/*
 
 pool:
   vmImage: 'windows-latest'
