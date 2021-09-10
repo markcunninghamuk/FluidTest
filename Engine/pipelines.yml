@@ -5,7 +5,7 @@ trigger:
     - '*'
   paths:
     include:
-    - Engine
+    - Engine/*
 
 pool:
   vmImage: 'windows-latest'
