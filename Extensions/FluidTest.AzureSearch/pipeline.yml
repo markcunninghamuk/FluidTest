@@ -5,7 +5,7 @@ trigger:
     - '*'
   paths:
     include:
-    - Extensions/FluidTest.AzureSearch
+    - Extensions/FluidTest.AzureSearch/*
 
 pool:
   vmImage: 'windows-latest'
