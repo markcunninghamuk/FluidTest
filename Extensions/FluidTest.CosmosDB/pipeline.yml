@@ -17,4 +17,4 @@ extends:
       minor: 0
       patch: 0
       revision: 0
-      projectPath: 'Extensions/FluidTest.AzureSearch/FluidTest.CosmosDB.csproj'
+      projectPath: 'Extensions/FluidTest.CosmosDB/FluidTest.CosmosDB.csproj'
