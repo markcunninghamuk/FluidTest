@@ -25,7 +25,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
                 .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(20));
 
             aggregateId = Guid.NewGuid();
-            service = new RecordService<Guid>(aggregateId, retryIfException);
+            service = new RecordService<Guid>(aggregateId);
         }
 
         [TestMethod]
