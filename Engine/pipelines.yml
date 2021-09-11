@@ -11,7 +11,7 @@ pool:
   vmImage: 'windows-latest'
 
 extends:
-  template: pipeline-templates/master.yml
+  template: /pipeline-templates/master.yml
   parameters:
       major : 2
       minor: 0
