@@ -4,7 +4,7 @@ using MarkTek.Fluent.Testing.RecordGeneration;
 
 namespace FluidTest.AzureStorage.Validators
 {
-    internal class DataLakeFileShouldExist : ISpecificationValidator<DataLakeFileClient>
+    public class DataLakeFileShouldExist : ISpecificationValidator<DataLakeFileClient>
     {
         public void Validate(DataLakeFileClient item)
         {

@@ -5,7 +5,7 @@ using System;
 
 namespace FluidTest.AzureSearch.WaitActions
 {
-    internal class WaitForAzureSearchIndexToExist : IWaitableAction
+    public class WaitForAzureSearchIndexToExist : IWaitableAction
     {
         private SearchIndexClient searchIndexClient;
         private string indexName;

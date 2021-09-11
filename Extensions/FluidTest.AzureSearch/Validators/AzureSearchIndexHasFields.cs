@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FluidTest.AzureSearch.Validators
 {
-    internal class AzureSearchIndexHasFields : ISpecificationValidator<SearchIndex>
+    public class AzureSearchIndexHasFields : ISpecificationValidator<SearchIndex>
     {
         private string fields;
         private string rootObject;

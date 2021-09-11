@@ -4,7 +4,7 @@ using MarkTek.Fluent.Testing.RecordGeneration;
 
 namespace FluidTest.AzureSynapse.Validators
 {
-    internal class AzureSynapsePipelineStatusShouldBe : ISpecificationValidator<PipelineRun>
+    public class AzureSynapsePipelineStatusShouldBe : ISpecificationValidator<PipelineRun>
     {
         private string status;
 

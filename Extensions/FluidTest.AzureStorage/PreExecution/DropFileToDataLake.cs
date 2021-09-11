@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace FluidTest.AzureStorage.PreExecution
 {
-    internal class DropFileToDataLake : IPreExecution
+    public class DropFileToDataLake : IPreExecution
     {
         private string filePath;
         private string fileName;

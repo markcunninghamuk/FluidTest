@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FluidTest.AzureSearch.PreExecution
 {
-    internal class DropSearchIndex : IPreExecution
+    public class DropSearchIndex : IPreExecution
     {
         private string indexName;
         private SearchIndexClient searchIndexClient;

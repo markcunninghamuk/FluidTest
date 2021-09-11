@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FluidTest.AzureSearch.Assertions
 {
-    internal class VerifyAzureSearchFieldsExist : BaseValidator<string, SearchIndex>
+    public class VerifyAzureSearchFieldsExist : BaseValidator<string, SearchIndex>
     {
         private string fields;
         private SearchIndexClient indexClient;

@@ -4,7 +4,7 @@ using MarkTek.Fluent.Testing.RecordGeneration;
 
 namespace FluidTest.AzureSearch.Validators
 {
-    internal class AzureSearchIndexShouldExist : ISpecificationValidator<SearchIndex>
+    public class AzureSearchIndexShouldExist : ISpecificationValidator<SearchIndex>
     {
         private string indexName;
 

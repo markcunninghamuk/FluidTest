@@ -4,7 +4,7 @@ using MarkTek.Fluent.Testing.RecordGeneration;
 
 namespace FluidTest.AzureSearch.Validators
 {
-    internal class AzureSearchIndexScoreShouldBe : ISpecificationValidator<SearchResults<object>>
+    public class AzureSearchIndexScoreShouldBe : ISpecificationValidator<SearchResults<object>>
     {
         private int expectedScore;
 

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace FluidTest.AzureStorage.Assertions
 {
-    internal class VerifyDataLakeFileExist : BaseValidator<string, DataLakeFileClient>
+    public class VerifyDataLakeFileExist : BaseValidator<string, DataLakeFileClient>
     {
         private DataLakeServiceClient client;
         private string containerName;

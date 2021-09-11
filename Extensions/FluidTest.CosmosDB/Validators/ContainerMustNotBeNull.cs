@@ -4,7 +4,7 @@ using Microsoft.Azure.Cosmos;
 
 namespace FluidTest.CosmosDB.Validators
 {
-    internal class ContainerMustNotBeNull : ISpecificationValidator<Container>
+    public class ContainerMustNotBeNull : ISpecificationValidator<Container>
     {
         public void Validate(Container item)
         {

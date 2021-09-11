@@ -6,6 +6,7 @@
     <Company>MarkTek</Company>
     <Product>MarkTek</Product>
     <PackageIcon>icon.png</PackageIcon>
+    <Description>Cosmos DB Extensions</Description>
   </PropertyGroup>
 
   <ItemGroup>

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FluidTest.AzureSynapse.Assertions
 {
-    internal class VerifyAzureSynapsePipelineStatus : BaseValidator<string, PipelineRun>
+    public class VerifyAzureSynapsePipelineStatus : BaseValidator<string, PipelineRun>
     {
         private string status;
         private PipelineRunClient pipelineRunClient;
