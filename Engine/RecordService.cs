@@ -31,16 +31,6 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// Every Graph must have a hierarchy
         /// </summary>
         /// <param name="aggregateId"></param>
-        public RecordService(TID aggregateId, Policy policy)
-        {
-            CreatedRecords = new List<Record<object, TID>>();
-            this.AggregateId = aggregateId;
-        }
-
-        /// <summary>
-        /// Every Graph must have a hierarchy
-        /// </summary>
-        /// <param name="aggregateId"></param>
         public RecordService(TID aggregateId)
         {
             CreatedRecords = new List<Record<object, TID>>();
