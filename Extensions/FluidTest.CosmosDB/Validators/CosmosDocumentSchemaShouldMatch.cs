@@ -18,7 +18,7 @@ namespace FluidTest.CosmosDB.Validators
             this.schemaFileName = schema;
         }
 
-        public void Validate(IEnumerable<dynamic> item)
+        public void Validate(IEnumerable<object> item)
         {
             var sourceSchema = $"{ Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/TestCases/Schema/{schemaFileName}";
 
