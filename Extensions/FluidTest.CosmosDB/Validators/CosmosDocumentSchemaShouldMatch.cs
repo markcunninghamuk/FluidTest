@@ -22,7 +22,9 @@ namespace FluidTest.CosmosDB.Validators
         {
             var sourceSchema = $"{ Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/TestCases/Schema/{schemaFileName}";
 
-            JSchema schema = JSchema.Parse(sourceSchema);
+            var schemaRaw = File.ReadAllText(sourceSchema);
+
+            JSchema schema = JSchema.Parse(schemaRaw);
 
             foreach (var document in item)
             {
