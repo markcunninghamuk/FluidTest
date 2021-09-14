@@ -32,19 +32,20 @@ To get started you need to instantiate a `RecordService`. The `RecordService` is
 
 My system uses Guids on the record and I require to create a record. When you create a new `RecordService`, you must pass in an `AggregateId` and optionally a retry policy, The `AggregateId` is used to cleandown and the end, and is also the identifier of the parent record that you will create. Everything hangs off an aggregate in a relational database model. For NoSQL databases, you don't need to worry as much as you can create a complex object in one hit.
 
-    var service = new RecordService<Guid>(Guid.NewGuid());
-
+```cs
+var service = new RecordService<Guid>(Guid.NewGuid());
+```
 Alternatively you can pass in a retry policy so you can handle the types of errors you require.
 
+```cs
+var retryPolicy = Policy
+     .Handle<ArgumentNullException>()
+      .Or<InvalidOperationException>()
+      .Or<Exception>()
+      .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(3, retryAttempt)));
 
-    var retryPolicy = Policy
-                .Handle<ArgumentNullException>()
-                .Or<InvalidOperationException>()
-                .Or<Exception>()
-                .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(3, retryAttempt)));
-
-    service = new RecordService<Guid>(Guid.NewGuid(), retryPolicy);
-
+service = new RecordService<Guid>(Guid.NewGuid(), retryPolicy);
+```
 
 Once you have instantiated the service you can call the following Methods, below is an example of what a test should typically look like
 
