@@ -51,6 +51,17 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             return this;
         }
 
+        public IRecordService<TID> CreateRecord<T>(IRecordCreator<T, TID> implementation, Policy retry)
+        {
+            retry.Execute(() =>
+            {
+                var res = implementation.CreateRecord();
+                this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.CleanupDelegateFunction));
+            });  
+
+            return this;
+        }
+
         /// <summary>
         /// Create a record based on the record that was previously created, passes in the ID of the Previous record that was created
         /// </summary>
@@ -221,6 +232,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         public int GetRecordCount()
         {
             return CreatedRecords.Count();
-        }      
+        }
+      
     }
 }

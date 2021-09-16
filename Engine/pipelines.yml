@@ -16,5 +16,5 @@ extends:
       major : 2
       minor: 0
       patch: 0
-      revision: 1
+      revision: 2
       projectPath: 'Engine/Marktek.Fluent.Testing.Engine.csproj'

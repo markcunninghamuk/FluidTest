@@ -48,6 +48,14 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         IRecordService<TID> CreateRecord<T>(IRecordCreator<T, TID> implementation);
 
         /// <summary>
+        /// Creates a record of type T where T is a class with a policy
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="implementation"></param>
+        /// <returns></returns>
+        IRecordService<TID> CreateRecord<T>(IRecordCreator<T, TID> implementation, Policy retry);
+
+        /// <summary>
         /// Creates a related record of type T where T is a class and passes in the previously created id from the CreateRecord method
         /// </summary>
         /// <typeparam name="T"></typeparam>
