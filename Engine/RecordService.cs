@@ -154,10 +154,10 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
                 {
                     item.CleanupDelegateFunction(item.Id);
                 }
-                else
-                {
-                    throw new InvalidOperationException($"{ item.Row.GetType().FullName} will not cleanup as no cleanup handler was passed in");
-                }
+                //else
+                //{
+                //    throw new InvalidOperationException($"{ item.Row.GetType().FullName} will not cleanup as no cleanup handler was passed in");
+                //}
             }
         }
 
