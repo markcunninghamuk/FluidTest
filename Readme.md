@@ -344,7 +344,7 @@ Please raise issues using the gitHub Issues tab.
 
 ## Good luck
 
-For any enhancements, suggestions or opinions you can contact me at <a href="mailto:mark_cunningham@outlook.com">Email Me</a>. 
+For any enhancements, suggestions or opinions you can contact me at <a href="mailto:mark_cunningham@outlook.com">Email Me</a>. Or raise issues in the issues tab.
 
 
 
