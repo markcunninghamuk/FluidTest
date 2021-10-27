@@ -125,15 +125,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
                .CreateRecord(new CreateDummyExample())
                .Cleanup(new DummyCleanup());
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void Can_Throw_Error_When_Cleanup_Incorrectly_Used()
-        {
-            service
-               .CreateRecord(new CreateDummyExample())
-               .Cleanup();
-        }
+              
 
         [TestMethod]
         public void Can_Run_Cleanup_When_Delegate_Supplied()
