@@ -29,7 +29,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Record<TEntity, TID> CreateRecord(List<TID> id);
+        Record<TEntity, TID> CreateRecord(List<Record<object,TID>> id);
     }
 
 }

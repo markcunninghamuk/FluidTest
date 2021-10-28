@@ -18,7 +18,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
 
             Console.WriteLine("Creating related records");
 
-            return new Record<DummyRelatedModel, Guid>(dummy, dummy.Id, new Action<Guid>(doIt));
+            return new Record<DummyRelatedModel, Guid>(dummy, dummy.Id, "alias1", new Action<Guid>(doIt));
         }
 
         private void doIt(Guid obj)
@@ -36,7 +36,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
 
             Console.WriteLine("Creating related records");
 
-            return new Record<DummyRelatedModel, Guid>(dummy, dummy.Id, new Action<Guid>(doIt));
+            return new Record<DummyRelatedModel, Guid>(dummy, dummy.Id, "alias1",new Action<Guid>(doIt));
         }
     }
 }

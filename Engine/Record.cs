@@ -14,10 +14,11 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
         /// <param name="record"></param>
         /// <param name="id"></param>
-        public Record(T record, TId id)
+        public Record(T record, TId id, string alias)
         {
             this.Id = id;
             this.Row = record;
+            this.Alias = alias;
         }
 
         /// <summary>
@@ -25,7 +26,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
         /// <param name="record"></param>
         /// <param name="id"></param>
-        public Record(T record, TId id, Action<TId> cleanupHandler) : this(record,id)
+        public Record(T record, TId id, string alias, Action<TId> cleanupHandler) : this(record,id,alias)
         {
             this.CleanupDelegateFunction = cleanupHandler;
         }
@@ -39,7 +40,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// Generic T where T is the actual data record / row
         /// </summary>
         public T Row { get; private set; }
-
+        public string Alias { get; private set; }
         public Action<TId> CleanupDelegateFunction { get; private set; }
     }
 }

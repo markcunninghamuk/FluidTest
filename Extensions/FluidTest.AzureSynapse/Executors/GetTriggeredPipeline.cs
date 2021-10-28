@@ -34,7 +34,7 @@ namespace FluidTest.AzureSynapse.Executors
             }
             else
             {
-                return new Record<PipelineRun, string>(activityRun, activityRun.RunId);
+                return new Record<PipelineRun, string>(activityRun, activityRun.RunId, "SynapsePipelineRun");
             }
         }
     }

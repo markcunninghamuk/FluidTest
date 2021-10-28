@@ -10,7 +10,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
 
         public Record<DummyModel, Guid> CreateRecord()
         {
-              return new Record<DummyModel, Guid>(new DummyModel(), Guid.NewGuid());
+              return new Record<DummyModel, Guid>(new DummyModel(), Guid.NewGuid(), "alias");
         }
     }
 
@@ -19,7 +19,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
 
         public Record<DummyModel, Guid> CreateRecord()
         {
-            return new Record<DummyModel, Guid>(new DummyModel(), Guid.NewGuid(), CleanupHandler);
+            return new Record<DummyModel, Guid>(new DummyModel(), Guid.NewGuid(), "alias2", CleanupHandler);
         }
 
         private void CleanupHandler(Guid obj)

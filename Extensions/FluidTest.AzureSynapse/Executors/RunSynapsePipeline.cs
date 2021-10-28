@@ -21,7 +21,7 @@ namespace FluidTest.AzureSynapse.Executors
         public Record<CreateRunResponse, string> CreateRecord()
         {
             var run = this.pipelineClient.CreatePipelineRun(this.pipelineName, parameters: pipelineParams);
-            return new Record<CreateRunResponse, string>(run, run.Value.RunId);
+            return new Record<CreateRunResponse, string>(run, run.Value.RunId, "SynapseCreatedPipelineRun");
         }
     }
 }

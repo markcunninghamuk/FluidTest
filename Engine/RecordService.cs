@@ -46,7 +46,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         public virtual IRecordService<TID> CreateRecord<TEntity>(IRecordCreator<TEntity, TID> app)
         {
             var res = app.CreateRecord();
-            this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.CleanupDelegateFunction));
+            this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.Alias, res.CleanupDelegateFunction));
 
             return this;
         }
@@ -56,7 +56,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             retry.Execute(() =>
             {
                 var res = implementation.CreateRecord();
-                this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.CleanupDelegateFunction));
+                this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.Alias, res.CleanupDelegateFunction));
             });  
 
             return this;
@@ -73,7 +73,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             if (this.CreatedRecords.Any())
             {
                 var res = app.CreateRecord(CreatedRecords.Last().Id);
-                this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.CleanupDelegateFunction));
+                this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.Alias, res.CleanupDelegateFunction));
             }
 
             return this;
@@ -91,7 +91,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             if (this.CreatedRecords.Any())
             {
                 var res = app.CreateRecord((TParent)CreatedRecords.Last().Row);
-                this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.CleanupDelegateFunction));
+                this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.Alias, res.CleanupDelegateFunction));
             }
 
             return this;
@@ -99,13 +99,11 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
 
         public IRecordService<TID> CreateRelatedRecord<TEntity>(IRelatedRecordCreatorComposite<TEntity, TID> implementation)
         {
-
             if (this.CreatedRecords.Any())
             {
-                var res = implementation.CreateRecord(this.CreatedRecords.Select(rec => rec.Id).ToList());
-                this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.CleanupDelegateFunction));
+                var res = implementation.CreateRecord(this.CreatedRecords);
+                this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.Alias, res.CleanupDelegateFunction));
             }
-
             return this;
         }
 

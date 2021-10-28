@@ -16,7 +16,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
                 key2 = id[1]
             };
 
-            return new Record<DummyModel, Guid>(new DummyModel(), Guid.NewGuid(), new Action<Guid>(doIt));
+            return new Record<DummyModel, Guid>(new DummyModel(), Guid.NewGuid(), "alias1", new Action<Guid>(doIt));
 
         }
 
