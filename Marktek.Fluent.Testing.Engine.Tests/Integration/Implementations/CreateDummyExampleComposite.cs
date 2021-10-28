@@ -8,7 +8,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
     internal class CreateDummyExampleComposite : IRelatedRecordCreatorComposite<DummyModel, Guid>
     {
      
-        public Record<DummyModel, Guid> CreateRecord(List<Guid> id)
+        public Record<DummyModel, Guid> CreateRecord(List<Record<object, Guid>> id)
         {
             var ob = new
             {
