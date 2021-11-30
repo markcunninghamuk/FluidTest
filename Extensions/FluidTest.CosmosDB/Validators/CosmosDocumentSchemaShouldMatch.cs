@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
 using MarkTek.Fluent.Testing.RecordGeneration;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Schema;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using NJsonSchema;
+using Newtonsoft.Json.Linq;
 
 namespace FluidTest.CosmosDB.Validators
 {
@@ -24,22 +23,14 @@ namespace FluidTest.CosmosDB.Validators
 
             var schemaRaw = File.ReadAllText(sourceSchema);
 
-            JSchema schema = JSchema.Parse(schemaRaw);
-
+            var schema = JsonSchema.FromSampleJson(schemaRaw);
+           
             foreach (var document in item)
             {
-                IList<string> messages;
-                JObject model = JObject.Parse(document.ToString());
-
-                bool valid = model.IsValid(schema, out messages);
-
-                foreach (var validationError in messages)
-                {
-                    Console.WriteLine($"Schema validation failed with error {validationError}");
-                }
-
+               // JObject model = JObject.Parse(document.ToString());
+                var errors = schema.Validate(document.ToString());                
+                bool valid = errors.Count == 0;
                 valid.Should().BeTrue();
-
             }
         }
     }
