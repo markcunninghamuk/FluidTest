@@ -2,6 +2,7 @@
 using Marktek.Fluent.Testing.Engine.Interfaces;
 using Polly;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,14 +19,14 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
         //  private List<TID> CreatedIds { get; set; }
 
-        public List<Record<object, TID>> CreatedRecords { get; private set; }
+        public ConcurrentBag<Record<object, TID>> CreatedRecords { get; private set; }
 
         /// <summary>
         /// The primary entity id, Used for cleanup and assertion classes
         /// </summary>
         public TID AggregateId { get; private set; }
 
-        public List<Record<object, TID>> GetRecords => this.CreatedRecords;
+        public ConcurrentBag<Record<object, TID>> GetRecords => this.CreatedRecords;
 
         /// <summary>
         /// Every Graph must have a hierarchy
@@ -33,7 +34,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="aggregateId"></param>
         public RecordService(TID aggregateId)
         {
-            CreatedRecords = new List<Record<object, TID>>();
+            CreatedRecords = new ConcurrentBag<Record<object, TID>>();
             this.AggregateId = aggregateId;
         }
 
@@ -101,7 +102,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         {
             if (this.CreatedRecords.Any())
             {
-                var res = implementation.CreateRecord(this.CreatedRecords);
+                var res = implementation.CreateRecord(this.CreatedRecords.ToList());
                 this.CreatedRecords.Add(new Record<object, TID>(res.Row, res.Id, res.Alias, res.CleanupDelegateFunction));
             }
             return this;
@@ -138,7 +139,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="Id"></param>
         public void Cleanup(IRecordCleanup<TID> Id)
         {
-            Id.Cleanup(CreatedRecords, this.AggregateId);
+            Id.Cleanup(CreatedRecords.ToList(), this.AggregateId);
         }
 
         /// <summary>

@@ -2,6 +2,7 @@
 using Marktek.Fluent.Testing.Engine.Interfaces;
 using Polly;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace MarkTek.Fluent.Testing.RecordGeneration
@@ -116,7 +117,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// </summary>
     //    Dictionary<TID, object> GetRecords { get; }
 
-        List<Record<object,TID>> GetRecords { get; }
+        ConcurrentBag<Record<object,TID>> GetRecords { get; }
 
 
     }
