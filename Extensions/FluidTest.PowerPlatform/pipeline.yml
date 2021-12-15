@@ -13,8 +13,8 @@ pool:
 extends:
   template: /pipeline-templates/master.yml
   parameters:
-      major : 1
+      major : 0
       minor: 0
       patch: 0
-      revision: 4
+      revision: 1
       projectPath: 'Extensions/FluidTest.PowerPlatform/FluidTest.PowerPlatform.csproj'
