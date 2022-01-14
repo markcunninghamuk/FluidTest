@@ -1,4 +1,4 @@
-##Intro
+## Intro
 
 This example shows how you can drop a file to datalake and test the trigger runs, it also waits for the pipeline to succeed allowing you to test end to end.
 
