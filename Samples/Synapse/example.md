@@ -2,6 +2,14 @@
 
 This example shows how you can drop a file to datalake and test the trigger runs, it also waits for the pipeline to succeed allowing you to test end to end.
 
+remember to install the following Nuget Packages in your project
+
+```cs
+FluidTest
+FluidTest.AzureSynapse 
+FluidTest.AzureStorage
+```
+
 ```cs
 using FluidTest.AzureStorage.PreExecution;
 using FluidTest.AzureSynapse.Executors;
