@@ -32,8 +32,7 @@ stages:
             platform: '$(buildPlatform)'
             configuration: '$(buildConfiguration)'
 
-        - task: DotNetCoreCLI@2
-          condition: ne(variables['Build.Reason'], 'PullRequest')
+        - task: DotNetCoreCLI@2         
           displayName: 'dotnet pack'
           inputs:
             command: pack
@@ -63,7 +62,6 @@ stages:
   - stage: 'PublishNuget'
     displayName: 'Publish Prerelease NuGet Package'
     dependsOn: 'Build'
-    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     jobs:
     - job:
       steps:
