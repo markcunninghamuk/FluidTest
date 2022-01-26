@@ -1,7 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
 using FluentAssertions;
-using FluidTest.AzureServiceBus.Assertions;
-using FluidTest.AzureServiceBus.Executors;
 using Marktek.Fluent.Testing.Engine.Tests.Models;
 using MarkTek.Fluent.Testing.RecordGeneration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
