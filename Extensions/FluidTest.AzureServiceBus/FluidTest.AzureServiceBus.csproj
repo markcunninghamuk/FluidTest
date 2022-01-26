@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Engine\Marktek.Fluent.Testing.Engine.csproj" />
-    <ProjectReference Include="..\..\..\FluidTest.Common\FluidTest.Common.csproj" />
+    <ProjectReference Include="..\..\Engine\Marktek.Fluent.Testing.Engine.csproj" />
+    <ProjectReference Include="..\..\FluidTest.Common\FluidTest.Common.csproj" />
   </ItemGroup>
 
 </Project>

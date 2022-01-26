@@ -190,10 +190,6 @@
       <Project>{14603a28-27bb-43b6-a0d1-da53fe2abc38}</Project>
       <Name>Marktek.Fluent.Testing.Engine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Extensions\FluidTest.AzureServiceBus\FluidTest.AzureServiceBus\FluidTest.AzureServiceBus.csproj">
-      <Project>{824e3712-47cc-43d0-8944-63d377da8c53}</Project>
-      <Name>FluidTest.AzureServiceBus</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
