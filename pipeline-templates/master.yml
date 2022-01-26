@@ -9,7 +9,6 @@ parameters:
     type: string
   - name: projectPath
     type: string
-  - name: publishNuget
 
 variables:
   solution: '**/*.sln'
@@ -62,7 +61,7 @@ stages:
 
   - stage: 'PublishNuget'
     displayName: 'Publish Prerelease NuGet Package'
-    condition: eq(${{ parameters.publishNuget }}, true)
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     dependsOn: 'Build'
     jobs:
     - job:
