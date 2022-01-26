@@ -180,6 +180,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
 
             service.GetRecordCount().Should().Be(3);
             service.GetRecords.Count.Should().Be(3);
+
         }
 
     }
