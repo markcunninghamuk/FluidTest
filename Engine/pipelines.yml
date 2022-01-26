@@ -2,7 +2,7 @@ trigger:
   batch: true
   branches:
     include:
-    - '*'
+    - 'master'
   paths:
     include:
     - Engine/*
@@ -15,6 +15,6 @@ extends:
   parameters:
       major : 3
       minor: 0
-      patch: 1
+      patch: 2
       revision: 0
       projectPath: 'Engine/Marktek.Fluent.Testing.Engine.csproj'

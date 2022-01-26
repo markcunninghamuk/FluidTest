@@ -1,0 +1,40 @@
+pool:
+  vmImage: 'windows-latest'
+  demands:
+  - msbuild
+  - visualstudio
+
+trigger:
+  batch: true
+  branches:
+    exclude:
+    - 'master'
+  paths:
+    include:
+    - Engine/*
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+stages:
+  - stage : Build
+    displayName: Build and Test
+    jobs:
+    - job: Build
+      displayName: Build and Test
+      steps:   
+        - task: NuGetCommand@2
+          inputs:
+            restoreSolution: '$(solution)'
+        - task: VSBuild@1
+          inputs:
+            solution: '$(solution)'
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
+           
+        - task: VSTest@2
+          inputs:
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'

@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Azure.Messaging.ServiceBus;
+using FluentAssertions;
 using Marktek.Fluent.Testing.Engine.Tests.Models;
 using MarkTek.Fluent.Testing.RecordGeneration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -144,6 +145,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
             service.GetRecordCount().Should().Be(0);
         }        
 
+
         [TestMethod]
         public void Can_Run_WaitFor_Code_With_Policy()
         {
@@ -176,8 +178,9 @@ namespace Marktek.Fluent.Testing.Engine.Tests
                 .CreateRelatedRecord(new CreateDummyExampleRelated())
                 .CreateRelatedRecord(new CreateDummyExampleComposite());
 
-            service.GetRecordCount().Should().Be(3);
+            service.GetRecordCount().Should().Be(3);  
             service.GetRecords.Count.Should().Be(3);
+
         }
 
     }

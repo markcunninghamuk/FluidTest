@@ -5,7 +5,7 @@ trigger:
     - 'master'
   paths:
     include:
-    - Extensions/FluidTest.CosmosDB/*
+    - Extensions/FluidTest.AzureServiceBus/*
 
 pool:
   vmImage: 'windows-latest'
@@ -13,8 +13,8 @@ pool:
 extends:
   template: /pipeline-templates/master.yml
   parameters:
-      major : 1
+      major : 0
       minor: 0
       patch: 0
-      revision: 5
-      projectPath: 'Extensions/FluidTest.CosmosDB/FluidTest.CosmosDB.csproj'
+      revision: 1
+      projectPath: 'Extensions/FluidTest.AzureServiceBus/FluidTest.AzureServiceBus.csproj'

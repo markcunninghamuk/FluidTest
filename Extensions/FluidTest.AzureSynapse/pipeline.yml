@@ -2,7 +2,7 @@ trigger:
   batch: true
   branches:
     include:
-    - '*'
+    - 'master'
   paths:
     include:
     - Extensions/FluidTest.AzureSynapse/*
@@ -16,5 +16,5 @@ extends:
       major : 1
       minor: 0
       patch: 0
-      revision: 2
+      revision: 3
       projectPath: 'Extensions/FluidTest.AzureSynapse/FluidTest.AzureSynapse.csproj'

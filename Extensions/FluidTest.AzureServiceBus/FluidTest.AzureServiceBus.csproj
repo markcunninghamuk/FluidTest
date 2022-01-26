@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\" />
+    <Folder Include="WaitActions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.5.1" />
+    <PackageReference Include="FluentAssertions" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Engine\Marktek.Fluent.Testing.Engine.csproj" />
+    <ProjectReference Include="..\..\FluidTest.Common\FluidTest.Common.csproj" />
+  </ItemGroup>
+
+</Project>
