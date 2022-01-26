@@ -61,6 +61,7 @@ stages:
 
   - stage: 'PublishNuget'
     displayName: 'Publish Prerelease NuGet Package'
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     dependsOn: 'Build'
     jobs:
     - job:
