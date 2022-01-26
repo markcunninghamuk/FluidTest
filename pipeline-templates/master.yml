@@ -33,7 +33,7 @@ stages:
             configuration: '$(buildConfiguration)'
 
         - task: DotNetCoreCLI@2
-          condition: condition: ne(variables['Build.Reason'], 'PullRequest')
+          condition: ne(variables['Build.Reason'], 'PullRequest')
           displayName: 'dotnet pack'
           inputs:
             command: pack
