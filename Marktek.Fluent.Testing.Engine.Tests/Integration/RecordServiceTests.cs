@@ -178,7 +178,7 @@ namespace Marktek.Fluent.Testing.Engine.Tests
                 .CreateRelatedRecord(new CreateDummyExampleRelated())
                 .CreateRelatedRecord(new CreateDummyExampleComposite());
 
-            service.GetRecordCount().Should().Be(3);
+            service.GetRecordCount().Should().Be(3); 
             service.GetRecords.Count.Should().Be(3);
 
         }
