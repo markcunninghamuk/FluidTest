@@ -3,9 +3,7 @@ using Azure.Messaging.ServiceBus.Administration;
 using Marktek.Fluent.Testing.Engine;
 using Marktek.Fluent.Testing.Engine.Common;
 using MarkTek.Fluent.Testing.RecordGeneration;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FluidTest.AzureServiceBus.Assertions
 {
