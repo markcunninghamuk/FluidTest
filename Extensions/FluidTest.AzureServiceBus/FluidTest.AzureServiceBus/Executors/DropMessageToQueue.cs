@@ -7,21 +7,23 @@ using MarkTek.Fluent.Testing.RecordGeneration;
 
 namespace FluidTest.AzureServiceBus.Executors
 {
-    public class DropMessageToQueue : IRecordCreator<ServiceBusMessage, String>
+    public class SendMessage : IRecordCreator<ServiceBusMessage, String>
     {
-        public Record<ServiceBusMessage, string> CreateRecord()
+        private readonly ServiceBusMessage message;
+        private readonly ServiceBusClient client;
+        private readonly string queueName;
+
+        public SendMessage(ServiceBusMessage message, ServiceBusClient client, string queueName)
         {
-            ServiceBusClient client = new ServiceBusClient("Endpoint=sb://markcapddd.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=Hq7SnIQPEMWz3hd76/UxpsKYXMdP7cXmktoJJuIQDhQ=");
+            this.message = message;
+            this.client = client;
+            this.queueName = queueName;
+        }
 
-            string queueName = "flowtest";
-
-            // create the sender
+        public Record<ServiceBusMessage, string> CreateRecord()
+        {          
             ServiceBusSender sender = client.CreateSender(queueName);
-
-            // create a message that we can send. UTF-8 encoding is used when providing a string.
-            ServiceBusMessage message = new ServiceBusMessage("Hello world!");
-            message.MessageId = Guid.NewGuid().ToString();
-            // send the message
+           
             sender.SendMessageAsync(message);
 
             return new Record<ServiceBusMessage, string>(message, message.MessageId,"serviceBusMessage");

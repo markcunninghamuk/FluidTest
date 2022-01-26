@@ -1,5 +1,6 @@
 ﻿using Azure.Messaging.ServiceBus;
 using FluentAssertions;
+using FluidTest.AzureServiceBus.Assertions;
 using FluidTest.AzureServiceBus.Executors;
 using Marktek.Fluent.Testing.Engine.Tests.Models;
 using MarkTek.Fluent.Testing.RecordGeneration;
@@ -181,15 +182,6 @@ namespace Marktek.Fluent.Testing.Engine.Tests
 
             service.GetRecordCount().Should().Be(3);
             service.GetRecords.Count.Should().Be(3);
-        }
-
-        [TestMethod]
-        public void Dummy()
-        {
-            var svc = new RecordService<String>("");
-              svc.CreateRecord(new DropMessageToQueue());
-
-           
         }
 
     }
