@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>MarkTek</Authors>
+    <Company>MarkTek</Company>
+    <Product>MarkTek</Product>
+    <Description>Fluid Test Extensions for Azure Service Bus Queues and Topic as well as Adminstration bindings</Description>
   </PropertyGroup>
 
   <ItemGroup>
