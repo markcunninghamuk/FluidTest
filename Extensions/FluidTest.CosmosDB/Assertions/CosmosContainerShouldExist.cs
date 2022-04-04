@@ -23,7 +23,14 @@ namespace FluidTest.CosmosDB.Assertions
 
         public override Container GetRecord(string id)
         {
-            return client.GetContainer(this.databaseName, this.containerId);
+            var document = this.client.GetContainer(databaseName, containerId).GetItemQueryIterator<object>("select * from c");
+
+            while (document.HasMoreResults)
+            {
+                var response = document.ReadNextAsync().GetAwaiter().GetResult();
+            }
+
+            return this.client.GetContainer(databaseName, containerId);
         }
 
         public override List<ISpecificationValidator<Container>> GetValidators()
