@@ -26,9 +26,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.CosmosDB", "Exten
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.PowerPlatform", "Extensions\FluidTest.PowerPlatform\FluidTest.PowerPlatform.csproj", "{1DDAA6E9-455F-4564-9960-4AAB98423B2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.Common", "FluidTest.Common\FluidTest.Common.csproj", "{814DB40F-69BA-431C-A0D7-1BD3841F13C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.Common", "FluidTest.Common\FluidTest.Common.csproj", "{814DB40F-69BA-431C-A0D7-1BD3841F13C7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.AzureServiceBus", "Extensions\FluidTest.AzureServiceBus\FluidTest.AzureServiceBus.csproj", "{65683FFC-F19D-415A-8F68-581ABCCD4CED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.Samples", "FluidTest.Samples\FluidTest.Samples.csproj", "{C7372EB1-13E9-4482-A06C-296FA2D3E8A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{65683FFC-F19D-415A-8F68-581ABCCD4CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65683FFC-F19D-415A-8F68-581ABCCD4CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65683FFC-F19D-415A-8F68-581ABCCD4CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7372EB1-13E9-4482-A06C-296FA2D3E8A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7372EB1-13E9-4482-A06C-296FA2D3E8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7372EB1-13E9-4482-A06C-296FA2D3E8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7372EB1-13E9-4482-A06C-296FA2D3E8A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
