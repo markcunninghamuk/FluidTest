@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FluidTest.Samples
 {
+    [Ignore]
     [TestClass]
     public class CosmosTests
     {

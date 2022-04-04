@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.Common", "FluidTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.AzureServiceBus", "Extensions\FluidTest.AzureServiceBus\FluidTest.AzureServiceBus.csproj", "{65683FFC-F19D-415A-8F68-581ABCCD4CED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluidTest.Samples", "FluidTest.Samples\FluidTest.Samples.csproj", "{C7372EB1-13E9-4482-A06C-296FA2D3E8A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluidTest.SampleTests", "FluidTest.SampleTests\FluidTest.SampleTests.csproj", "{F00BDCA6-3A6D-44E0-813A-59FF25AEABAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,9 +73,10 @@ Global
 		{65683FFC-F19D-415A-8F68-581ABCCD4CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65683FFC-F19D-415A-8F68-581ABCCD4CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65683FFC-F19D-415A-8F68-581ABCCD4CED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7372EB1-13E9-4482-A06C-296FA2D3E8A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7372EB1-13E9-4482-A06C-296FA2D3E8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7372EB1-13E9-4482-A06C-296FA2D3E8A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F00BDCA6-3A6D-44E0-813A-59FF25AEABAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F00BDCA6-3A6D-44E0-813A-59FF25AEABAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F00BDCA6-3A6D-44E0-813A-59FF25AEABAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F00BDCA6-3A6D-44E0-813A-59FF25AEABAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
