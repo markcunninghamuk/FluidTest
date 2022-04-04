@@ -50,4 +50,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <PropertyGroup>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+  </PropertyGroup>
+
 </Project>
