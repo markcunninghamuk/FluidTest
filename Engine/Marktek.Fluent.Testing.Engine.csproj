@@ -3,7 +3,7 @@
  
   <PropertyGroup>
     <PackageId>FluidTest</PackageId>
-    <TargetFrameworks>netcoreapp2.1;netstandard2.0;net45;net451</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>FluidTest - A flexible Engine allowing you to focus on reusable components and removing the need to have messy unreadable tests</Description>
     <Copyright>MarkTek</Copyright>
@@ -22,7 +22,7 @@
     
     <Authors>Marktek</Authors> 
     
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects> 
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects> 
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
