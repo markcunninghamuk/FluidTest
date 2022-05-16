@@ -1,6 +1,4 @@
-﻿
-[![Build Status](https://dev.azure.com/markcunningham/FluidTest/_apis/build/status/FluidTest.Core?branchName=master)](https://dev.azure.com/markcunningham/FluidTest/_build/latest?definitionId=32&branchName=master)
- 
+
 # Introduction
 A flexible and resilient test engine allowing you to focus on reusable components and removing the need to have messy, unreadable tests. Scenarios where you will consider using it, you can also watch the intro video on [youtube](https://www.youtube.com/watch?v=9c8Hdn18AY8)
 
