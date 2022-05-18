@@ -43,15 +43,12 @@ stages:
         - task: VSTest@2
           displayName: 'VsTest - testAssemblies'
           inputs:
-            testAssemblyVer2: |
-            **\$(BuildConfiguration)\*test*.dll
-            !**\obj\**
-            runSettingsFile: Marktek.Fluent.Testing.Engine.Tests/.runsettings
+            testAssemblyVer2: '**\$(BuildConfiguration)\*test*.dll'
             runInParallel: true
             codeCoverageEnabled: true
             platform: '$(BuildPlatform)'
             configuration: '$(BuildConfiguration)'
-        
+                
         - task: CopyFiles@2
           displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
           inputs:
