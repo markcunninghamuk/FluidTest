@@ -1,4 +1,5 @@
-﻿using Azure.Storage.Files.DataLake;
+﻿using Azure.Storage;
+using Azure.Storage.Files.DataLake;
 using Marktek.Fluent.Testing.Engine.Interfaces;
 using System.IO;
 using System.Reflection;
@@ -11,13 +12,20 @@ namespace FluidTest.AzureStorage.PreExecution
         private string fileName;
         private string containerName;
         private DataLakeServiceClient client;
+        private StorageTransferOptions transferOptions;
 
         public DropFileToDataLake(string containerName, string filePath, string fileName, DataLakeServiceClient dataLakeClient)
         {
             this.filePath = filePath;
             this.fileName = fileName;
             this.containerName = containerName;
-            this.client = dataLakeClient;
+            client = dataLakeClient;
+            transferOptions = new StorageTransferOptions { MaximumConcurrency = 1 };
+        }
+
+        public DropFileToDataLake(string containerName, string filePath, string fileName, DataLakeServiceClient dataLakeClient, StorageTransferOptions transferOptions) : this(containerName, filePath, fileName, dataLakeClient)
+        {
+            this.transferOptions = transferOptions;
         }
 
         public void Execute()
@@ -30,7 +38,7 @@ namespace FluidTest.AzureStorage.PreExecution
 
             using (FileStream stream = File.OpenRead(source))
             {
-                fileClient.Upload(stream, new Azure.Storage.Files.DataLake.Models.DataLakeFileUploadOptions() { Close = true });
+                fileClient.Upload(stream, new Azure.Storage.Files.DataLake.Models.DataLakeFileUploadOptions() { Close = true, TransferOptions = transferOptions });
             }
         }
     }
