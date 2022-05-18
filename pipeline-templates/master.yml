@@ -32,6 +32,15 @@ stages:
             platform: '$(buildPlatform)'
             configuration: '$(buildConfiguration)'
 
+        - task: SonarCloudPrepare@1
+          displayName: 'Prepare analysis configuration'
+          inputs:
+            SonarCloud: 'SonarCloud'
+            organization: 'markcunninghamuk'
+            scannerMode: 'MSBuild'
+            projectKey: 'markcunninghamuk_FluidTest'
+            projectName: 'FluidTest'
+
         - task: DotNetCoreCLI@2         
           displayName: 'dotnet pack'
           inputs:
@@ -46,6 +55,14 @@ stages:
             codeCoverageEnabled: true
             platform: '$(BuildPlatform)'
             configuration: '$(BuildConfiguration)'
+        
+        - task: SonarCloudAnalyze@1
+          displayName: 'Run SonarCloud analysis'
+
+        - task: SonarCloudPublish@1
+          displayName: 'Publish results on build summary'
+          inputs:
+            pollingTimeoutSec: '300'
                 
         - task: CopyFiles@2
           displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
