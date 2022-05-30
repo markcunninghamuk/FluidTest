@@ -2,7 +2,7 @@
 using MarkTek.Fluent.Testing.RecordGeneration;
 using Microsoft.Azure.Management.DataFactory.Models;
 
-namespace FluidTest.AzureSynapse.Validators
+namespace FluidTest.AzureDataFactory.Validators
 {
     public class AzureDataFactoryPipelineStatusShouldBe : ISpecificationValidator<PipelineRun>
     {

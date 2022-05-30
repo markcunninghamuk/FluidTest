@@ -3,7 +3,7 @@ using Marktek.Fluent.Testing.Engine.Interfaces;
 using System;
 using Microsoft.Azure.Management.DataFactory;
 
-namespace FluidTest.AzureSynapse.WaitActions
+namespace FluidTest.AzureDataFactory.WaitActions
 {
     public class WaitForAzureDataFactoryPipelineStatus : IWaitableAction
     {

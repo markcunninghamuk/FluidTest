@@ -1,11 +1,11 @@
-﻿using FluidTest.AzureSynapse.Validators;
-using Marktek.Fluent.Testing.Engine;
+﻿using Marktek.Fluent.Testing.Engine;
 using MarkTek.Fluent.Testing.RecordGeneration;
 using System.Collections.Generic;
 using Microsoft.Azure.Management.DataFactory.Models;
 using Microsoft.Azure.Management.DataFactory;
+using FluidTest.AzureDataFactory.Validators;
 
-namespace FluidTest.AzureSynapse.Assertions
+namespace FluidTest.AzureDataFactory.Assertions
 {
     public class VerifyAzureDataFactoryPipelineStatus : BaseValidator<string, PipelineRun>
     {
