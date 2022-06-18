@@ -20,7 +20,6 @@
     <Folder Include="Assertions\" />
     <Folder Include="WaitActions\" />
     <Folder Include="Validators\" />
-    <Folder Include="PreExecution\" />
   </ItemGroup>
 
   <ItemGroup>
