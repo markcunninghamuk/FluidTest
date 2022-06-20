@@ -1,8 +1,6 @@
 ﻿using MarkTek.Fluent.Testing.RecordGeneration;
 using Microsoft.Azure.Cosmos;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FluidTest.CosmosDB.Execution
 {
@@ -27,7 +25,9 @@ namespace FluidTest.CosmosDB.Execution
         {
             var container = this.client.GetContainer(databaseName, containerName);
             var item = container.UpsertItemAsync(this.item, this.partitionKey);
-            return new Record<ItemResponse<T>, Guid>(item.Result,Guid.NewGuid(),"createdCosmosRecord");
+            //TODO figure how to get the document id.
+            //  return new Record<ItemResponse<T>, Guid>(item,item,"createdCosmosRecord");
+            return null;
         }
     }
 }

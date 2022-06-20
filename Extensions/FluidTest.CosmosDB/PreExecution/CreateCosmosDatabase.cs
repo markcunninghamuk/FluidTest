@@ -1,6 +1,5 @@
 ﻿using Marktek.Fluent.Testing.Engine.Interfaces;
 using Microsoft.Azure.Cosmos;
-using System;
 
 namespace FluidTest.CosmosDB.PreExecution
 {
