@@ -1,14 +1,15 @@
 ﻿using Azure.Storage;
 using Azure.Storage.Files.DataLake;
+using Azure.Storage.Files.DataLake.Models;
 using Marktek.Fluent.Testing.Engine.Interfaces;
 
 namespace FluidTest.AzureStorage.PreExecution
 {
-    public class CreateFolderOnDataLakeContainer : IPreExecution
+    public class CreateDataLakeContainerIfNotExists : IPreExecution
     {     
         private string containerName;
         private DataLakeServiceClient client;
-        private string folderPath;
+        private PublicAccessType datalakeAccess;
 
         /// <summary>
         /// Creates a folder on a given container
@@ -16,17 +17,21 @@ namespace FluidTest.AzureStorage.PreExecution
         /// <param name="containerName"></param>
         /// <param name="folderPath"></param>
         /// <param name="dataLakeClient"></param>
-        public CreateFolderOnDataLakeContainer(string containerName, string folderPath, DataLakeServiceClient dataLakeClient)
+        public CreateDataLakeContainerIfNotExists(string containerName, DataLakeServiceClient dataLakeClient, PublicAccessType accessType)
         {          
             this.containerName = containerName;
             client = dataLakeClient;
-            this.folderPath = folderPath;
+            this.datalakeAccess = accessType;
         }
 
         public void Execute()
-        {         
-            var fileSystemClient = client.GetFileSystemClient(this.containerName);
-            fileSystemClient.CreateDirectory(this.folderPath);
+        {
+            var container = client.GetFileSystemClient(containerName);
+
+            if(!container.Exists())
+            {
+                client.CreateFileSystem(containerName, datalakeAccess);
+            }            
         }
     }
 }

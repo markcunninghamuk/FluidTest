@@ -23,9 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Storage.Files.DataLake" Version="12.8.0" />
-    <PackageReference Include="FluentAssertions" Version="6.4.0" />
-    <PackageReference Include="Microsoft.Azure.DataLake.Store" Version="1.2.5-alpha" />
+    <PackageReference Include="Azure.Storage.Files.DataLake" Version="12.10.0" />
+    <PackageReference Include="FluentAssertions" Version="6.7.0" />
+    <PackageReference Include="Microsoft.Azure.DataLake.Store" Version="1.1.24" />
   </ItemGroup>
 
   <ItemGroup>
