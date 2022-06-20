@@ -20,16 +20,6 @@ namespace FluidTest.Samples
             this.client = new CosmosClient("AccountEndpoint=https://marktek-cosmos.documents.azure.com:443/;AccountKey=RVPoBk6OCy39fELcRR11aIsLKbsWJVD6c5W0r4truBJDZaosFnoadPaYjcZV6buRAD8hacg6xG8qkM3ttGakgQ==;");
         }
 
-        //Check a container exists in a database
-        [DataTestMethod]
-        [DataRow("myContainerName","myDatabaseName")]
-        public void Container_Should_Exist(string containerName, string databaseName)
-        {
-            var recordService = new RecordService<string>("");
-            recordService
-                .AssertAgainst(new CosmosContainerShouldExist(this.client, containerName, databaseName));
-        }
-
         //Create a database and a container and clean it up at the end
         [DataTestMethod]
         [DataRow("myContainerName", "myDatabaseName",4000)]
@@ -37,7 +27,7 @@ namespace FluidTest.Samples
         {
             var dynamicRecord = new { id = Guid.NewGuid().ToString(), name = "test" };
 
-            var recordService = new RecordService<string>("");
+            var recordService = new RecordService<string>(databaseName);
 
             recordService
                .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(client, databaseName, ThroughputProperties.CreateAutoscaleThroughput(4000)))
