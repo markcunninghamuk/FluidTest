@@ -1,10 +1,12 @@
 ﻿using MarkTek.Fluent.Testing.RecordGeneration;
 using Microsoft.Azure.Cosmos;
 using System;
+using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace FluidTest.CosmosDB.Execution
 {
-    class UpsertCosmosDocument<T> : IRecordCreator<ItemResponse<T>, Guid>
+    public class UpsertCosmosDocument<T> : IRecordCreator<T, string>
     {
         private CosmosClient client;
         private string databaseName;
@@ -20,14 +22,17 @@ namespace FluidTest.CosmosDB.Execution
             this.item = item;
             this.partitionKey = partitionkey;
         }
-        
-        Record<ItemResponse<T>, Guid> IRecordCreator<ItemResponse<T>, Guid>.CreateRecord()
+
+        public Record<T, string> CreateRecord()
         {
             var container = this.client.GetContainer(databaseName, containerName);
-            var item = container.UpsertItemAsync(this.item, this.partitionKey);
-            //TODO figure how to get the document id.
-            //  return new Record<ItemResponse<T>, Guid>(item,item,"createdCosmosRecord");
-            return null;
+
+            var res = container.UpsertItemAsync(this.item, this.partitionKey).GetAwaiter().GetResult();
+
+            var value = JObject.Parse(res.Resource.ToString());
+            var id = ((JValue)value.Property("id").Value).Value;
+
+            return new Record<T, string>(res, id.ToString(), "createdRecords");
         }
     }
 }

@@ -1,11 +1,16 @@
-using FluidTest.CosmosDB.Assertions;
-using MarkTek.Fluent.Testing.RecordGeneration;
-using Microsoft.Azure.Cosmos;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluidTest.CosmosDB.PreExecution;
-using FluidTest.CosmosDB;
-using FluidTest.CosmosDB.Execution;
-using System;
+
+## Intro
+
+This sample shows how to create a database and a container, then it creates documents before cleaning up.
+
+Remember to install the following Nuget Packages in your project
+
+```cs
+FluidTest
+FluidTest.AzureCosmosDB
+```
+
+```cs
 
 namespace FluidTest.Samples
 {   
@@ -17,7 +22,7 @@ namespace FluidTest.Samples
         [TestInitialize]
         public void Setup()
         {
-            this.client = new CosmosClient("AccountEndpoint=https://marktek-cosmos.documents.azure.com:443/;AccountKey=RVPoBk6OCy39fELcRR11aIsLKbsWJVD6c5W0r4truBJDZaosFnoadPaYjcZV6buRAD8hacg6xG8qkM3ttGakgQ==;");
+            this.client = new CosmosClient("YOUR CONNECTION STRING FROM ENVIRONMENT VARIABLE");
         }
 
         //Check a container exists in a database
@@ -25,7 +30,7 @@ namespace FluidTest.Samples
         [DataRow("myContainerName","myDatabaseName")]
         public void Container_Should_Exist(string containerName, string databaseName)
         {
-            var recordService = new RecordService<string>("");
+            var recordService = new RecordService<string>(String.Empty);
             recordService
                 .AssertAgainst(new CosmosContainerShouldExist(this.client, containerName, databaseName));
         }
@@ -37,7 +42,7 @@ namespace FluidTest.Samples
         {
             var dynamicRecord = new { id = Guid.NewGuid().ToString(), name = "test" };
 
-            var recordService = new RecordService<string>("");
+            var recordService = new RecordService<string>(String.Empty);
 
             recordService
                .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(client, databaseName, ThroughputProperties.CreateAutoscaleThroughput(4000)))

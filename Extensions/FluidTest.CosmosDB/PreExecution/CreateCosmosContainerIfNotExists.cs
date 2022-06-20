@@ -3,14 +3,14 @@ using Microsoft.Azure.Cosmos;
 
 namespace FluidTest.CosmosDB.PreExecution
 {
-    class CreateCosmosContainer : IPreExecution
+    public class CreateCosmosContainerIfNotExists : IPreExecution
     {
         private CosmosClient client;
         private string databaseName;
         private int throughput;
         private ContainerProperties containerProperties;
 
-        public CreateCosmosContainer(CosmosClient client, string databaseName,ContainerProperties containerProperties, int throughput)
+        public CreateCosmosContainerIfNotExists(CosmosClient client, string databaseName,ContainerProperties containerProperties, int throughput)
         {
             this.client = client;
             this.databaseName = databaseName;

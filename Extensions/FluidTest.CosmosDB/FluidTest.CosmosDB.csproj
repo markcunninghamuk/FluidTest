@@ -22,13 +22,17 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
-    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.20.1" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.26.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NJsonSchema" Version="10.5.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Engine\Marktek.Fluent.Testing.Engine.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Cleanup\" />
   </ItemGroup>
 
 </Project>
