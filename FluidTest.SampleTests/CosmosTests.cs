@@ -6,20 +6,13 @@ using FluidTest.CosmosDB.PreExecution;
 using FluidTest.CosmosDB;
 using FluidTest.CosmosDB.Execution;
 using System;
+using FluidTest.SampleTests.Base;
 
 namespace FluidTest.Samples
 {   
     [TestClass]
-    public class CosmosTests
+    public class CosmosTests: TestExecutionBase
     {
-        private CosmosClient client;
-      
-        [TestInitialize]
-        public void Setup()
-        {
-            this.client = new CosmosClient("AccountEndpoint=https://marktek-cosmos.documents.azure.com:443/;AccountKey=RVPoBk6OCy39fELcRR11aIsLKbsWJVD6c5W0r4truBJDZaosFnoadPaYjcZV6buRAD8hacg6xG8qkM3ttGakgQ==;");
-        }
-
         //Create a database and a container and clean it up at the end
         [DataTestMethod]
         [DataRow("myContainerName", "myDatabaseName",4000)]
@@ -30,11 +23,11 @@ namespace FluidTest.Samples
             var recordService = new RecordService<string>(databaseName);
 
             recordService
-               .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(client, databaseName, ThroughputProperties.CreateAutoscaleThroughput(4000)))
-               .PreExecutionAction(new CreateCosmosContainerIfNotExists(client, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000))
-               .CreateRecord(new UpsertCosmosDocument<dynamic>(client, databaseName, containerName, dynamicRecord, new PartitionKey(dynamicRecord.id)))
-               .AssertAgainst(new CosmosContainerShouldExist(this.client, containerName, databaseName))
-               .Cleanup(new DropCosmosDatabase(databaseName,client));
+               .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(CosmosClient, databaseName, ThroughputProperties.CreateAutoscaleThroughput(4000)))
+               .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000))
+               .CreateRecord(new UpsertCosmosDocument<dynamic>(CosmosClient, databaseName, containerName, dynamicRecord, new PartitionKey(dynamicRecord.id)))
+               .AssertAgainst(new CosmosContainerShouldExist(CosmosClient, containerName, databaseName))
+               .Cleanup(new DropCosmosDatabase(databaseName, CosmosClient));
         }
 
     }

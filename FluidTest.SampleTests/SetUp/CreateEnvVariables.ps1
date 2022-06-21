@@ -1,0 +1,6 @@
+﻿[System.Environment]::SetEnvironmentVariable('SynapseUri','https://xxxx.dev.azuresynapse.net',[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('StorageUri','https://xxxx.dfs.core.windows.net',[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('CosmosDbEndpoint','https://xxxxx.documents.azure.com:443/',[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('TenantId','xxxxx',[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('SpClientId','xxxx',[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('SpClientSecret','xxxx',[System.EnvironmentVariableTarget]::Machine)

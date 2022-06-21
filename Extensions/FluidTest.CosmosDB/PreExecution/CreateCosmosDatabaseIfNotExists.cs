@@ -18,7 +18,7 @@ namespace FluidTest.CosmosDB.PreExecution
 
         public void Execute()
         {
-            client.CreateDatabaseIfNotExistsAsync(databaseName, properties).GetAwaiter().GetResult();
+            client.CreateDatabaseIfNotExistsAsync(databaseName, properties).Wait();
         }
     }
 }
