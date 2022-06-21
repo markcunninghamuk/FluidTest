@@ -23,12 +23,11 @@ namespace FluidTest.Samples
             var recordService = new RecordService<string>(databaseName);
 
             recordService
-               .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(CosmosClient, databaseName, ThroughputProperties.CreateAutoscaleThroughput(4000)))
+               .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(CosmosClient, databaseName, ThroughputProperties.CreateAutoscaleThroughput(throughput)))
                .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000))
                .CreateRecord(new UpsertCosmosDocument<dynamic>(CosmosClient, databaseName, containerName, dynamicRecord, new PartitionKey(dynamicRecord.id)))
                .AssertAgainst(new CosmosContainerShouldExist(CosmosClient, containerName, databaseName))
                .Cleanup(new DropCosmosDatabase(databaseName, CosmosClient));
         }
-
     }
 }
