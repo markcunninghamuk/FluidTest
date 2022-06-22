@@ -31,8 +31,4 @@
     <ProjectReference Include="..\..\Engine\Marktek.Fluent.Testing.Engine.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Cleanup\" />
-  </ItemGroup>
-
 </Project>
