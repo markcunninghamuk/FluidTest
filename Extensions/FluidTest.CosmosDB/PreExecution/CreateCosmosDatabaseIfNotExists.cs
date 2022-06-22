@@ -1,5 +1,6 @@
 ﻿using Marktek.Fluent.Testing.Engine.Interfaces;
 using Microsoft.Azure.Cosmos;
+using System;
 
 namespace FluidTest.CosmosDB.PreExecution
 {
@@ -18,6 +19,7 @@ namespace FluidTest.CosmosDB.PreExecution
 
         public void Execute()
         {
+            Console.WriteLine($"Creating cosmosDb database {databaseName}");
             client.CreateDatabaseIfNotExistsAsync(databaseName, properties).Wait();
         }
     }
