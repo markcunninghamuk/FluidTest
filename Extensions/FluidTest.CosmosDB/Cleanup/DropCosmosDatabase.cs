@@ -20,7 +20,7 @@ namespace FluidTest.CosmosDB
 
         public void Cleanup(List<Record<object, string>> records, string aggregateId)
         {
-            client.GetDatabase(databaseName).DeleteAsync().GetAwaiter().GetResult();
+            client.GetDatabase(databaseName).DeleteAsync().Wait();
         }
     }
 }

@@ -20,8 +20,6 @@ namespace FluidTest.Samples
         {
             var dynamicRecord = new { id = Guid.NewGuid().ToString(), name = "test" };
 
-            var recordService = new RecordService<string>(databaseName);
-
             recordService
                .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(CosmosClient, databaseName, ThroughputProperties.CreateAutoscaleThroughput(throughput)))
                .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000))
