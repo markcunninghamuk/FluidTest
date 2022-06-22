@@ -39,7 +39,7 @@ namespace FluidTest.SampleTests.Base
             .Handle<ExecutionWaitException>()
             .WaitAndRetry(2, retryAttempt => TimeSpan.FromSeconds(5));
 
-        public CosmosClient CosmosClient => new CosmosClient(Environment.GetEnvironmentVariable("CosmosDbEndpoint"), TokenCredentials);
+        public CosmosClient CosmosClient => new CosmosClient(Environment.GetEnvironmentVariable("CosmosDbEndpoint"), Environment.GetEnvironmentVariable("CosmosDbKey"));
 
         [TestInitialize]
         public void Setup()
