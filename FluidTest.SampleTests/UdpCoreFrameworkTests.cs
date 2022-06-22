@@ -22,17 +22,19 @@ namespace FluidTest.SampleTests
             var databaseName = "UdpTesting";
             var containerName = "containerName";
 
-            var dataLakeContainerName = "datanalytics";
-            var folderPath = "RAW/GENERIC/TestFullDataSet";
+            var dataLakeContainerName = "defraanalyticsdata";
+            var folderPathGeneric = "RAW/GENERIC/TestFullLoad";
+            var folderPathConfig = "CONFIG/TestFullLoad";
 
             //Test scenario Set Up
             recordService
                .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(CosmosClient, databaseName, ThroughputProperties.CreateAutoscaleThroughput(4000)))
                .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000))
-               .PreExecutionAction(new CreateFolderOnDataLakeContainerIfNotExists(containerName, folderPath, DataLakeClient))
-
+               .PreExecutionAction(new CreateFolderOnDataLakeContainerIfNotExists(containerName, folderPathGeneric, DataLakeClient))
+               .PreExecutionAction(new CreateFolderOnDataLakeContainerIfNotExists(containerName, folderPathConfig, DataLakeClient))
                .Cleanup(new DropCosmosDatabase(databaseName, CosmosClient))
-               .Cleanup(new DropDataLakeFolder(dataLakeContainerName, folderPath, DataLakeClient));
+               .Cleanup(new DropDataLakeFolder(dataLakeContainerName, folderPathGeneric, DataLakeClient))
+               .Cleanup(new DropDataLakeFolder(dataLakeContainerName, folderPathConfig, DataLakeClient));
 
         }
     }
