@@ -21,6 +21,7 @@ namespace FluidTest.Samples
                 .PreExecutionAction(new CreateDataLakeContainerIfNotExists(containerName, DataLakeClient, Azure.Storage.Files.DataLake.Models.PublicAccessType.FileSystem))
                 .PreExecutionAction(new CreateFolderOnDataLakeContainerIfNotExists(containerName, folderName, DataLakeClient))
                 .AssertAgainst(new VerifyDataLakeFolderExist(DataLakeClient, containerName, folderName))
+                .Cleanup(new DropDataLakeFolder(containerName, folderName, DataLakeClient))
                 .Cleanup(new DropDataLakeContainer(containerName, DataLakeClient)); 
         }
     }
