@@ -25,28 +25,14 @@ namespace FluidTest.SampleTests
             var dataLakeContainerName = "datanalytics";
             var folderPath = "RAW/GENERIC/TestFullDataSet";
 
-            var recordServiceCosmosDb = new RecordService<string>(databaseName);
-            var recordServiceDataLake = new RecordService<string>(folderPath);
-
             //Test scenario Set Up
-            recordServiceCosmosDb
+            recordService
                .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(CosmosClient, databaseName, ThroughputProperties.CreateAutoscaleThroughput(4000)))
-               .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000));
+               .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000))
+               .PreExecutionAction(new CreateFolderOnDataLakeContainerIfNotExists(containerName, folderPath, DataLakeClient))
 
-             recordServiceDataLake
-                .PreExecutionAction(new CreateFolderOnDataLakeContainerIfNotExists(containerName, folderPath, DataLakeClient));
-
-
-            //Test scenario Execute
-
-            //Test scneario Assert
-
-            //Test scenario Clean Up
-            recordServiceCosmosDb
-                .Cleanup(new DropCosmosDatabase(databaseName, CosmosClient));
-
-            recordServiceDataLake
-                .Cleanup(new DropDataLakeFolder(dataLakeContainerName, folderPath, DataLakeClient));
+               .Cleanup(new DropCosmosDatabase(databaseName, CosmosClient))
+               .Cleanup(new DropDataLakeFolder(dataLakeContainerName, folderPath, DataLakeClient));
 
         }
     }
