@@ -6,22 +6,24 @@ using System.Collections.Generic;
 
 namespace FluidTest.CosmosDB
 {
-    public class DropAllCosmosDocuments : IRecordCleanup<string>
+    public class DropAllCosmosDocumentsByQuery : IRecordCleanup<string>
     {
         private string databaseName;
         private string container;
         private CosmosClient client;
+        private string query;
 
-        public DropAllCosmosDocuments(string databaseName, string container, CosmosClient client)
+        public DropAllCosmosDocumentsByQuery(string databaseName, string container, CosmosClient client, string query)
         {
             this.databaseName = databaseName;
             this.container = container;
             this.client = client;
+            this.query = query;
         }
 
         public void Cleanup(List<Record<object, string>> records, string aggregateId)
         {
-            var document = this.client.GetContainer(databaseName, this.container).GetItemQueryIterator<object>("select * from c");
+            var document = this.client.GetContainer(databaseName, this.container).GetItemQueryIterator<object>(query);
 
             List<dynamic> docs = new List<dynamic>();
 
