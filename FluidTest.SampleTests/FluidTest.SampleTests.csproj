@@ -39,8 +39,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Azure.Core, Version=1.19.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\Azure.Core.1.19.0\lib\net461\Azure.Core.dll</HintPath>
+    <Reference Include="Azure.Storage.Blobs, Version=12.12.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Storage.Blobs.12.12.0\lib\netstandard2.0\Azure.Storage.Blobs.dll</HintPath>
+    </Reference>
+    <Reference Include="Azure.Storage.Files.DataLake, Version=12.8.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Storage.Files.DataLake.12.8.0\lib\netstandard2.0\Azure.Storage.Files.DataLake.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Cosmos.Client, Version=3.26.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.Cosmos.3.26.1\lib\netstandard2.0\Microsoft.Azure.Cosmos.Client.dll</HintPath>
@@ -129,6 +132,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BobStorageTests.cs" />
     <Compile Include="CosmosTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -143,6 +147,10 @@
     <ProjectReference Include="..\Engine\Marktek.Fluent.Testing.Engine.csproj">
       <Project>{14603a28-27bb-43b6-a0d1-da53fe2abc38}</Project>
       <Name>Marktek.Fluent.Testing.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Extensions\FluidTest.AzureStorage\FluidTest.AzureStorage.csproj">
+      <Project>{92c60c5f-bfe9-4111-83a6-a57b921af812}</Project>
+      <Name>FluidTest.AzureStorage</Name>
     </ProjectReference>
     <ProjectReference Include="..\Extensions\FluidTest.CosmosDB\FluidTest.CosmosDB.csproj">
       <Project>{de030512-c563-4ab7-bb26-542d6bdbdb11}</Project>

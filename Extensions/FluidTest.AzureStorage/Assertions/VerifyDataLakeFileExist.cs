@@ -8,10 +8,10 @@ namespace FluidTest.AzureStorage.Assertions
 {
     public class VerifyDataLakeFileExist : BaseValidator<string, DataLakeFileClient>
     {
-        private DataLakeServiceClient client;
-        private string containerName;
-        private string folderPath;
-        private string fileName;
+        private readonly DataLakeServiceClient client;
+        private readonly string containerName;
+        private readonly string folderPath;
+        private readonly string fileName;
 
         public VerifyDataLakeFileExist(DataLakeServiceClient dataLakeCientService, string containerName, string folderPath, string fileName)
         {
