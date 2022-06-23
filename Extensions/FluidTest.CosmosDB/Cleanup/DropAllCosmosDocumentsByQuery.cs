@@ -33,7 +33,7 @@ namespace FluidTest.CosmosDB
 
                 foreach (dynamic item in response)
                 {
-                    client.GetContainer(this.databaseName, this.container).DeleteItemAsync<dynamic>(item.id.Value.ToString(), new PartitionKey(item.id.Value));
+                    client.GetContainer(this.databaseName, this.container).DeleteItemAsync<dynamic>(item.id.Value.ToString(), new PartitionKey(item.id.Value)).Wait();
                 }
             }
 

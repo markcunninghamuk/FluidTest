@@ -22,13 +22,15 @@ namespace FluidTest.Samples
             var dynamicRecord1 = new { id = Guid.NewGuid().ToString(), name = "test1" };
 
             recordService
-               .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(CosmosClient, databaseName, ThroughputProperties.CreateAutoscaleThroughput(throughput)))
-               .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000))
-               .CreateRecord(new UpsertCosmosDocument<dynamic>(CosmosClient, databaseName, containerName, dynamicRecord, new PartitionKey(dynamicRecord.id)))
-               .CreateRecord(new UpsertCosmosDocument<dynamic>(CosmosClient, databaseName, containerName, dynamicRecord1, new PartitionKey(dynamicRecord1.id)))
-               .AssertAgainst(new CosmosContainerShouldExist(CosmosClient, containerName, databaseName))
-               .Cleanup(new DropAllCosmosDocumentsByQuery(databaseName, containerName, CosmosClient, "select * from c where c.name='test1'"));
-//               .Cleanup(new DropCosmosDatabase(databaseName, CosmosClient));
+                   .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(CosmosClient, databaseName, ThroughputProperties.CreateAutoscaleThroughput(throughput)))
+                   .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000))
+                   .CreateRecord(new UpsertCosmosDocument<dynamic>(CosmosClient, databaseName, containerName, dynamicRecord, new PartitionKey(dynamicRecord.id)))
+                   .CreateRecord(new UpsertCosmosDocument<dynamic>(CosmosClient, databaseName, containerName, dynamicRecord1, new PartitionKey(dynamicRecord1.id)))
+                   .AssertAgainst(new VerifyCosmosRecords(2, CosmosClient, databaseName, containerName))
+                   .AssertAgainst(new CosmosContainerShouldExist(CosmosClient, containerName, databaseName))
+                   .Cleanup(new DropAllCosmosDocumentsByQuery(databaseName, containerName, CosmosClient, "select * from c where c.name='test1'"))
+                   .AssertAgainst(new VerifyCosmosRecords(1, CosmosClient, databaseName, containerName))
+                   .Cleanup(new DropCosmosDatabase(databaseName, CosmosClient));
         }
     }
 }

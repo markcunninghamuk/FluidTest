@@ -26,7 +26,6 @@ namespace FluidTest.SampleTests
             var folderPathGeneric = "RAW/GENERIC/TestFullLoad";
             var folderPathConfig = "CONFIG/TestFullLoad";
 
-            //Test scenario Set Up
             recordService
                .PreExecutionAction(new CreateCosmosDatabaseIfNotExists(CosmosClient, databaseName, ThroughputProperties.CreateAutoscaleThroughput(4000)))
                .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = cosmosDbContainerName, PartitionKeyPath = "/id" }, 4000))
