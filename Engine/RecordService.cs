@@ -153,11 +153,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
                 if (item.CleanupDelegateFunction != null)
                 {
                     item.CleanupDelegateFunction(item.Id);
-                }
-                //else
-                //{
-                //    throw new InvalidOperationException($"{ item.Row.GetType().FullName} will not cleanup as no cleanup handler was passed in");
-                //}
+                }               
             }
         }
 
