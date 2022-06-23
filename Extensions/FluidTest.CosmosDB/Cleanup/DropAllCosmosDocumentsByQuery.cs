@@ -30,13 +30,13 @@ namespace FluidTest.CosmosDB
             while (document.HasMoreResults)
             {
                 var response = document.ReadNextAsync().GetAwaiter().GetResult();
-                docs.AddRange(response.Resource);
+
+                foreach (dynamic item in response)
+                {
+                    client.GetContainer(this.databaseName, this.container).DeleteItemAsync<dynamic>(item.id.Value.ToString(), new PartitionKey(item.id.Value));
+                }
             }
 
-            docs.ForEach(d =>
-            {                
-                client.GetContainer(this.databaseName, this.container).DeleteItemAsync(d.id.ToString(), d.id);
-            });
         }
     }
 }
