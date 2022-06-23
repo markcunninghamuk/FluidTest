@@ -228,15 +228,30 @@
   <ItemGroup>
     <Compile Include="Base\StorageFileDetails.cs" />
     <Compile Include="Base\TestExecutionBase.cs" />
-    <Compile Include="DatalakeTests.cs" />
-    <Compile Include="CosmosTests.cs" />
+    <Compile Include="TestCases\DatalakeTests.cs" />
+    <Compile Include="TestCases\CosmosTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UdpCoreFrameworkTests.cs" />
+    <Compile Include="TestCases\UdpCoreFrameworkTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="SetUp\CreateEnvVariables.ps1" />
+    <None Include="TestCases\TestData\UdpCoreFrameworkTests\Config\TestFullLoad.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestCases\TestData\UdpCoreFrameworkTests\Data\TestFullLoad-delete.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestCases\TestData\UdpCoreFrameworkTests\Data\TestFullLoad-new.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestCases\TestData\UdpCoreFrameworkTests\Data\TestFullLoad-updated.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestCases\TestData\UdpCoreFrameworkTests\Data\TestFullLoad-full.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Marktek.Fluent.Testing.Engine.csproj">

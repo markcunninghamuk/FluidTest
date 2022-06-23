@@ -6,7 +6,7 @@ using FluidTest.AzureStorage.Assertions;
 using FluidTest.AzureStorage.Cleanup;
 using FluidTest.SampleTests.Base;
 
-namespace FluidTest.Samples
+namespace FluidTest.Samples.TestCases
 {
   //  [Ignore]
     [TestClass]

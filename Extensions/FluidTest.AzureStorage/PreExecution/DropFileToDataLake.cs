@@ -10,6 +10,7 @@ namespace FluidTest.AzureStorage.PreExecution
     {
         private string filePath;
         private string fileName;
+        private string targetFileName;
         private string containerName;
         private DataLakeServiceClient client;
         private StorageTransferOptions transferOptions;
@@ -21,6 +22,12 @@ namespace FluidTest.AzureStorage.PreExecution
             this.containerName = containerName;
             client = dataLakeClient;
             transferOptions = new StorageTransferOptions { MaximumConcurrency = 1 };
+            targetFileName = Path.GetFileName(fileName);
+        }
+
+        public DropFileToDataLake(string containerName, string filePath, string fileName, string targetFileName, DataLakeServiceClient dataLakeClient) : this(containerName, filePath, fileName, dataLakeClient)
+        {
+            this.targetFileName = targetFileName;
         }
 
         public DropFileToDataLake(string containerName, string filePath, string fileName, DataLakeServiceClient dataLakeClient, StorageTransferOptions transferOptions) : this(containerName, filePath, fileName, dataLakeClient)
@@ -31,10 +38,9 @@ namespace FluidTest.AzureStorage.PreExecution
         public void Execute()
         {
             var source = $"{ Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/TestCases/TestData/{fileName}";
-
             var fileSystemClient = client.GetFileSystemClient(this.containerName);
             DataLakeDirectoryClient directoryClient = fileSystemClient.GetDirectoryClient(filePath);
-            DataLakeFileClient fileClient = directoryClient.GetFileClient(fileName);
+            DataLakeFileClient fileClient = directoryClient.GetFileClient(targetFileName);
 
             using (FileStream stream = File.OpenRead(source))
             {

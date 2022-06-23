@@ -8,7 +8,7 @@ using FluidTest.CosmosDB.Execution;
 using System;
 using FluidTest.SampleTests.Base;
 
-namespace FluidTest.Samples
+namespace FluidTest.Samples.TestCases
 {   
     [TestClass]
     public class CosmosTests: TestExecutionBase

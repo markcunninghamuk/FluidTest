@@ -1,0 +1,38 @@
+[
+ {
+    "Name" : "Mark",
+    "PersonId" : 1,
+    "Age" : 38,
+    "Friends" : 
+    [
+        {
+        "Name" : "Jim", "Age" : 32
+        },
+        {
+        "Name" : "Leida", "Age" : 33
+        }
+    ]
+ },
+  {
+    "Name": "Daniel",
+    "PersonId": 2,
+    "Age": 38,
+    "Friends": [
+      {
+        "Name": "Mark",
+        "Age": 66
+      }
+    ]
+  },
+  {
+    "Name": "Kriss",
+    "PersonId": 3,
+    "Age": 38,
+    "Friends": [
+      {
+        "Name": "Paul",
+        "Age": 67
+      }
+    ]
+  }            
+]
