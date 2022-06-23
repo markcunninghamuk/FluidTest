@@ -7,14 +7,14 @@ using System.Collections.Generic;
 
 namespace FluidTest.CosmosDB.Assertions
 {
-    class VerifyCosmosRecords : BaseValidator<string, IEnumerable<object>>
+    public class VerifyCosmosRecords : BaseValidator<string, IEnumerable<object>>
     {
         private int recordCountexpected;
         private CosmosClient client;
         private string databaseName;
         private string containerName;
 
-        public VerifyCosmosRecords(int recordCountexpected, CosmosClient client, string databaseName, string containerName, int expectedCount)
+        public VerifyCosmosRecords(int recordCountexpected, CosmosClient client, string databaseName, string containerName)
         {
             this.recordCountexpected = recordCountexpected;
             this.databaseName = databaseName;
