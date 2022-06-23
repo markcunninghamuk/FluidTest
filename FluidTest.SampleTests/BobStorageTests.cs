@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FluidTest.SampleTests
 {
-    
+    [Ignore]
     [TestClass]
     public class BobStorageTests
     {
