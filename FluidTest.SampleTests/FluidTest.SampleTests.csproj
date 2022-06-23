@@ -228,6 +228,7 @@
   <ItemGroup>
     <Compile Include="Base\StorageFileDetails.cs" />
     <Compile Include="Base\TestExecutionBase.cs" />
+    <Compile Include="TestCases\BlobStorageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCases\CosmosTests.cs" />
     <Compile Include="TestCases\DatalakeTests.cs" />
