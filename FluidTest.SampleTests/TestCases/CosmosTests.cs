@@ -26,10 +26,10 @@ namespace FluidTest.Samples.TestCases
                    .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000))
                    .CreateRecord(new UpsertCosmosDocument<dynamic>(CosmosClient, databaseName, containerName, dynamicRecord, new PartitionKey(dynamicRecord.id)))
                    .CreateRecord(new UpsertCosmosDocument<dynamic>(CosmosClient, databaseName, containerName, dynamicRecord1, new PartitionKey(dynamicRecord1.id)))
-                   .AssertAgainst(new VerifyCosmosRecords(2, CosmosClient, databaseName, containerName))
+                   .AssertAgainst(new VerifyCosmosRecords(2, new System.Collections.Generic.Dictionary<string, string>(), CosmosClient, databaseName, containerName))
                    .AssertAgainst(new CosmosContainerShouldExist(CosmosClient, containerName, databaseName))
                    .Cleanup(new DropAllCosmosDocumentsByQuery(databaseName, containerName, CosmosClient, "select * from c where c.name='test1'"))
-                   .AssertAgainst(new VerifyCosmosRecords(1, CosmosClient, databaseName, containerName))
+                   .AssertAgainst(new VerifyCosmosRecords(1, new System.Collections.Generic.Dictionary<string, string>(), CosmosClient, databaseName, containerName))
                    .Cleanup(new DropCosmosDatabase(databaseName, CosmosClient));
         }
     }

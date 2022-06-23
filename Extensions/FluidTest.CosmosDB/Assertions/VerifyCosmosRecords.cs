@@ -13,13 +13,15 @@ namespace FluidTest.CosmosDB.Assertions
         private CosmosClient client;
         private string databaseName;
         private string containerName;
+        private Dictionary<string, string> mappingValues;
 
-        public VerifyCosmosRecords(int recordCountexpected, CosmosClient client, string databaseName, string containerName)
+        public VerifyCosmosRecords(int recordCountexpected, Dictionary<string, string> mappingValues, CosmosClient client, string databaseName, string containerName)
         {
             this.recordCountexpected = recordCountexpected;
             this.databaseName = databaseName;
             this.containerName = containerName;
             this.client = client;
+            this.mappingValues = mappingValues;
         }
 
         public override IEnumerable<object> GetRecord(string id)
@@ -41,7 +43,8 @@ namespace FluidTest.CosmosDB.Assertions
         {
             return new List<ISpecificationValidator<IEnumerable<object>>>
             {
-                new CosmosDbRecordCountShouldBe(this.recordCountexpected)
+                new CosmosDbRecordCountShouldBe(this.recordCountexpected),
+                new CosmosDbRecordValuesShouldBe(this.mappingValues)
             };
         }
     }
