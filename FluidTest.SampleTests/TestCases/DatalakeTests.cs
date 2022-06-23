@@ -8,7 +8,7 @@ using FluidTest.SampleTests.Base;
 
 namespace FluidTest.Samples.TestCases
 {
-  //  [Ignore]
+    [Ignore]
     [TestClass]
     public class DatalakeTests: TestExecutionBase
     {
