@@ -39,10 +39,7 @@ namespace FluidTest.SampleTests.Base
             .Handle<ExecutionWaitException>()
             .WaitAndRetry(2, retryAttempt => TimeSpan.FromSeconds(5));
 
-       // public CosmosClient CosmosClient => new CosmosClient(Environment.GetEnvironmentVariable("CosmosDbEndpoint"), Environment.GetEnvironmentVariable("CosmosDbKey"));
-
-        public CosmosClient CosmosClient => new CosmosClient(@"AccountEndpoint=https://marktek-cosmos.documents.azure.com:443/;AccountKey=RVPoBk6OCy39fELcRR11aIsLKbsWJVD6c5W0r4truBJDZaosFnoadPaYjcZV6buRAD8hacg6xG8qkM3ttGakgQ==;");
-
+        public CosmosClient CosmosClient => new CosmosClient(Environment.GetEnvironmentVariable("CosmosDbEndpoint"), Environment.GetEnvironmentVariable("CosmosDbKey"));
 
         [TestInitialize]
         public void Setup()
