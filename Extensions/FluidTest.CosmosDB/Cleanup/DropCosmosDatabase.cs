@@ -12,7 +12,7 @@ namespace FluidTest.CosmosDB
         private string databaseName;
         private CosmosClient client;
 
-        public DropCosmosDatabase(string databaseName, CosmosClient client)
+        public DropCosmosDatabase(CosmosClient client, string databaseName)
         {
             this.databaseName = databaseName;
             this.client = client;

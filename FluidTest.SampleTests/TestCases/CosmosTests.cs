@@ -7,6 +7,7 @@ using FluidTest.CosmosDB;
 using FluidTest.CosmosDB.Execution;
 using System;
 using FluidTest.SampleTests.Base;
+using System.Collections.Generic;
 
 namespace FluidTest.Samples.TestCases
 {   
@@ -26,11 +27,11 @@ namespace FluidTest.Samples.TestCases
                    .PreExecutionAction(new CreateCosmosContainerIfNotExists(CosmosClient, databaseName, new ContainerProperties { Id = containerName, PartitionKeyPath = "/id" }, 4000))
                    .CreateRecord(new UpsertCosmosDocument<dynamic>(CosmosClient, databaseName, containerName, dynamicRecord, new PartitionKey(dynamicRecord.id)))
                    .CreateRecord(new UpsertCosmosDocument<dynamic>(CosmosClient, databaseName, containerName, dynamicRecord1, new PartitionKey(dynamicRecord1.id)))
-                   .AssertAgainst(new VerifyCosmosRecords(2, new System.Collections.Generic.Dictionary<string, string>(), CosmosClient, databaseName, containerName))
+                   .AssertAgainst(new VerifyCosmosRecords(CosmosClient, databaseName, containerName, "select * from c", 2, new Dictionary<string, string>()))
                    .AssertAgainst(new CosmosContainerShouldExist(CosmosClient, containerName, databaseName))
-                   .Cleanup(new DropAllCosmosDocumentsByQuery(databaseName, containerName, CosmosClient, "select * from c where c.name='test1'"))
-                   .AssertAgainst(new VerifyCosmosRecords(1, new System.Collections.Generic.Dictionary<string, string>(), CosmosClient, databaseName, containerName))
-                   .Cleanup(new DropCosmosDatabase(databaseName, CosmosClient));
+                   .Cleanup(new DropAllCosmosDocumentsByQuery(CosmosClient, databaseName, containerName, "select * from c where c.name='test1'"))
+                   .AssertAgainst(new VerifyCosmosRecords(CosmosClient, databaseName, containerName, "select * from c", 1, new Dictionary<string, string>()))
+                   .Cleanup(new DropCosmosDatabase(CosmosClient, databaseName));
         }
     }
 }

@@ -13,7 +13,7 @@ namespace FluidTest.CosmosDB
         private CosmosClient client;
         private string query;
 
-        public DropAllCosmosDocumentsByQuery(string databaseName, string container, CosmosClient client, string query)
+        public DropAllCosmosDocumentsByQuery(CosmosClient client, string databaseName, string container, string query)
         {
             this.databaseName = databaseName;
             this.container = container;

@@ -14,19 +14,21 @@ namespace FluidTest.CosmosDB.Assertions
         private string databaseName;
         private string containerName;
         private Dictionary<string, string> mappingValues;
+        private string recordsToRetrieveuery;
 
-        public VerifyCosmosRecords(int recordCountexpected, Dictionary<string, string> mappingValues, CosmosClient client, string databaseName, string containerName)
+        public VerifyCosmosRecords(CosmosClient client, string databaseName, string containerName, string recordsToRetrieveuery, int recordCountexpected, Dictionary<string, string> mappingValues)
         {
             this.recordCountexpected = recordCountexpected;
             this.databaseName = databaseName;
             this.containerName = containerName;
             this.client = client;
             this.mappingValues = mappingValues;
+            this.recordsToRetrieveuery = recordsToRetrieveuery;
         }
 
         public override IEnumerable<object> GetRecord(string id)
         {
-            var document = this.client.GetContainer(databaseName, containerName).GetItemQueryIterator<object>("select * from c");
+            var document = this.client.GetContainer(databaseName, containerName).GetItemQueryIterator<object>(this.recordsToRetrieveuery);
 
             List<object> docs = new List<object>();
 

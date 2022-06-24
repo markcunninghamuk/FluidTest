@@ -34,12 +34,13 @@ namespace FluidTest.SampleTests.TestCases
                .PreExecutionAction(new DropFileToDataLake(dataLakeContainerName, folderPathConfig, "UdpCoreFrameworkTests/Config/TestFullLoad.json", DataLakeClient))
                .PreExecutionAction(new CreateFolderOnDataLakeContainerIfNotExists(dataLakeContainerName, folderPathRawGeneric, DataLakeClient))
                .PreExecutionAction(new DropFileToDataLake(dataLakeContainerName, folderPathRawGeneric, "UdpCoreFrameworkTests/Data/TestFullLoad-new.json", "TestFullLoad.json", DataLakeClient));
+            
             //.CreateRecord(new GetTriggeredPipeline("PL_RAW_To_STAGING_Generic", PipelineRunClient, DateTimeOffset.UtcNow), DefaultRetryPolicy)
             //.AssignAggregateId()
             //.WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy)
             //.AssertAgainst(new VerifyAzureSynapsePipelineStatus("Succeeded", PipelineRunClient));
-            //.Cleanup(new DropAllCosmosDocumentsByQuery(databaseName, cosmosDbContainerName, CosmosClient, "select * from c"))
-            //.Cleanup(new DropCosmosDatabase(databaseName, CosmosClient))
+            //.Cleanup(new DropAllCosmosDocumentsByQuery(CosmosClient, databaseName, cosmosDbContainerName, "select * from c"))
+            //.Cleanup(new DropCosmosDatabase(CosmosClient,databaseName))
             //.Cleanup(new DropDataLakeFolder(dataLakeContainerName, folderPathRawGeneric, DataLakeClient))
             //.Cleanup(new DropDataLakeFolder(dataLakeContainerName, folderPathConfig, DataLakeClient));
 
