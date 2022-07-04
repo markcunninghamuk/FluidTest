@@ -8,13 +8,13 @@ using System.Linq;
 
 namespace FluidTest.AzureSynapse.Executors
 {
-    public class GetTrigger : IRecordCreator<PipelineRun, string>
+    public class GetTriggeredPipelineByTrigger : IRecordCreator<PipelineRun, string>
     {
         private string triggerName;
         private PipelineRunClient pipelineClient;
         private DateTimeOffset executionTime;
 
-        public GetTrigger(string triggerName, PipelineRunClient pipelineClient, DateTimeOffset executionTime)
+        public GetTriggeredPipelineByTrigger(string triggerName, PipelineRunClient pipelineClient, DateTimeOffset executionTime)
         {
             this.pipelineClient = pipelineClient;
             this.executionTime = executionTime;

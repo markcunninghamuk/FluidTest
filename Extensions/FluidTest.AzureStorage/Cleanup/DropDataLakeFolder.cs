@@ -21,7 +21,10 @@ namespace FluidTest.AzureStorage.Cleanup
         public void Cleanup(List<Record<object, string>> records, string aggregateId)
         {
             var fileSystemClient = client.GetFileSystemClient(this.containerName);
-            fileSystemClient.DeleteDirectory(this.folderPath);  
+            var directoryClient = fileSystemClient.GetDirectoryClient(folderPath);
+
+            if (directoryClient.Exists())
+                directoryClient.Delete();
         }
     }
 }
