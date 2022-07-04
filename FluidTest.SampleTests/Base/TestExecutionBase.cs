@@ -37,7 +37,7 @@ namespace FluidTest.SampleTests.Base
 
         public Policy DefaultRetryPolicy => Policy
             .Handle<ExecutionWaitException>()
-            .WaitAndRetry(2, retryAttempt => TimeSpan.FromSeconds(5));
+            .WaitAndRetry(120, retryAttempt => TimeSpan.FromSeconds(5));
 
         public CosmosClient CosmosClient => new CosmosClient(Environment.GetEnvironmentVariable("CosmosDbEndpoint"), Environment.GetEnvironmentVariable("CosmosDbKey"));
 
