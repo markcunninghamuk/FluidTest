@@ -31,7 +31,6 @@ stages:
             solution: '$(solution)'
             platform: '$(buildPlatform)'
             configuration: '$(buildConfiguration)'
-            restoreNugetPackages: true
 
         - task: SonarCloudPrepare@1
           displayName: 'Prepare analysis configuration'
