@@ -38,11 +38,17 @@ namespace Marktek.Fluent.Testing.Engine.Tests
         [TestMethod]
         public void Can_Get_Assigned_AggregateId()
         {
+            var record1 = new CreateDummyExample(Guid.NewGuid());
+            var record2 = new CreateDummyExample(Guid.NewGuid());
+
             service
-                .CreateRecord(new CreateDummyExample())
+                .CreateRecord(record1)
+                .AssignAggregateId()
+                .CreateRecord(record2)
                 .AssignAggregateId();
 
             service.GetAggregateId().Should().NotBe(aggregateId);
+            service.GetAggregateId().Should().Be(record2.Id);
         }
 
         [TestMethod]

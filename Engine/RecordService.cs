@@ -200,7 +200,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             {
                 throw new ArgumentException($"You must first Create records before assigning an aggregate");
             }
-            this.AggregateId = this.CreatedRecords.Last().Id;
+            this.AggregateId = this.CreatedRecords.First().Id;
             return this;
         }
 

@@ -6,12 +6,25 @@ using System.IO;
 namespace Marktek.Fluent.Testing.Engine.Tests
 {
     internal class CreateDummyExample : IRecordCreator<DummyModel, Guid>
-    {    
+    {
+        public Guid Id { get; set; }
+
+        public CreateDummyExample()
+        {
+            this.Id = Guid.NewGuid();
+        }
+
+            public CreateDummyExample(Guid Id)
+        {
+            this.Id = Id;
+        }
 
         public Record<DummyModel, Guid> CreateRecord()
         {
-              return new Record<DummyModel, Guid>(new DummyModel(), Guid.NewGuid(), "alias");
+              return new Record<DummyModel, Guid>(new DummyModel(), this.Id, "alias");
         }
+
+
     }
 
     internal class CreateDummyExampleWithCleanupHandler : IRecordCreator<DummyModel, Guid>

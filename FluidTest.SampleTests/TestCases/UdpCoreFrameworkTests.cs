@@ -82,7 +82,7 @@ namespace FluidTest.SampleTests.TestCases
                .AssignAggregateId()
                .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy);
 
-            //Execute delete
+            //Execute add new record
             startTime = DateTimeOffset.UtcNow;
             recordService
                .PreExecutionAction(new DropFileToDataLake(dataLakeContainerName, folderPathRawGeneric, "UdpCoreFrameworkTests/Data/TestFullLoad-new.json", "TestFullLoad.json", DataLakeClient))
