@@ -4,12 +4,14 @@ using FluidTest.AzureSynapse.Assertions;
 using FluidTest.AzureSynapse.Executors;
 using FluidTest.AzureSynapse.WaitActions;
 using FluidTest.CosmosDB;
+using FluidTest.CosmosDB.Assertions;
 using FluidTest.CosmosDB.PreExecution;
 using FluidTest.SampleTests.Base;
 using MarkTek.Fluent.Testing.RecordGeneration;
 using Microsoft.Azure.Cosmos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace FluidTest.SampleTests.TestCases
 {
@@ -52,7 +54,8 @@ namespace FluidTest.SampleTests.TestCases
                .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy)
                .CreateRecord(new GetTriggeredPipeline("PL_Config_Based_publish", PipelineRunClient, startTime), DefaultRetryPolicy)
                .AssignAggregateId()
-               .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy);
+               .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy)
+               .AssertAgainst(new VerifyCosmosRecords(CosmosClient, databaseName, cosmosDbContainerName, "select * from c", 3, new Dictionary<string, string>()));
 
             //Execute Update
             startTime = DateTimeOffset.UtcNow;
@@ -66,7 +69,8 @@ namespace FluidTest.SampleTests.TestCases
                .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy)
                .CreateRecord(new GetTriggeredPipeline("PL_Config_Based_publish", PipelineRunClient, startTime), DefaultRetryPolicy)
                .AssignAggregateId()
-               .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy);
+               .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy)
+               .AssertAgainst(new VerifyCosmosRecords(CosmosClient, databaseName, cosmosDbContainerName, "select * from c", 5, new Dictionary<string, string>()));
 
             //Execute delete
             startTime = DateTimeOffset.UtcNow;
@@ -80,7 +84,8 @@ namespace FluidTest.SampleTests.TestCases
                .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy)
                .CreateRecord(new GetTriggeredPipeline("PL_Config_Based_publish", PipelineRunClient, startTime), DefaultRetryPolicy)
                .AssignAggregateId()
-               .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy);
+               .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy)
+               .AssertAgainst(new VerifyCosmosRecords(CosmosClient, databaseName, cosmosDbContainerName, "select * from c", 5, new Dictionary<string, string>()));
 
             //Execute add new record
             startTime = DateTimeOffset.UtcNow;
@@ -94,7 +99,8 @@ namespace FluidTest.SampleTests.TestCases
                .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy)
                .CreateRecord(new GetTriggeredPipeline("PL_Config_Based_publish", PipelineRunClient, startTime), DefaultRetryPolicy)
                .AssignAggregateId()
-               .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy);
+               .WaitFor(new WaitForPipelineStatus(PipelineRunClient, recordService.GetAggregateId(), "Succeeded"), DefaultRetryPolicy)
+               .AssertAgainst(new VerifyCosmosRecords(CosmosClient, databaseName, cosmosDbContainerName, "select * from c", 6, new Dictionary<string, string>()));
 
             //.AssertAgainst(new VerifyAzureSynapsePipelineStatus("Succeeded", PipelineRunClient));
             recordService
