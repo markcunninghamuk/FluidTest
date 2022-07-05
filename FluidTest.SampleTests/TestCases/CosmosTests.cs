@@ -10,7 +10,8 @@ using FluidTest.SampleTests.Base;
 using System.Collections.Generic;
 
 namespace FluidTest.Samples.TestCases
-{   
+{
+    [Ignore]
     [TestClass]
     public class CosmosTests: TestExecutionBase
     {
