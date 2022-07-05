@@ -20,6 +20,7 @@ namespace FluidTest.SampleTests.TestCases
     {
 
         [TestMethod]
+        [Ignore]
         public void Test_DataFramework_With_FullDataSet()
         {
             var databaseName = "UdpTesting";
