@@ -93,12 +93,12 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// <param name="builder"></param>
         /// <returns></returns>
         IRecordService<TID> If(bool cond, Func<IRecordService<TID>, IRecordService<TID>> builder);
-        
+
         /// <summary>
         /// Cleans up records Created during the record service, Uses the Aggregate Id to retrieve the record and related children and cleandown.
         /// </summary>
         /// <param name="cleanup"></param>
-        void Cleanup(IRecordCleanup<TID> cleanup);
+        IRecordService<TID> Cleanup(IRecordCleanup<TID> cleanup);
 
         /// <summary>
         /// Cleans up records using their internal cleanup method if the class passed in a cleanup Handler callback delegate.

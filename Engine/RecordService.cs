@@ -137,9 +137,10 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
         /// Cleanup Records
         /// </summary>
         /// <param name="Id"></param>
-        public void Cleanup(IRecordCleanup<TID> Id)
+        public IRecordService<TID> Cleanup(IRecordCleanup<TID> Id)
         {
             Id.Cleanup(CreatedRecords.ToList(), this.AggregateId);
+            return this;
         }
 
         /// <summary>
@@ -152,11 +153,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
                 if (item.CleanupDelegateFunction != null)
                 {
                     item.CleanupDelegateFunction(item.Id);
-                }
-                //else
-                //{
-                //    throw new InvalidOperationException($"{ item.Row.GetType().FullName} will not cleanup as no cleanup handler was passed in");
-                //}
+                }               
             }
         }
 
@@ -203,7 +200,7 @@ namespace MarkTek.Fluent.Testing.RecordGeneration
             {
                 throw new ArgumentException($"You must first Create records before assigning an aggregate");
             }
-            this.AggregateId = this.CreatedRecords.Last().Id;
+            this.AggregateId = this.CreatedRecords.First().Id;
             return this;
         }
 

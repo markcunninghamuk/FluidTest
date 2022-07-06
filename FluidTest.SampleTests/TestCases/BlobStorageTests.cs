@@ -8,7 +8,7 @@ namespace FluidTest.SampleTests
 {
     [Ignore]
     [TestClass]
-    public class BobStorageTests
+    public class BlobStorageTests
     {
         private BlobServiceClient client;
         private IRecordService<string> recordService;
