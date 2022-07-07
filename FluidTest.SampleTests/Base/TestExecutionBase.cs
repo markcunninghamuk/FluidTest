@@ -19,7 +19,7 @@ namespace FluidTest.SampleTests.Base
     {
         protected IRecordService<string> recordService;
 
-        protected const string CONTAINER_NAME = "defraanalyticsdata";
+        protected const string CONTAINER_NAME = "mycontainerName";
         private Uri SynapseUri() => new Uri(Environment.GetEnvironmentVariable("SynapseUri"));
 
         private Uri StorageUri() => new Uri(Environment.GetEnvironmentVariable("StorageUri"));
