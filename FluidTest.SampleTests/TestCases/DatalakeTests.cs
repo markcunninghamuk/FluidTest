@@ -8,7 +8,6 @@ using FluidTest.SampleTests.Base;
 
 namespace FluidTest.Samples.TestCases
 {
-    [Ignore]
     [TestClass]
     public class DatalakeTests: TestExecutionBase
     {
@@ -23,6 +22,17 @@ namespace FluidTest.Samples.TestCases
                 .AssertAgainst(new VerifyDataLakeFolderExist(DataLakeClient, containerName, folderName))
                 .Cleanup(new DropDataLakeFolder(containerName, folderName, DataLakeClient))
                 .Cleanup(new DropDataLakeContainer(containerName, DataLakeClient)); 
+        }
+
+        [DataTestMethod]
+        [DataRow("testcontainer1", "RAW", "xmlfull.zip")]
+        public void DropFileToContainer(string containerName, string folderName, string fileName)
+        {
+            recordService
+                .PreExecutionAction(new CreateDataLakeContainerIfNotExists(containerName, DataLakeClient, Azure.Storage.Files.DataLake.Models.PublicAccessType.FileSystem))
+                .PreExecutionAction(new CreateFolderOnDataLakeContainerIfNotExists(containerName, folderName, DataLakeClient))
+                .PreExecutionAction(new DropFileToDataLake(containerName, folderName, fileName, DataLakeClient))
+                .AssertAgainst(new VerifyDataLakeFolderExist(DataLakeClient, containerName, folderName));
         }
     }
 }

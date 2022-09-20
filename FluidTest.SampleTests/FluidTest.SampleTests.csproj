@@ -231,6 +231,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="SetUp\CreateEnvVariables.ps1" />
+    <None Include="TestCases\TestData\xmlfull.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Marktek.Fluent.Testing.Engine.csproj">
