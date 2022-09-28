@@ -14,7 +14,7 @@ A flexible and resilient test engine allowing you to focus on reusable component
 - Parallel test executions, most approaches load data at the start and wipe at the end, but for parallel runs this is not always a good approach
 
 **Note**
-One thing to mention here, is you will need to know C# to use the framework.
+You will need to know C# to use the framework.
 
 ## Getting Started
 
@@ -29,7 +29,7 @@ To get started you need to instantiate a `RecordService`. The `RecordService` is
 
 **Example**
 
-My system uses Guids on the record and I require to create a record. When you create a new `RecordService`, you must pass in an `AggregateId` and optionally a retry policy, The `AggregateId` is used to cleandown and the end, and is also the identifier of the parent record that you will create. Everything hangs off an aggregate in a relational database model. For NoSQL databases, you don't need to worry as much as you can create a complex object in one hit.
+My system uses Guids so for the example show. Guids are used, but uou can use any type (Complex or primitive). When you create a new `RecordService`, you must pass in an `AggregateId` and optionally a retry policy, The `AggregateId` is used to cleandown data at the end of the test run and is also the identifier of the parent record that you will create. Everything hangs off an aggregate in a relational / hierarchical database model. For NoSQL databases, you don't need to worry as much as you can create a complex object in one hit.
 
 ```cs
 var service = new RecordService<Guid>(Guid.NewGuid());
