@@ -24,8 +24,10 @@ namespace FluidTest.AzureSynapse.WaitActions
 
             if (status.Value.Status != this.status)
             {
-                if (status.Value.Status == "Failed" || status.Value.Status == "Succeeded")
-                    throw new Exception($"Pipeline {status.Value.PipelineName } execution finished with unexpected status { status.Value.Status } !");
+                if (status.Value.Status == "Failed")
+                    throw new Exception($"Pipeline {status.Value.PipelineName } execution finished with unexpected status { status.Value.Status }! Synapse message: { status.Value.Message }");
+                else if (status.Value.Status == "Succeeded")
+                    throw new Exception($"Pipeline {status.Value.PipelineName } execution finished with unexpected status { status.Value.Status }!");
                 else
                     throw new ExecutionWaitException($"Expected the status {this.status} but got {status.Value.Status}. Backing off and retrying");
             }
