@@ -3,6 +3,8 @@
 # Introduction
 A flexible and resilient test engine allowing you to focus on reusable components and removing the need to have messy, unreadable tests. Scenarios where you will consider using it, you can also watch the intro video on [youtube](https://www.youtube.com/watch?v=9c8Hdn18AY8)
 
+I have recently added a video with Microsoft MVP Dustin Vannoy to show how you can test Azure Synapse using this library also [Synapse youtube video](https://www.youtube.com/watch?v=C3dXeFObBfI&pp=ygURZmx1aWR0ZXN0IHN5bmFwc2U%3D)
+
 - Data-based testing
 - Resilient retry policy handled internally to reduce flaky tests
 - Enforcing maximum reuse of test scenarios ([Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle))
